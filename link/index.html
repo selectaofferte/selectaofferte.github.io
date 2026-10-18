@@ -1,1 +1,77 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selecta · Offerte Amazon scelte ogni giorno</title>
+<meta name="description" content="Le migliori offerte Amazon di tecnologia, casa e bimbi, scelte ogni giorno. Gratis su WhatsApp e Telegram.">
+<meta property="og:title" content="Selecta · Offerte Amazon scelte ogni giorno">
+<meta property="og:description" content="Tecnologia, casa e bimbi: solo sconti veri. Gratis su WhatsApp e Telegram.">
+<meta property="og:image" content="https://selectaofferte.github.io/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --navy: #14233b; --ivory: #f4eee2; --gold: #c9a45c; --muted: #9aa3b5; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 50% 30%, #20345a 0%, var(--navy) 65%);
+         color: var(--ivory); font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         display: flex; justify-content: center; }
+  main { width: 100%; max-width: 420px; padding: 48px 16px 32px; text-align: center; }
+  .logo { font-family: Georgia, "Times New Roman", serif; font-size: 52px; letter-spacing: -1px; line-height: 1; }
+  .logo span { color: var(--gold); }
+  .rule { width: 46px; height: 2px; background: var(--gold); margin: 14px auto 12px; }
+  .cats { color: var(--gold); font-size: 12px; letter-spacing: 4px; font-weight: 600; }
+  h1 { font-family: Georgia, serif; font-weight: normal; font-size: 24px; line-height: 1.3; margin: 26px 0 6px; }
+  .season { display: none; margin: 18px auto 0; padding: 8px 14px; border: 1px solid var(--gold); border-radius: 999px;
+            color: var(--gold); font-size: 14px; font-weight: 600; max-width: 340px; }
+  .links { display: flex; flex-direction: column; gap: 14px; margin-top: 30px; }
+  a.btn { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; padding: 12px 18px;
+          border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 17px; }
+  a.main { background: var(--gold); color: var(--navy); }
+  a.alt { background: rgba(244, 238, 226, .08); color: var(--ivory); border: 1px solid rgba(244, 238, 226, .18); }
+  a.btn small { display: block; font-weight: 500; font-size: 13px; opacity: .8; }
+  .note { margin-top: 30px; color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="logo">Selecta<span>.</span></div>
+  <div class="rule"></div>
+  <div class="cats">TECH · CASA · BIMBI</div>
+  <h1>Le migliori offerte Amazon,<br>scelte ogni giorno</h1>
+  <div style="color: var(--muted)">Solo sconti veri. Gratis.</div>
+  <div class="season" id="season"></div>
+  <div class="links">
+    <a class="btn main" href="https://whatsapp.com/channel/0029Vb9SVJEHwXbHm0XbMt0A">
+      <span>Segui il canale WhatsApp<small>le offerte migliori, poche al giorno</small></span></a>
+    <a class="btn main" href="https://t.me/addlist/5ClN-dQAjYkyNzJk">
+      <span>Unisciti su Telegram<small>Tech, Casa e Bimbi, in tempo reale</small></span></a>
+    <a class="btn alt" href="https://ig.me/m/selectaofferte">
+      <span>Cerchi un prodotto preciso?<small>scrivicelo su Instagram, te lo cerchiamo noi</small></span></a>
+  </div>
+  <div class="note">#ad · In qualità di Affiliato Amazon riceviamo un guadagno dagli acquisti idonei. Per te il prezzo non cambia.</div>
+</main>
+<script>
+// Riga del periodo: compare solo tra queste date (MM-GG), poi sparisce da sola.
+(function () {
+  var seasons = [
+    ["10-25", "11-19", "🖤 Black Friday in arrivo: non perderlo"],
+    ["11-20", "12-01", "🖤 Black Friday: solo offerte vere"],
+    ["12-02", "12-24", "🎁 Regali di Natale al prezzo giusto"]
+  ];
+  var d = new Date();
+  var t = ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  for (var i = 0; i < seasons.length; i++) {
+    if (t >= seasons[i][0] && t <= seasons[i][1]) {
+      var el = document.getElementById("season");
+      el.textContent = seasons[i][2];
+      el.style.display = "inline-block";
+      break;
+    }
+  }
+})();
+</script>
+</body>
+</html>
 
