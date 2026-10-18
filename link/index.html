@@ -47,12 +47,23 @@
       <span>Segui il canale WhatsApp<small>le offerte migliori, poche al giorno</small></span></a>
     <a class="btn main" href="https://t.me/addlist/5ClN-dQAjYkyNzJk">
       <span>Unisciti su Telegram<small>Tech, Casa e Bimbi, in tempo reale</small></span></a>
-    <a class="btn alt" href="https://ig.me/m/selectaofferte">
-      <span>Cerchi un prodotto preciso?<small>scrivicelo su Instagram, te lo cerchiamo noi</small></span></a>
+    <a class="btn alt" id="ig" href="https://www.instagram.com/selectaofferte/">
+      <span>Cerchi un prodotto preciso?<small>scrivici su Instagram (tocca «Messaggio»), te lo cerchiamo noi</small></span></a>
   </div>
   <div class="note">#ad · In qualità di Affiliato Amazon riceviamo un guadagno dagli acquisti idonei. Per te il prezzo non cambia.</div>
 </main>
 <script>
+// Instagram: dentro i browser delle app (Instagram, TikTok) i link instagram.com restano bloccati
+// in una pagina vuota. Sul telefono apriamo direttamente l'app Instagram sul profilo di Selecta
+// (da lì: «Messaggio»); se l'app non si apre, dopo poco la pagina del profilo.
+document.getElementById("ig").addEventListener("click", function (e) {
+  if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return;
+  e.preventDefault();
+  var left = false;
+  document.addEventListener("visibilitychange", function () { if (document.hidden) left = true; });
+  location.href = "instagram://user?username=selectaofferte";
+  setTimeout(function () { if (!left) location.href = "https://www.instagram.com/selectaofferte/"; }, 1500);
+});
 // Riga del periodo: compare solo tra queste date (MM-GG), poi sparisce da sola.
 (function () {
   var seasons = [
@@ -74,4 +85,3 @@
 </script>
 </body>
 </html>
-
