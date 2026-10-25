@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex"> 
+<meta name="robots" content="noindex">
 <meta property="og:title" content="Apri su Amazon · Selecta">
 <meta property="og:description" content="Ti portiamo all'offerta, direttamente nell'app Amazon.">
-<meta property="og:image" content="https://selectaofferte.github.io/anteprima.jpg">
+<meta property="og:image" content="https://selectaofferte.it/anteprima.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,15 +33,32 @@
 <script>
 // Pagina di passaggio: apre il prodotto nell'app Amazon (se c'è), altrimenti su amazon.it.
 // Accetta solo prodotti amazon.it (?a=ASIN di 10 caratteri) e tag affiliati "-21": non porta altrove.
+// Contatore dei clic (GoatCounter, anonimo e senza cookie): conta "/clic/<tag>/<asin>" per sapere
+// da quale canale arrivano. Vuoto = nessun conteggio.
+var CONTATORE = "";
+function conta(tag, asin) {
+  if (!CONTATORE) return;
+  try {
+    var img = new Image();
+    img.src = "https://" + CONTATORE + ".goatcounter.com/count?p=" + encodeURIComponent("/clic/" + tag + "/" + asin) +
+              "&t=" + encodeURIComponent(tag) + "&rnd=" + Math.random().toString(36).slice(2);
+  } catch (e) {}
+}
 (function () {
   var q = new URLSearchParams(location.search);
   var asin = (q.get("a") || "").toUpperCase();
   var tag = q.get("t") || "gt-insta-21";
+  // senza prodotto (selectaofferte.it da solo, per esempio dalla bio): si apre la vetrina
+  if (!q.get("a")) { location.replace("/vetrina/"); return; }  // anche con ?fbclid=… di Instagram
   if (!/^[A-Z0-9]{10}$/.test(asin)) { document.getElementById("msg").textContent = "Link non valido."; return; }
   if (!/^[a-z0-9-]{3,40}-21$/.test(tag)) tag = "gt-insta-21";
   var path = "www.amazon.it/dp/" + asin + "?tag=" + encodeURIComponent(tag);
   var web = "https://" + path;
   document.getElementById("web").href = web;
+  conta(tag, asin);
+  var wait = CONTATORE ? 250 : 0;  // il tempo di registrare il clic
+  // w=1 (link dei canali Telegram): sempre il sito amazon.it, senza provare l'app
+  if (q.get("w") === "1") { setTimeout(function () { location.replace(web); }, wait); return; }
   var ua = navigator.userAgent;
   var app = null;
   if (/iPhone|iPad|iPod/i.test(ua)) {
@@ -50,12 +67,12 @@
     app = "intent://" + path + "#Intent;scheme=https;package=com.amazon.mShop.android.shopping;S.browser_fallback_url=" +
           encodeURIComponent(web) + ";end";
   }
-  if (!app) { location.replace(web); return; }
+  if (!app) { setTimeout(function () { location.replace(web); }, wait); return; }
   var left = false;
   document.addEventListener("visibilitychange", function () { if (document.hidden) left = true; });
-  location.href = app;
+  setTimeout(function () { location.href = app; }, wait);
   // se l'app non si è aperta entro poco, apre il sito
-  setTimeout(function () { if (!left) location.replace(web); }, 1600);
+  setTimeout(function () { if (!left) location.replace(web); }, 1600 + wait);
 })();
 </script>
 </body>
