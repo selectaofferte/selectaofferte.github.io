@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14233B;--ivory:#F4EEE2;--paper:#FBF8F2;--gold:#D4AF6A;--gold2:#B8924A;--muted:#6B7385;--line:rgba(20,35,59,.10)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 16px/1.45 Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.hero{background:var(--bg,var(--ink));color:var(--ivory);text-align:center;padding:44px 20px 40px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;left:50%;top:50%;width:900px;height:900px;transform:translate(-50%,-50%);border-radius:50%;
+background:radial-gradient(circle,rgba(212,175,106,.18),rgba(212,175,106,.04) 40%,transparent 68%)}
+.hero>*{position:relative}.logo{font:400 30px/1 "Instrument Serif",serif;opacity:.9}.logo i{color:var(--gold);font-style:normal}
+h1{font:400 50px/1.02 "Instrument Serif",serif;margin:16px 0 0}h1 i{color:var(--gold)}
+.sub{margin:14px auto 0;max-width:520px;color:rgba(244,238,226,.82);font-size:15px;text-wrap:balance}
+main{max-width:1000px;margin:0 auto;padding:26px 16px 40px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:26px 20px 40px;border-top:1px solid var(--line);margin-top:40px}
+footer p{max-width:620px;margin:6px auto}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+.card{background:var(--paper);border-radius:18px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+.ph{position:relative;background:#fff;aspect-ratio:1/1;overflow:hidden}
+.ph img{position:absolute;left:12%;top:12%;width:76%;height:76%;object-fit:contain}
+.noimg:after{content:"Selecta.";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:400 30px "Instrument Serif",serif;color:rgba(20,35,59,.18)}
+.pct{position:absolute;top:10px;left:10px;background:var(--gold);color:var(--ink);font-weight:600;font-size:13px;padding:4px 9px;border-radius:20px}
+.tx{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.nm{font-size:14px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:4.05em}
+.pr b{font:400 26px/1 "Instrument Serif",serif;margin-right:6px}.pr s{color:var(--muted);font-size:13px}.pr span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.btn{display:block;text-align:center;border-radius:30px;padding:10px 4px;font-weight:500;font-size:13px;white-space:nowrap;background:var(--ink);color:var(--ivory);margin-top:auto}
+.cta{display:block;margin:40px auto 0;max-width:620px;text-align:center;background:var(--ink);color:var(--ivory);border-radius:22px;padding:24px}
+.cta span{display:block;font:italic 400 28px/1.2 "Instrument Serif",serif;color:var(--gold);margin-bottom:6px}
+.cta a{display:inline-block;margin:12px 6px 0;padding:10px 18px;border-radius:30px;background:var(--gold);color:var(--ink);font-weight:500;font-size:14px}
+
+.q{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 18px;max-width:640px;margin:0 auto}
+.q h2{font:400 34px/1.1 "Instrument Serif",serif;margin:0 0 14px;text-align:center}.q h2 i{color:var(--gold2)}
+.op{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op button{border:1px solid var(--line);background:var(--paper);border-radius:16px;padding:16px 10px;font:500 15px Outfit,sans-serif;cursor:pointer;color:var(--ink)}
+.op button:hover{border-color:var(--gold)}
+.steps{display:flex;justify-content:center;gap:6px;margin-bottom:14px}.steps i{width:28px;height:4px;border-radius:4px;background:var(--line)}.steps i.on{background:var(--gold)}
+.back{display:block;margin:14px auto 0;background:none;border:0;color:var(--muted);font:inherit;font-size:14px;cursor:pointer;text-decoration:underline}
+.rh{text-align:center;margin:30px 0 16px}.rh h2{font:400 36px/1.1 "Instrument Serif",serif;margin:0}.rh h2 i{color:var(--gold2)}.rh p{color:var(--muted);margin:6px 0 0;font-size:14px}
+.more{display:flex;gap:10px;justify-content:center;margin-top:18px}.more button{border:1px solid var(--ink);background:none;border-radius:30px;padding:10px 18px;font:500 14px Outfit,sans-serif;cursor:pointer}
+</style><title>Che regalo faccio? · Selecta</title>
+<meta name="description" content="Che regalo faccio? Rispondi a 3 domande e ricevi 5 idee regalo di marca in offerta, scelte da Selecta.">
+</head><body>
+<header class="hero"><div class="logo">Selecta<i>.</i></div><h1>Che regalo <i>faccio?</i></h1>
+<p class="sub">Tre tocchi e ti proponiamo 5 regali di marca in offerta, scelti tra le offerte di questi giorni.</p></header>
+<main><section class="q" id="q"></section><div id="res"></div>
+<div class="cta"><span>Ti serve una lista regali?</span>Nascita, compleanno, Natale: con le foto, senza regali doppi. Gratis.<br><a id="crea" href="#">Crea la tua lista</a></div></main>
+<footer><p>#ad · In qualità di Affiliato Amazon, Selecta riceve un guadagno dagli acquisti idonei. I prezzi sono quelli visti nel giorno indicato e possono cambiare: controllali su Amazon.</p>
+<p><a href="/">selectaofferte.it</a> · <a href="/vetrina/">Vetrina</a> · <a href="/privacy/">Privacy</a></p></footer>
+<script>
+(function(){
+var D=null,S={},$=function(i){return document.getElementById(i)};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function euro(v){return v.toFixed(2).replace('.',',')+' €'}
+function hit(t,ws){t=t.toLowerCase();return ws.some(function(w){w=w.toLowerCase();var re=new RegExp('(^|[^\\wàèéìòù])'+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+(w.length<=5?'(?![\\wàèéìòù])':''));return re.test(t)})}
+function step(n,title,opts,cb){var q=$('q');q.innerHTML='';var s=el('div','steps');for(var i=1;i<=3;i++){var b=el('i');if(i<=n)b.className='on';s.appendChild(b)}
+ q.appendChild(s);var h=el('h2');h.innerHTML=title;q.appendChild(h);var o=el('div','op');
+ opts.forEach(function(x){var b=el('button',null,x[1]);b.onclick=function(){cb(x[0])};o.appendChild(b)});q.appendChild(o);
+ if(n>1){var bk=el('button','back','← indietro');bk.onclick=start;q.appendChild(bk)}}
+function start(){S={};$('res').innerHTML='';step(1,'Per <i>chi</i> è?',D.who,function(w){S.who=w;
+ if(D.dir[w]){S.p=D.dir[w];budget()}else if(w=='bimbo')step(2,'Quanti <i>anni</i> ha?',D.ages,function(p){S.p=p;budget()});
+ else step(2,(w=='lei'?'Cosa le <i>piace?</i>':'Cosa gli <i>piace?</i>'),w=='casa'?D.pasc:D.pas,function(p){S.p=p;budget()})})}
+function budget(){step(3,'Quanto vuoi <i>spendere?</i>',D.bud.map(function(b){return [b[0],b[1]]}),function(b){S.b=b;S.o=0;show()})}
+function pick(p,b,loose){var pr=D.prof[p]||D.prof.sorpresa,ch=pr[0],ws=loose?[]:pr[1],c=[];
+ D.p.forEach(function(x){var k=D.k[x[5]];if(ch.indexOf(k)<0)return;if(b&&(x[2]>b||(b>=50&&x[2]<b*.25)))return;if(ws.length&&!hit(x[1],ws))return;
+  c.push([x[4]+(x[10]?12:0),x])});
+ c.sort(function(a,b){return b[0]-a[0]});var per={},out=[];c.forEach(function(y){var t=y[1][9]||'altro';if((per[t]||0)>=2)return;per[t]=(per[t]||0)+1;out.push(y[1])});return out}
+function show(){var all=pick(S.p,S.b);if(!all.length&&S.b&&!/^\d/.test(S.p))all=pick(S.p,S.b,1);var r=$('res');r.innerHTML='';
+ var h=el('div','rh');var t=el('h2');
+ if(all.length&&S.who&&D.nomi[S.who]){t.textContent='Regali per '+D.nomi[S.who]+(S.b?' sotto '+S.b+' €':'');}else t.innerHTML=all.length?'Ecco le nostre <i>idee</i>':'Niente in offerta, per ora';h.appendChild(t);
+ h.appendChild(el('p',null,all.length?'Offerte di marca viste fino al '+D.d+'. I prezzi possono cambiare.':'Riprova tra qualche giorno: le offerte cambiano ogni giorno.'));r.appendChild(h);
+ var g=el('div','grid');all.slice(S.o,S.o+6).forEach(function(x){var c=el('div','card'),ph=el('div','ph');
+  var im=new Image();im.loading='lazy';im.alt=x[1];im.src=x[6]||('https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN='+x[0]+'&Format=_SL400_&ID=AsinImage&MarketPlace=IT&ServiceVersion=20070822&WS=1&tag='+((x[8].match(/t=([^&]+)/)||[])[1]||''));
+  im.onerror=function(){im.remove();ph.classList.add('noimg')};ph.appendChild(im);
+  if(x[4])ph.appendChild(el('span','pct','-'+x[4]+'%'));c.appendChild(ph);var tx=el('div','tx');tx.appendChild(el('div','nm',x[1]));
+  var p=el('div','pr');p.appendChild(el('b',null,euro(x[2])));if(x[3]>x[2])p.appendChild(el('s',null,euro(x[3])));p.appendChild(el('span',null,'prezzo visto il '+x[7]));tx.appendChild(p);
+  var a=el('a','btn','Vedi su Amazon');a.href=x[8];a.target='_blank';a.rel='nofollow sponsored noopener';tx.appendChild(a);c.appendChild(tx);g.appendChild(c)});
+ r.appendChild(g);var m=el('div','more');if(S.o+6<all.length){var b1=el('button',null,'Altre idee');b1.onclick=function(){S.o+=6;show();r.scrollIntoView({behavior:'smooth'})};m.appendChild(b1)}
+ var b2=el('button',null,'Ricomincia');b2.onclick=function(){start();window.scrollTo({top:0,behavior:'smooth'})};m.appendChild(b2);r.appendChild(m);
+ setTimeout(function(){r.scrollIntoView({behavior:'smooth'})},50)}
+fetch('regalo.json?v='+Date.now()).then(function(r){return r.json()}).then(function(j){D=j;$('crea').href=j.crea;
+ var u=new URLSearchParams(location.search),per=u.get('per'),mx=parseInt(u.get('max')||'0',10);
+ if(per&&D.dir[per]){S={who:per,p:D.dir[per],b:mx||0,o:0};$('q').innerHTML='';var bk=el('button','back','← scegli un altro regalo');bk.onclick=start;$('q').appendChild(bk);show()}else start()})
+.catch(function(){$('q').textContent='Pagina non disponibile in questo momento.'});
+})();
+</script></body></html>

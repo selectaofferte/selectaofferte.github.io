@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14233B;--ivory:#F4EEE2;--paper:#FBF8F2;--gold:#D4AF6A;--gold2:#B8924A;--muted:#6B7385;--line:rgba(20,35,59,.10)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 16px/1.45 Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.hero{background:#173328;color:var(--ivory);text-align:center;padding:44px 20px 40px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;left:50%;top:50%;width:900px;height:900px;transform:translate(-50%,-50%);border-radius:50%;
+background:radial-gradient(circle,rgba(212,175,106,.18),rgba(212,175,106,.04) 40%,transparent 68%)}
+.hero>*{position:relative}.logo{font:400 30px/1 "Instrument Serif",serif;opacity:.9}.logo i{color:var(--gold);font-style:normal}
+h1{font:400 50px/1.02 "Instrument Serif",serif;margin:16px 0 0}h1 i{color:var(--gold)}
+.sub{margin:14px auto 0;max-width:520px;color:rgba(244,238,226,.82);font-size:15px;text-wrap:balance}
+main{max-width:1000px;margin:0 auto;padding:26px 16px 40px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:26px 20px 40px;border-top:1px solid var(--line);margin-top:40px}
+footer p{max-width:620px;margin:6px auto}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+.card{background:var(--paper);border-radius:18px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+.ph{position:relative;background:#fff;aspect-ratio:1/1;overflow:hidden}
+.ph img{position:absolute;left:12%;top:12%;width:76%;height:76%;object-fit:contain}
+.noimg:after{content:"Selecta.";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:400 30px "Instrument Serif",serif;color:rgba(20,35,59,.18)}
+.pct{position:absolute;top:10px;left:10px;background:var(--gold);color:var(--ink);font-weight:600;font-size:13px;padding:4px 9px;border-radius:20px}
+.tx{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.nm{font-size:14px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:4.05em}
+.pr b{font:400 26px/1 "Instrument Serif",serif;margin-right:6px}.pr s{color:var(--muted);font-size:13px}.pr span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.btn{display:block;text-align:center;border-radius:30px;padding:10px 4px;font-weight:500;font-size:13px;white-space:nowrap;background:var(--ink);color:var(--ivory);margin-top:auto}
+.cta{display:block;margin:40px auto 0;max-width:620px;text-align:center;background:var(--ink);color:var(--ivory);border-radius:22px;padding:24px}
+.cta span{display:block;font:italic 400 28px/1.2 "Instrument Serif",serif;color:var(--gold);margin-bottom:6px}
+.cta a{display:inline-block;margin:12px 6px 0;padding:10px 18px;border-radius:30px;background:var(--gold);color:var(--ink);font-weight:500;font-size:14px}
+
+.cal{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(min-width:720px){.cal{grid-template-columns:repeat(6,1fr);gap:14px}}
+.door{aspect-ratio:1/1;border-radius:16px;border:1px solid rgba(23,51,40,.18);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+font:400 40px/1 "Instrument Serif",serif;color:#173328;cursor:pointer;position:relative;overflow:hidden}
+.door small{font:500 11px Outfit,sans-serif;letter-spacing:1px;color:var(--muted);margin-top:6px;text-transform:uppercase}
+.door.lock{background:repeating-linear-gradient(45deg,#f6f1e7,#f6f1e7 8px,#efe7d8 8px,#efe7d8 16px);color:rgba(23,51,40,.35);cursor:default}
+.door.open{background:#173328;color:var(--gold)}.door.open small{color:rgba(244,238,226,.7)}
+.door.today{box-shadow:0 0 0 3px var(--gold)}
+.day{margin-top:26px}.day h2{font:400 34px/1.1 "Instrument Serif",serif;margin:0 0 12px;text-align:center}.day h2 i{color:var(--gold2)}
+</style><title>Calendario dell'Avvento · Selecta</title>
+<meta name="description" content="Il Calendario dell'Avvento delle offerte Selecta: dal 1° al 24 dicembre una finestrella ogni sera con le offerte più belle.">
+</head><body>
+<header class="hero"><div class="logo">Selecta<i>.</i></div><h1>Calendario <i>dell'Avvento</i></h1>
+<p class="sub">Dal 1° al 24 dicembre, ogni sera si apre una finestrella con le offerte più belle del giorno: tech, casa e bimbi.</p></header>
+<main><div class="cal" id="cal"></div><section class="day" id="day" hidden></section></main>
+<footer><p>#ad · In qualità di Affiliato Amazon, Selecta riceve un guadagno dagli acquisti idonei. I prezzi sono quelli visti nel giorno indicato e possono cambiare: controllali su Amazon.</p>
+<p><a href="/">selectaofferte.it</a> · <a href="/vetrina/">Vetrina</a> · <a href="/privacy/">Privacy</a></p></footer>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function euro(v){return v.toFixed(2).replace('.',',')+' €'}
+function open(n,D){var s=$('day');s.hidden=false;s.innerHTML='';var h=el('h2');h.innerHTML='Finestrella <i>'+n+'</i>';s.appendChild(h);var g=el('div','grid');
+ D.x.forEach(function(x){var c=el('div','card'),ph=el('div','ph');if(x.i){var im=new Image();im.src=x.i;im.alt=x.n;im.onerror=function(){im.remove();ph.classList.add('noimg')};ph.appendChild(im)}else ph.classList.add('noimg');
+  if(x.c)ph.appendChild(el('span','pct','-'+x.c+'%'));c.appendChild(ph);var tx=el('div','tx');tx.appendChild(el('div','nm',x.n));var p=el('div','pr');p.appendChild(el('b',null,euro(x.p)));
+  if(x.o>x.p)p.appendChild(el('s',null,euro(x.o)));p.appendChild(el('span',null,'prezzo del '+D.d.split('-').reverse().slice(0,2).join('/')+', può cambiare'));tx.appendChild(p);
+  var a=el('a','btn','Vedi su Amazon');a.href=x.l;a.target='_blank';a.rel='nofollow sponsored noopener';tx.appendChild(a);c.appendChild(tx);g.appendChild(c)});
+ s.appendChild(g);s.scrollIntoView({behavior:'smooth'})}
+fetch('avvento.json?v='+Date.now()).then(function(r){return r.json()}).then(function(A){var cal=$('cal'),last=0;
+ for(var n=1;n<=24;n++){(function(n){var D=A[String(n)],d=el('div','door'+(D?' open':' lock'));d.appendChild(document.createTextNode(n));
+  d.appendChild(el('small',null,D?'apri':n+' dic'));if(D){last=n;d.onclick=function(){open(n,D)}}cal.appendChild(d)})(n)}
+ if(last){cal.children[last-1].classList.add('today');open(last,A[String(last)])}
+}).catch(function(){$('cal').textContent='Il calendario si apre il 1° dicembre.'});
+})();
+</script></body></html>
