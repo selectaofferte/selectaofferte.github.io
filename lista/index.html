@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lista regali · Selecta</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Una lista regali creata con Selecta: scegli un regalo e segnalo, così nessuno lo prende due volte.">
+<meta property="og:title" content="Lista regali · Selecta">
+<meta property="og:description" content="Scegli un regalo e segnalo: così nessuno lo prende due volte.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14233B;--ivory:#F4EEE2;--paper:#FBF8F2;--gold:#D4AF6A;--gold2:#B8924A;--muted:#6B7385;--line:rgba(20,35,59,.10)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 16px/1.45 Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.hero{background:var(--ink);color:var(--ivory);text-align:center;padding:44px 20px 40px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;left:50%;top:50%;width:900px;height:900px;transform:translate(-50%,-50%);border-radius:50%;
+background:radial-gradient(circle,rgba(212,175,106,.18),rgba(212,175,106,.04) 40%,transparent 68%)}
+.hero>*{position:relative}
+.logo{font:400 30px/1 "Instrument Serif",serif;letter-spacing:-.3px;opacity:.9}.logo i{color:var(--gold);font-style:normal}
+.em{font-size:44px;margin:18px 0 4px}
+h1{font:400 52px/1.02 "Instrument Serif",serif;margin:0}
+h1 i{color:var(--gold)}
+.cnt{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+.how{margin:16px auto 0;max-width:520px;color:rgba(244,238,226,.82);font-size:15px;text-wrap:balance}
+main{max-width:1100px;margin:0 auto;padding:26px 16px 40px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{background:var(--paper);border-radius:18px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+.ph{position:relative;background:#fff;aspect-ratio:1/1;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ph img{position:absolute;left:12%;top:12%;width:76%;height:76%;object-fit:contain}
+.noimg:after{content:"Selecta.";font:400 30px "Instrument Serif",serif;color:rgba(20,35,59,.18)}
+.pct{position:absolute;top:10px;left:10px;background:var(--gold);color:var(--ink);font-weight:600;font-size:13px;padding:4px 9px;border-radius:20px}
+.tx{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.nm{font-size:14px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:4.05em}
+.pr{font-size:12px;color:var(--muted)}.pr b{font:400 24px/1 "Instrument Serif",serif;color:var(--ink);margin-right:6px}
+.btn{display:block;text-align:center;border-radius:30px;padding:10px 4px;font-weight:500;font-size:13px;white-space:nowrap}
+.buy{background:var(--ink);color:var(--ivory);margin-top:auto}
+.gift{border:1px solid var(--gold);color:var(--gold2)}
+.taken{opacity:.55}.taken .ph:after{content:"Già regalato ✓";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-6deg);
+background:var(--ink);color:var(--gold);font-weight:600;font-size:14px;letter-spacing:1px;padding:8px 14px;border-radius:24px;white-space:nowrap}
+.note{font-size:11px;color:var(--muted);text-align:center;margin-top:-2px}
+.sep{font:italic 400 28px/1.1 "Instrument Serif",serif;margin:34px 4px 12px}
+.msg{text-align:center;color:var(--muted);padding:60px 10px}
+.cta{display:block;margin:44px auto 0;max-width:620px;text-align:center;background:var(--ink);color:var(--ivory);border-radius:22px;padding:24px}
+.cta span{display:block;font:italic 400 28px/1.2 "Instrument Serif",serif;color:var(--gold);margin-bottom:6px}
+.cta a{display:inline-block;margin:12px 6px 0;padding:10px 18px;border-radius:30px;background:var(--gold);color:var(--ink);font-weight:500;font-size:14px}
+.cta a.o{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.own{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px 18px;margin-bottom:26px}
+.own h2{font:400 34px/1.05 "Instrument Serif",serif;margin:0 0 4px}.own h2 i{color:var(--gold2)}
+.own .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+.shr{display:flex;gap:8px;align-items:center;background:var(--ivory);border-radius:14px;padding:10px 12px;font-size:13px;margin-bottom:18px}
+.shr span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);margin:14px 0 8px}
+.fld{display:flex;gap:8px}
+.fld input{flex:1;min-width:0;border:1px solid rgba(20,35,59,.18);border-radius:30px;padding:12px 16px;font:inherit;font-size:15px;background:var(--paper);outline:0}
+.fld input:focus{border-color:var(--gold)}
+.fld button,.shr button{border:0;border-radius:30px;background:var(--ink);color:var(--ivory);font:500 14px Outfit,sans-serif;padding:0 18px;cursor:pointer;white-space:nowrap}
+.shr button{background:var(--gold);color:var(--ink);padding:8px 14px}
+.hint{font-size:12px;color:var(--muted);margin:8px 4px 0}
+.ok{color:#2E7D4F}.ko{color:#B3412F}
+.chs{display:flex;gap:8px;margin:14px 0 4px}.chs button{border:1px solid var(--line);background:#fff;border-radius:30px;padding:7px 14px;font:500 13px Outfit,sans-serif;cursor:pointer}
+.chs button.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+@media(min-width:720px){.res{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.rc{border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:var(--paper)}
+.rc .ph{aspect-ratio:1/1}.rc .nm{font-size:13px;padding:10px 12px 0;min-height:auto;-webkit-line-clamp:3}
+.rc a,.rc span.in{margin:10px 12px 12px;text-align:center;border-radius:30px;padding:9px 6px;font-size:13px;font-weight:500;white-space:nowrap}
+.rc a{background:var(--gold);color:var(--ink)}.rc span.in{color:#2E7D4F;border:1px solid rgba(46,125,79,.4)}
+.cd{display:inline-block;margin-top:12px;background:rgba(212,175,106,.16);border:1px solid rgba(212,175,106,.5);color:var(--ivory);
+border-radius:30px;padding:7px 16px;font-size:14px}.cd b{color:var(--gold)}
+.nt{font-size:12.5px;line-height:1.35;color:var(--gold2);background:rgba(212,175,106,.12);border-radius:10px;padding:6px 9px}
+.ids{display:flex;gap:8px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}.ids::-webkit-scrollbar{display:none}
+.ids button{flex:none;border:1px dashed rgba(184,146,74,.6);background:var(--paper);color:var(--ink);border-radius:30px;padding:7px 13px;font:500 13px Outfit,sans-serif;cursor:pointer}
+.amz{display:block;text-align:center;margin-top:14px;font-size:14px}
+.dlg{position:fixed;inset:0;background:rgba(10,18,30,.55);display:flex;align-items:flex-end;justify-content:center;z-index:20;padding:16px}
+@media(min-width:600px){.dlg{align-items:center}}
+.box{background:var(--paper);border-radius:24px;max-width:420px;width:100%;padding:22px 20px 18px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.box h3{font:400 30px/1.1 "Instrument Serif",serif;margin:0 0 6px}.box p{margin:0 0 16px;color:var(--muted);font-size:14px}
+.box .btn{margin-top:10px;border:0;width:100%;cursor:pointer;font-family:inherit}.box .x{background:none;color:var(--muted)}
+.mine{font-size:12px;text-align:center;color:#2E7D4F}.mine a{text-decoration:underline;color:var(--muted);margin-left:6px;cursor:pointer}.amz a{color:var(--gold2);text-decoration:underline}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:26px 20px 40px;border-top:1px solid var(--line);margin-top:40px}
+footer p{max-width:620px;margin:6px auto}
+</style></head><body>
+<header class="hero"><div class="logo">Selecta<i>.</i></div><div class="em" id="em">🎁</div>
+<h1 id="ti">Lista <i>regali</i></h1><div class="cnt" id="cnt"></div><br><div class="cd" id="cd" hidden></div>
+<p class="how">Scegli un regalo, compralo su Amazon e tocca <b>Lo regalo io</b>: sulla lista comparirà come già regalato e nessuno lo prenderà due volte.</p></header>
+<main><section class="own" id="own" hidden>
+<h2>Aggiungi <i>prodotti</i></h2><p class="sub">Questa è la tua pagina: puoi aggiungere prodotti da qui. Non mandarla agli altri.</p>
+<div class="shr"><span id="shu"></span><button id="shb" type="button">Copia il link da mandare</button></div>
+<div class="lb">Con il link Amazon</div>
+<form class="fld" id="lf"><input id="li" placeholder="Incolla il link Amazon" autocomplete="off"><button>Aggiungi</button></form>
+<p class="hint" id="lh">Dall'app Amazon: apri il prodotto → Condividi → Copia link. Si apre Telegram: tocca <b>Avvia</b> e il prodotto entra nella lista.</p>
+<div class="lb">Oppure cercalo</div><div class="ids" id="ids"></div>
+<form class="fld" id="sf"><input id="si" placeholder="Es. seggiolino auto, friggitrice ad aria" autocomplete="off"><button>Cerca</button></form>
+<div class="chs" id="chs" hidden><button type="button" data-v="m" class="on">Il prodotto</button><button type="button" data-v="a">Accessori</button></div>
+<div class="res" id="res"></div><div class="amz" id="amz" hidden></div>
+</section><div class="grid" id="g"></div><div id="g2"></div><div class="msg" id="msg">Caricamento della lista…</div>
+<div class="dlg" id="dlg" hidden><div class="box"><h3>Lo regali tu? 🎁</h3><p id="dn"></p>
+<button class="btn buy" id="dy">Sì, segnalo come preso</button><a class="btn gift" id="dt" target="_blank" rel="noopener">Segnalo con Telegram (ti ricordiamo di comprarlo)</a>
+<button class="btn x" id="dx">Annulla</button></div></div>
+<div class="cta" id="cta" hidden><span>Vuoi la tua lista regali?</span>Gratis, con le foto e gli avvisi quando un prodotto va in offerta.<br>
+<a id="ctg" href="#">Creala su Telegram</a><a id="cig" class="o" href="#">Scrivi LISTA su Instagram</a></div></main>
+<footer><p>#ad · In qualità di Affiliato Amazon, Selecta riceve un guadagno dagli acquisti idonei. Il prezzo lo vedi su Amazon e può cambiare.</p>
+<p>Su questa pagina ci sono solo i prodotti della lista: nessun dato personale. <a href="/privacy/">Privacy</a> · <a href="/">selectaofferte.it</a></p></footer>
+<script>
+(function(){
+var id=(new URLSearchParams(location.search).get('l')||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+var $=function(i){return document.getElementById(i)};
+function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
+function euro(v){return v.toFixed(2).replace('.',',')+' €'}
+function card(it){
+ var c=el('div','card'+(it.g?' taken':'')),ph=el('div','ph'),im=new Image();
+ im.alt=it.n;im.loading='lazy';im.src=it.i;im.onerror=function(){im.remove();ph.classList.add('noimg')};ph.appendChild(im);
+ if(it.c&&!it.g)ph.appendChild(el('span','pct','-'+it.c+'%'));
+ c.appendChild(ph);var tx=el('div','tx');tx.appendChild(el('div','nm',it.n));if(it.x)tx.appendChild(el('div','nt','📝 '+it.x));
+ if(it.p&&!it.g){var p=el('div','pr');var b=el('b',null,euro(it.p));p.appendChild(b);
+  var d=new Date(it.pt);p.appendChild(document.createTextNode('in offerta · prezzo delle '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)));tx.appendChild(p)}
+ if(!it.g){var a=el('a','btn buy','Compra su Amazon');a.href=it.l;a.target='_blank';a.rel='nofollow sponsored noopener';tx.appendChild(a);
+  var g=el('a','btn gift','🎁 Lo regalo io');g.href=it.r;g.target='_blank';g.rel='noopener';tx.appendChild(g);
+  if(API){g.removeAttribute('target');g.onclick=function(e){e.preventDefault();ask(it)}}
+  else tx.appendChild(el('div','note','si apre Telegram per segnarlo'))}
+ else if(tok(it.a)){var mi=el('div','mine','✓ L\'hai segnato tu');var un=el('a',null,'annulla');un.onclick=function(){undo(it)};mi.appendChild(un);tx.appendChild(mi)}
+ c.appendChild(tx);return c}
+var API='',CUR=null;
+function tok(a,v){var k='sel_'+id+'_'+a;try{if(v===undefined)return localStorage.getItem(k);if(v)localStorage.setItem(k,v);else localStorage.removeItem(k)}catch(e){}return null}
+function post(path,body){return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json()})}
+function ask(it){CUR=it;$('dn').textContent=it.n;$('dt').href=it.r;$('dy').disabled=false;$('dy').textContent='Sì, segnalo come preso';$('dlg').hidden=false}
+function live(){if(!API)return Promise.resolve();return fetch(API+'/l/'+id).then(function(r){if(!r.ok)throw 0;return r.json()}).then(render).catch(function(){})}
+function undo(it){post('/annulla',{l:id,a:it.a,t:tok(it.a)}).then(function(){tok(it.a,'');live()})}
+if(!id){$('msg').textContent='Lista non trovata.';return}
+var m=(new URLSearchParams(location.search).get('m')||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+var ACC=/\b(custodi\w*|cover|pellicol\w*|vetro temperato|proteggi ?schermo|caricator\w*|cavo|cavi|alimentator\w*|supporto|supporti|adattator\w*|cinturin\w*|ricambi\w*|compatibil\w*|skin|adesiv\w*|guscio|bumper|testin\w*|filtr[oi] per|per (iphone|samsung|galaxy|ipad|airpods|apple watch|ps5|playstation|switch|xbox|dyson|bimby))\b/i;
+function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function words(q){return norm(q).split(/[^a-z0-9]+/).filter(function(w){return w.length>1}).map(function(w){return w.length>4&&/[aeio]$/.test(w)?w.slice(0,-1):w})}
+function setupOwn(L){
+ if(!m)return;var share=location.origin+location.pathname+'?l='+id,inList={};L.items.forEach(function(i){inList[i.a]=1});
+ $('own').hidden=false;$('shu').textContent=share;
+ $('shb').onclick=function(){(navigator.clipboard?navigator.clipboard.writeText(share):Promise.reject()).then(function(){$('shb').textContent='Copiato ✓'},function(){prompt('Copia questo link:',share)})};
+ var go=function(p){window.open(L.b+p,'_blank')};
+ $('lf').onsubmit=function(e){e.preventDefault();var v=$('li').value.trim(),a=(v.match(/(?:\/dp\/|\/gp\/product\/|\/gp\/aw\/d\/|\/d\/|^)(B0[A-Z0-9]{8}|[0-9]{9}[0-9X])(?:[\/?&#]|$)/)||[])[1];
+  if(a&&/amazon\.it|^B0|^[0-9]/i.test(v)){go('a_'+id+m+'_'+a);$('lh').innerHTML='<span class="ok">Si è aperto Telegram: tocca <b>Avvia</b>. La pagina si aggiorna entro un paio di minuti.</span>';$('li').value='';return}
+  if(/amzn\.|a\.co\//i.test(v)){(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).catch(function(){});go('g_'+id+m);
+   $('lh').innerHTML='<span class="ok">Link copiato: su Telegram tocca <b>Avvia</b> e poi incollalo nella chat.</span>';return}
+  $('lh').innerHTML='<span class="ko">Questo non sembra un link di un prodotto Amazon.it.</span>'};
+ var IDX=null,mode='m',last=[];
+ function show(){var r=$('res');r.innerHTML='';var q=$('si').value.trim(),accQ=ACC.test(q);
+  var main=last.filter(function(p){return !ACC.test(p[1])}),acc=last.filter(function(p){return ACC.test(p[1])});
+  var both=!accQ&&main.length&&acc.length;$('chs').hidden=!both;
+  var list=both?(mode=='m'?main:acc):last;
+  list.slice(0,12).forEach(function(p){var c=el('div','rc'),ph=el('div','ph'),im=new Image();
+   im.loading='lazy';im.alt=p[1];im.src=p[2]||('https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN='+p[0]+'&Format=_SL400_&ID=AsinImage&MarketPlace=IT&ServiceVersion=20070822&WS=1&tag='+IDX.t[p[3]]);
+   im.onerror=function(){im.remove();ph.classList.add('noimg')};ph.appendChild(im);c.appendChild(ph);c.appendChild(el('div','nm',p[1]));
+   if(inList[p[0]])c.appendChild(el('span','in','✓ Già in lista'));else{var a=el('a',null,'➕ Aggiungi');a.href=L.b+'a_'+id+m+'_'+p[0];a.target='_blank';
+    a.onclick=function(){setTimeout(function(){a.textContent='✓ Aggiunto (tocca Avvia)'},300)};c.appendChild(a)}
+   r.appendChild(c)});
+  var z=$('amz');z.hidden=!q;z.innerHTML='';if(q){z.appendChild(document.createTextNode(list.length?'Non è quello giusto? ':'Non lo conosciamo ancora: '));
+   var a=el('a',null,'cercalo su Amazon');a.href='https://www.amazon.it/s?k='+encodeURIComponent(q)+'&tag='+(IDX?IDX.t[0]:'');a.target='_blank';a.rel='nofollow sponsored noopener';
+   z.appendChild(a);z.appendChild(document.createTextNode(', copia il link del prodotto e incollalo qui sopra.'))}}
+ (L.id||[]).forEach(function(x){var b=el('button',null,x[0]);b.type='button';b.onclick=function(){$('si').value=x[1];$('sf').requestSubmit?$('sf').requestSubmit():$('sf').onsubmit({preventDefault:function(){}})};$('ids').appendChild(b)});
+ [].forEach.call($('chs').querySelectorAll('button'),function(b){b.onclick=function(){mode=b.dataset.v;[].forEach.call($('chs').children,function(x){x.classList.toggle('on',x==b)});show()}});
+ $('sf').onsubmit=function(e){e.preventDefault();var w=words($('si').value);if(!w.length)return;mode='m';
+  [].forEach.call($('chs').children,function(x,i){x.classList.toggle('on',i==0)});
+  var run=function(){last=IDX.p.filter(function(p){var n=norm(p[1]);return w.every(function(x){return n.indexOf(x)>=0})});show()};
+  if(IDX)run();else fetch('cerca.json?v='+new Date().toISOString().slice(0,10)).then(function(r){return r.json()}).then(function(j){IDX=j;run()}).catch(function(){IDX={p:[],t:['']};run()})};
+}
+$('dx').onclick=function(){$('dlg').hidden=true};$('dlg').onclick=function(e){if(e.target==$('dlg'))$('dlg').hidden=true};
+$('dt').onclick=function(){$('dlg').hidden=true};
+$('dy').onclick=function(){var it=CUR;$('dy').disabled=true;$('dy').textContent='Un attimo…';
+ post('/dono',{l:id,a:it.a}).then(function(r){if(r.ok){tok(it.a,r.t);$('dlg').hidden=true;live()}
+  else{$('dy').textContent=r.preso?'Qualcuno l\'ha appena preso: scegline un altro':'Non è andata: riprova o usa Telegram';live()}})
+ .catch(function(){$('dy').textContent='Non è andata: usa il pulsante Telegram qui sotto'})};
+function render(L){
+ API=L.api||'';$('g').innerHTML='';$('g2').innerHTML='';
+ document.title=L.t+' · Selecta';$('em').textContent=L.e;
+ var w=L.t.split(' '),last=w.pop();$('ti').textContent=w.join(' ')+' ';$('ti').appendChild(el('i',null,last));
+ var free=L.items.filter(function(i){return !i.g}),done=L.items.filter(function(i){return i.g});
+ $('cnt').textContent=L.items.length+(L.items.length==1?' regalo':' regali')+(done.length?' · '+done.length+' già presi':'');
+ if(L.ev){var t0=new Date();t0.setHours(0,0,0,0);var dd=Math.round((new Date(L.ev+'T00:00:00')-t0)/864e5);
+  if(dd>=0){$('cd').hidden=false;$('cd').innerHTML=dd>1?'Mancano <b>'+dd+' giorni</b>':(dd==1?'<b>È domani!</b>':'<b>È oggi!</b> 🎉')}}
+ $('msg').hidden=!!L.items.length;if(!L.items.length)$('msg').textContent='La lista è ancora vuota.';
+ free.forEach(function(i){$('g').appendChild(card(i))});
+ if(done.length){$('g2').appendChild(el('div','sep','Già regalati'));var g2=el('div','grid');done.forEach(function(i){g2.appendChild(card(i))});$('g2').appendChild(g2)}
+ $('ctg').href=L.crea;$('cig').href=L.ig;$('cta').hidden=!!m;if(!render.done){render.done=1;setupOwn(L)}
+}
+fetch('d/'+id+'.json?v='+Date.now()).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(L){render(L);live()})
+.catch(function(){$('msg').textContent='Lista non trovata: forse è stata eliminata.'});
+})();
+</script></body></html>
