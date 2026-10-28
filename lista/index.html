@@ -114,6 +114,9 @@ font:500 13px Outfit,sans-serif;cursor:pointer;color:var(--ink);display:inline-f
 .bnote i{display:block;color:var(--gold2);font-size:13px;margin-top:6px;font-style:normal}
 .low{font-size:11.5px;color:#2E7D4F;background:rgba(46,125,79,.1);border-radius:10px;padding:5px 8px;line-height:1.3}
 .lost{text-align:center;margin-top:14px;font-size:13px}.lost a{color:var(--gold2);text-decoration:underline}.lost form{margin-top:10px}
+.fixn{display:flex;gap:6px}.fixn input{flex:1;min-width:0;border:1px solid var(--gold);border-radius:20px;padding:8px 10px;font:inherit;font-size:13px;background:#fff;outline:0}
+.fixn button{border:0;border-radius:20px;background:var(--ink);color:var(--ivory);font:500 13px Outfit,sans-serif;padding:0 12px;cursor:pointer}
+.addph{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--ink);color:var(--gold);font-size:13px;font-weight:600;padding:9px 14px;border-radius:24px;cursor:pointer;white-space:nowrap;z-index:2}
 .mine{font-size:12px;text-align:center;color:#2E7D4F}.mine a{text-decoration:underline;color:var(--muted);margin-left:6px;cursor:pointer}.amz a{color:var(--gold2);text-decoration:underline}
 .letter .hero{background:#6E1C22}.letter .hero:after{content:"";position:absolute;inset:0;pointer-events:none;
 background-image:radial-gradient(rgba(255,255,255,.55) 1.5px,transparent 2px),radial-gradient(rgba(255,255,255,.3) 1px,transparent 1.5px);
@@ -136,8 +139,11 @@ footer p{max-width:620px;margin:6px auto}
 <div class="mylists" id="mine" hidden><div class="lb">Le tue liste su questo telefono</div></div>
 <div class="lost" id="lost" hidden><a href="#" id="lsa">Hai già una lista e hai perso il link?</a>
 <form class="fld" id="lsf" hidden><input type="email" id="lse" placeholder="La tua email" autocomplete="email"><button>Mandamelo</button></form><p class="hint" id="lsh"></p></div>
+<p class="alt" id="igrec" hidden>Hai fatto la lista dentro Instagram e qui non la vedi? Scrivi <b>LE MIE LISTE</b> <a href="https://ig.me/m/selectaofferte" target="_blank" rel="noopener">in direct a @selectaofferte</a> e te la rimandiamo.</p>
 <p class="alt">Preferisci Telegram? <a id="ntg" href="#">Creala con il bot</a> · su Instagram scrivi LISTA a @selectaofferte</p>
 </section><section class="own" id="own" hidden>
+<div class="keep" id="inapp" hidden><b id="iat">📱 Sei nel browser di Instagram</b><span id="iax">Qui la lista resta salvata solo dentro Instagram. Per ritrovarla sempre, salvala nel direct di Selecta: si apre la chat, incolla il messaggio (è già copiato) e invialo. Quando vuoi, scrivi «LE MIE LISTE» e te la rimandiamo.</span>
+<div class="bar"><a id="iasv" href="https://ig.me/m/selectaofferte" target="_blank" rel="noopener">📩 Salvala nel direct</a><a id="iach" hidden>🌐 Apri in Chrome</a><button type="button" id="iaok">Fatto ✓</button></div><p class="hint" id="iah"></p></div>
 <div class="keep" id="keep" hidden><b>🎉 La tua lista è pronta!</b>Questo è il tuo link per modificarla: salvalo (lo ricorda anche questo telefono).
 <div class="bar"><button type="button" id="kcp">📋 Copia il mio link</button><a id="kwa" target="_blank" rel="noopener">📲 Mandalo a me su WhatsApp</a></div>
 <form class="fld" id="kef" hidden style="margin-top:10px"><input type="email" id="kee" placeholder="Oppure mandamelo per email" autocomplete="email"><button>Invia</button></form><p class="hint" id="keh"></p></div>
@@ -187,7 +193,10 @@ function gqbox(gg){var b=el('div','gq');b.appendChild(el('div','gqh','👥 Regal
  var t=el('div','gqt');t.appendChild(el('b',null,euro(gg.s)));t.appendChild(document.createTextNode(' raccolti su '+euro(gg.t)+(gg.n?' · '+gg.n+(gg.n==1?' persona':' persone'):'')+(gg.d?' · completo 🎉':'')));b.appendChild(t);return b}
 function card(it){
  var c=el('div','card'+(it.g?' taken':'')),ph=el('div','ph'),im=new Image();
- im.alt=it.n;im.loading='lazy';im.src=it.i;im.onerror=function(){im.remove();ph.classList.add('noimg')};ph.appendChild(im);
+ var nophoto=function(){im.remove();ph.classList.add('noimg');
+  if(OWN){var lb=el('label','addph','📷 Aggiungi la foto'),fi=el('input');fi.type='file';fi.accept='image/*';fi.hidden=true;lb.appendChild(fi);
+   fi.onchange=function(){photo(it.a,fi.files[0])};ph.appendChild(lb)}};
+ im.alt=it.n;im.loading='lazy';im.src=it.i;im.onerror=nophoto;im.onload=function(){if(im.naturalWidth<20)nophoto()};ph.appendChild(im);
  if(it.c&&!it.g)ph.appendChild(el('span','pct','-'+it.c+'%'));
  c.appendChild(ph);var tx=el('div','tx');tx.appendChild(el('div','nm',it.n));if(it.x)tx.appendChild(el('div','nt','📝 '+it.x));
  if(it.gg)tx.appendChild(gqbox(it.gg));
@@ -206,7 +215,8 @@ function card(it){
  else if(tok(it.a)){var mi=el('div','mine','✓ L\'hai segnato tu');var un=el('a',null,'annulla');un.onclick=function(){undo(it)};mi.appendChild(un);tx.appendChild(mi)}
  if(OWN){var oc=el('div','oc'),b1=el('button',null,it.x?'📝 Cambia nota':'📝 Nota');b1.type='button';
   b1.onclick=function(){var v=prompt('Nota per chi regala (taglia, colore…). Lascia vuoto per toglierla:',it.x||'');if(v!==null)edit('nota',it.a,v)};oc.appendChild(b1);
-  if(it.n=='Prodotto Amazon'){var bn=el('button',null,'✏️ Nome');bn.type='button';bn.onclick=function(){var v=prompt('Come si chiama?','');if(v)edit('nome',it.a,v)};oc.appendChild(bn)}
+  if(it.n=='Prodotto Amazon'){var nf=el('form','fixn'),ni=el('input'),nb=el('button',null,'OK');ni.placeholder='✏️ Il nome';ni.maxLength=100;
+   nf.appendChild(ni);nf.appendChild(nb);nf.onsubmit=function(e){e.preventDefault();if(ni.value.trim())edit('nome',it.a,ni.value.trim())};tx.insertBefore(nf,tx.children[1]||null)}
   var fl=el('label',null,'📷 Foto'),fi=el('input');fi.type='file';fi.accept='image/*';fi.hidden=true;fl.appendChild(fi);fi.onchange=function(){photo(it.a,fi.files[0])};oc.appendChild(fl);
   if(!it.g||it.gg){var bg=el('button',null,it.gg?'👥 Cambia cifra':'👥 Di gruppo');bg.type='button';
    bg.onclick=function(){var v=prompt(it.gg?'Quanto va raccolto (€)? Scrivi 0 per togliere il regalo di gruppo:':'Regalo di gruppo: più persone mettono una quota. Quanto va raccolto (€)?',
@@ -276,7 +286,8 @@ function newList(){
   post('/recupera',{email:v}).then(function(r){$('lsh').textContent=r.ok?'Se a questa email è collegata una lista, ti abbiamo appena mandato il link (guarda anche nello spam).':(r.errore||'Non è andata, riprova.')})
   .catch(function(){$('lsh').textContent='Servizio non raggiungibile: riprova tra poco.'})};
  var pk=(new URLSearchParams(location.search).get('k')||'').toLowerCase();K.forEach(function(k,i){if(k[0]==pk)$('kinds').children[i].onclick()});
- try{var a=JSON.parse(localStorage.getItem('sel_mie')||'[]');if(a.length){$('mine').hidden=false;a.forEach(function(x){var l=el('a',null,(x.e||'🎁')+' '+(x.t||'La tua lista'));l.href='?l='+x.l+'&m='+x.m;$('mine').appendChild(l)})}}catch(e){}
+ var IAB=/Instagram|FBAN|FBAV|FB_IAB|TikTok|musical_ly|Bytedance/i.test(navigator.userAgent);
+ try{var a=JSON.parse(localStorage.getItem('sel_mie')||'[]');if(!a.length&&!IAB)$('igrec').hidden=false;if(a.length){$('mine').hidden=false;$('new').insertBefore($('mine'),$('kinds').previousElementSibling);a.forEach(function(x){var l=el('a',null,(x.e||'🎁')+' '+(x.t||'La tua lista'));l.href='?l='+x.l+'&m='+x.m;$('mine').appendChild(l)})}}catch(e){}
  $('new').hidden=false}
 var m=(new URLSearchParams(location.search).get('m')||'').toLowerCase().replace(/[^a-z0-9]/g,'');
 var ACC=/\b(custodi\w*|cover|pellicol\w*|vetro temperato|proteggi ?schermo|caricator\w*|cavo|cavi|alimentator\w*|supporto|supporti|adattator\w*|cinturin\w*|ricambi\w*|compatibil\w*|skin|adesiv\w*|guscio|bumper|testin\w*|filtr[oi] per|per (iphone|samsung|galaxy|ipad|airpods|apple watch|ps5|playstation|switch|xbox|dyson|bimby))\b/i;
@@ -286,6 +297,14 @@ function setupOwn(L){
  if(!m)return;var share=location.origin+location.pathname+'?l='+id,inList={};L.items.forEach(function(i){inList[i.a]=1});
  $('own').hidden=false;$('shu').textContent=share;remember(L);
  var mine=location.origin+location.pathname+'?l='+id+'&m='+m;
+ var UA=navigator.userAgent,IG=/Instagram/i.test(UA),IAB=IG||/FBAN|FBAV|FB_IAB|TikTok|musical_ly|Bytedance/i.test(UA);
+ var iaKey='sel_iab_'+id,iaDone=false;try{iaDone=!!localStorage.getItem(iaKey)}catch(e){}
+ if(IAB&&!iaDone){var code='SALVA '+id+m;$('inapp').hidden=false;
+  if(!IG){$('iat').textContent='📱 Sei nel browser di un\'app';$('iax').textContent='Qui la lista resta salvata solo dentro questa app. Per ritrovarla sempre, mandati il link su WhatsApp (qui sotto) o aprila nel browser.';$('iasv').hidden=true}
+  else{$('iah').textContent='Il messaggio da mandare: '+code;$('iasv').onclick=function(){try{navigator.clipboard.writeText(code)}catch(e){}}}
+  if(/Android/i.test(UA)){$('iach').hidden=false;$('iach').href='intent://'+location.host+location.pathname+'?l='+id+'&m='+m+'#Intent;scheme=https;package=com.android.chrome;end'}
+  else $('iah').textContent+=(IG?' · ':'')+'Oppure tocca ··· in alto e scegli di aprire nel browser: la lista viene con te.';
+  $('iaok').onclick=function(){try{localStorage.setItem(iaKey,'1')}catch(e){}$('inapp').hidden=true}}
  if(/nuova=1/.test(location.search)){$('keep').hidden=false;
   if(/em=1/.test(location.search))$('keh').textContent='✉️ Te l\'abbiamo mandato anche per email.';
   else fetch(API+'/ping').then(function(r){return r.json()}).then(function(p){if(p.mail)$('kef').hidden=false}).catch(function(){});
@@ -303,7 +322,7 @@ function setupOwn(L){
  $('lf').onsubmit=function(e){e.preventDefault();var v=$('li').value.trim();
   if(L.api&&v){$('lh').textContent='Aggiungo…';post('/aggiungi',{l:id,m:m,u:v}).then(function(r){
     if(!r.ok){$('lh').innerHTML='<span class="ko"></span>';$('lh').firstChild.textContent=r.errore||'Non è andata, riprova.';return}
-    $('li').value='';$('lh').innerHTML='<span class="ok">✓ Aggiunto alla lista'+(r.nome?'':': scrivigli il nome con ✏️ Nome')+(r.foto?'':' · manca la foto: aggiungila con 📷 Foto')+'</span>';inList[r.a]=1;live()})
+    $('li').value='';$('lh').innerHTML='<span class="ok">✓ Aggiunto alla lista'+(r.nome?'':'. Amazon non ci ha dato il nome: scrivilo nella sua scheda qui sotto')+(r.foto?'':(r.nome?'. ':' e ')+'se la foto non si vede, tocca «📷 Aggiungi la foto» (va bene anche uno screenshot)')+'</span>';inList[r.a]=1;live()})
    .catch(function(){$('lh').textContent='Servizio non raggiungibile: riprova.'});return}
   var a=(v.match(/(?:\/dp\/|\/gp\/product\/|\/gp\/aw\/d\/|\/d\/|^)(B0[A-Z0-9]{8}|[0-9]{9}[0-9X])(?:[\/?&#]|$)/)||[])[1];
   if(a&&/amazon\.it|^B0|^[0-9]/i.test(v)){go('a_'+id+m+'_'+a);$('lh').innerHTML='<span class="ok">Si è aperto Telegram: tocca <b>Avvia</b>. La pagina si aggiorna entro un paio di minuti.</span>';$('li').value='';return}
