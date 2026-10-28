@@ -113,6 +113,7 @@ font:500 13px Outfit,sans-serif;cursor:pointer;color:var(--ink);display:inline-f
 .bnote{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin:0 0 10px;font-size:15px}
 .bnote i{display:block;color:var(--gold2);font-size:13px;margin-top:6px;font-style:normal}
 .low{font-size:11.5px;color:#2E7D4F;background:rgba(46,125,79,.1);border-radius:10px;padding:5px 8px;line-height:1.3}
+.lost{text-align:center;margin-top:14px;font-size:13px}.lost a{color:var(--gold2);text-decoration:underline}.lost form{margin-top:10px}
 .mine{font-size:12px;text-align:center;color:#2E7D4F}.mine a{text-decoration:underline;color:var(--muted);margin-left:6px;cursor:pointer}.amz a{color:var(--gold2);text-decoration:underline}
 .letter .hero{background:#6E1C22}.letter .hero:after{content:"";position:absolute;inset:0;pointer-events:none;
 background-image:radial-gradient(rgba(255,255,255,.55) 1.5px,transparent 2px),radial-gradient(rgba(255,255,255,.3) 1px,transparent 1.5px);
@@ -129,12 +130,17 @@ footer p{max-width:620px;margin:6px auto}
 <h2>Crea la tua <i>lista</i></h2><p class="sub">Gratis, senza registrarti. Scegli il tipo di lista:</p>
 <div class="kinds" id="kinds"></div>
 <div class="dt"><label for="evd">Quando è il giorno? (facoltativo)</label><input type="date" id="evd"></div>
+<div class="dt" id="emw" hidden><label for="eml">La tua email (facoltativa): ti mandiamo il link per modificarla</label><input type="email" id="eml" autocomplete="email" placeholder="nome@esempio.it">
+<span class="hint">Non salviamo il tuo indirizzo: solo un'impronta cifrata per farti ritrovare la lista.</span></div>
 <button class="go" id="mk" disabled>Crea la lista</button><p class="hint" id="mkh"></p>
 <div class="mylists" id="mine" hidden><div class="lb">Le tue liste su questo telefono</div></div>
+<div class="lost" id="lost" hidden><a href="#" id="lsa">Hai già una lista e hai perso il link?</a>
+<form class="fld" id="lsf" hidden><input type="email" id="lse" placeholder="La tua email" autocomplete="email"><button>Mandamelo</button></form><p class="hint" id="lsh"></p></div>
 <p class="alt">Preferisci Telegram? <a id="ntg" href="#">Creala con il bot</a> · su Instagram scrivi LISTA a @selectaofferte</p>
 </section><section class="own" id="own" hidden>
 <div class="keep" id="keep" hidden><b>🎉 La tua lista è pronta!</b>Questo è il tuo link per modificarla: salvalo (lo ricorda anche questo telefono).
-<div class="bar"><button type="button" id="kcp">📋 Copia il mio link</button><a id="kwa" target="_blank" rel="noopener">📲 Mandalo a me su WhatsApp</a></div></div>
+<div class="bar"><button type="button" id="kcp">📋 Copia il mio link</button><a id="kwa" target="_blank" rel="noopener">📲 Mandalo a me su WhatsApp</a></div>
+<form class="fld" id="kef" hidden style="margin-top:10px"><input type="email" id="kee" placeholder="Oppure mandamelo per email" autocomplete="email"><button>Invia</button></form><p class="hint" id="keh"></p></div>
 <h2>Aggiungi <i>prodotti</i></h2><p class="sub">Questa è la tua pagina: puoi aggiungere prodotti da qui. Non mandarla agli altri.</p>
 <div class="bar" id="obar" hidden><a id="owa" target="_blank" rel="noopener">📲 Manda la lista su WhatsApp</a>
 <label>📅 <input type="date" id="oev"></label><a id="otg" class="tgb" target="_blank" rel="noopener">🔔 Avvisi su Telegram</a>
@@ -262,8 +268,13 @@ function newList(){
  K.forEach(function(k){var b=el('button',null,k[1]);b.type='button';b.onclick=function(){sel=k[0];[].forEach.call($('kinds').children,function(x){x.classList.toggle('on',x==b)});
   $('mk').disabled=false;$('evd').parentNode.hidden=(sel=='natale'||sel=='blackfriday'||sel=='letterina')};$('kinds').appendChild(b)});
  $('mk').onclick=function(){$('mk').disabled=true;$('mk').textContent='Un attimo…';
-  post('/crea',{k:sel,ev:$('evd').value||''}).then(function(r){if(!r.ok){$('mk').disabled=false;$('mk').textContent='Crea la lista';$('mkh').textContent=r.errore||'Non è andata, riprova.';return}
-   location.replace('?l='+r.l+'&m='+r.m+'&nuova=1')}).catch(function(){$('mk').disabled=false;$('mk').textContent='Crea la lista';$('mkh').textContent='Servizio non raggiungibile: riprova o usa Telegram.'})};
+  post('/crea',{k:sel,ev:$('evd').value||'',email:($('emw').hidden?'':$('eml').value.trim())}).then(function(r){if(!r.ok){$('mk').disabled=false;$('mk').textContent='Crea la lista';$('mkh').textContent=r.errore||'Non è andata, riprova.';return}
+   location.replace('?l='+r.l+'&m='+r.m+'&nuova=1'+(r.mail?'&em=1':''))}).catch(function(){$('mk').disabled=false;$('mk').textContent='Crea la lista';$('mkh').textContent='Servizio non raggiungibile: riprova o usa Telegram.'})};
+ fetch(APIB+'/ping').then(function(r){return r.json()}).then(function(p){if(p.mail){$('emw').hidden=false;$('lost').hidden=false}}).catch(function(){});
+ $('lsa').onclick=function(e){e.preventDefault();$('lsf').hidden=false;$('lse').focus()};
+ $('lsf').onsubmit=function(e){e.preventDefault();var v=$('lse').value.trim();if(!v)return;$('lsh').textContent='Un attimo…';
+  post('/recupera',{email:v}).then(function(r){$('lsh').textContent=r.ok?'Se a questa email è collegata una lista, ti abbiamo appena mandato il link (guarda anche nello spam).':(r.errore||'Non è andata, riprova.')})
+  .catch(function(){$('lsh').textContent='Servizio non raggiungibile: riprova tra poco.'})};
  var pk=(new URLSearchParams(location.search).get('k')||'').toLowerCase();K.forEach(function(k,i){if(k[0]==pk)$('kinds').children[i].onclick()});
  try{var a=JSON.parse(localStorage.getItem('sel_mie')||'[]');if(a.length){$('mine').hidden=false;a.forEach(function(x){var l=el('a',null,(x.e||'🎁')+' '+(x.t||'La tua lista'));l.href='?l='+x.l+'&m='+x.m;$('mine').appendChild(l)})}}catch(e){}
  $('new').hidden=false}
@@ -275,7 +286,11 @@ function setupOwn(L){
  if(!m)return;var share=location.origin+location.pathname+'?l='+id,inList={};L.items.forEach(function(i){inList[i.a]=1});
  $('own').hidden=false;$('shu').textContent=share;remember(L);
  var mine=location.origin+location.pathname+'?l='+id+'&m='+m;
- if(/nuova=1/.test(location.search)){$('keep').hidden=false;if(L.k=='blackfriday'&&L.api){var kb=el('p','hint','🔔 Per sapere quando un prodotto va in offerta tocca «Avvisi su Telegram» qui sotto: ti scriviamo in privato.');$('keep').appendChild(kb)}history.replaceState(null,'','?l='+id+'&m='+m)}
+ if(/nuova=1/.test(location.search)){$('keep').hidden=false;
+  if(/em=1/.test(location.search))$('keh').textContent='✉️ Te l\'abbiamo mandato anche per email.';
+  else fetch(API+'/ping').then(function(r){return r.json()}).then(function(p){if(p.mail)$('kef').hidden=false}).catch(function(){});
+  $('kef').onsubmit=function(e){e.preventDefault();var v=$('kee').value.trim();if(!v)return;$('keh').textContent='Un attimo…';
+   post('/email',{l:id,m:m,email:v}).then(function(r){$('keh').textContent=r.ok?'✉️ Fatto: controlla la posta (anche lo spam).':(r.errore||'Non è andata, riprova.');if(r.ok)$('kef').hidden=true})};if(L.k=='blackfriday'&&L.api){var kb=el('p','hint','🔔 Per sapere quando un prodotto va in offerta tocca «Avvisi su Telegram» qui sotto: ti scriviamo in privato.');$('keep').appendChild(kb)}history.replaceState(null,'','?l='+id+'&m='+m)}
  $('kcp').onclick=function(){(navigator.clipboard?navigator.clipboard.writeText(mine):Promise.reject()).then(function(){$('kcp').textContent='Copiato ✓'},function(){prompt('Il tuo link:',mine)})};
  $('kwa').href='https://wa.me/?text='+encodeURIComponent('Il mio link per modificare la lista regali (non condividerlo): '+mine);
  if(L.api){$('obar').hidden=false;$('owa').href='https://wa.me/?text='+encodeURIComponent(L.e+' Ecco la mia '+L.t.toLowerCase()+': se scegli un regalo tocca «Lo regalo io» così nessuno lo prende due volte 🎁 '+share);
