@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Babbo Natale segreto · Selecta</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Babbo Natale segreto gratis: crei il gruppo, mandi il link nella chat, l'estrazione la facciamo noi. Senza app.">
+<meta property="og:title" content="Babbo Natale segreto · Selecta">
+<meta property="og:description" content="Crei il gruppo, mandi il link nella chat, l'estrazione la facciamo noi. Gratis, senza app.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14233B;--pine:#173328;--ivory:#F4EEE2;--paper:#FBF8F2;--gold:#D4AF6A;--gold2:#B8924A;--muted:#6B7385;--line:rgba(20,35,59,.10);--ok:#2E7D4F;--ko:#B3412F}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 16px/1.45 Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.hero{background:var(--pine);color:var(--ivory);text-align:center;padding:40px 20px 36px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.5) 1.5px,transparent 2px),
+radial-gradient(rgba(255,255,255,.28) 1px,transparent 1.5px);background-size:90px 90px,53px 53px;background-position:0 0,25px 31px}
+.hero>*{position:relative}.logo{font:400 28px/1 "Instrument Serif",serif;opacity:.9}.logo i{color:var(--gold);font-style:normal}
+.em{font-size:44px;margin:16px 0 2px}h1{font:400 48px/1.02 "Instrument Serif",serif;margin:0}h1 i{color:var(--gold)}
+.sub{margin:12px auto 0;max-width:520px;color:rgba(244,238,226,.85);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}.chips span{background:rgba(212,175,106,.16);border:1px solid rgba(212,175,106,.45);border-radius:30px;padding:6px 13px;font-size:13px}
+main{max-width:640px;margin:0 auto;padding:22px 16px 40px}
+.box{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px 18px;margin-bottom:16px}
+.box h2{font:400 30px/1.1 "Instrument Serif",serif;margin:0 0 6px}.box h2 i{color:var(--gold2)}
+.box p{margin:0 0 12px;color:var(--muted);font-size:14px}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 6px}
+input,textarea,select{width:100%;border:1px solid rgba(20,35,59,.18);border-radius:14px;padding:12px;font:inherit;font-size:16px;background:var(--paper);outline:0}
+input:focus,textarea:focus{border-color:var(--gold)}textarea{resize:vertical;min-height:80px}
+.bud{display:flex;flex-wrap:wrap;gap:8px}.bud button{border:1px solid var(--line);background:var(--paper);border-radius:30px;padding:8px 14px;font:500 14px Outfit,sans-serif;cursor:pointer;color:var(--ink)}
+.bud button.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.go{display:block;width:100%;margin-top:16px;border:0;border-radius:30px;padding:14px;background:var(--ink);color:var(--ivory);font:500 16px Outfit,sans-serif;cursor:pointer;text-align:center;text-decoration:none}
+.go.gold{background:var(--gold);color:var(--ink)}.go.lt{background:transparent;color:var(--muted);text-decoration:underline;padding:8px}
+.go:disabled{opacity:.5}
+.hint{font-size:12.5px;color:var(--muted);margin:8px 2px 0}.ok{color:var(--ok)}.ko{color:var(--ko)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.bar a,.bar button{border:1px solid var(--line);background:var(--paper);border-radius:30px;padding:9px 14px;font:500 14px Outfit,sans-serif;cursor:pointer;color:var(--ink);text-decoration:none}
+.keep{background:rgba(212,175,106,.16);border:1px solid rgba(212,175,106,.5);border-radius:16px;padding:14px;font-size:14px;margin-bottom:16px}
+.tgt{background:var(--pine);color:var(--ivory);border-radius:22px;padding:24px 18px;text-align:center;margin-bottom:16px}
+.tgt .k{font-size:12px;letter-spacing:3px;color:var(--gold);text-transform:uppercase}.tgt .n{font:400 46px/1.05 "Instrument Serif",serif;margin:8px 0 4px}
+.tgt .w{background:rgba(244,238,226,.1);border-radius:14px;padding:10px 12px;margin-top:12px;font-size:15px;text-align:left}
+.tgt .go{background:var(--gold);color:var(--ink)}
+.mem{list-style:none;margin:8px 0 0;padding:0}.mem li{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
+.mem button{border:0;background:none;color:var(--muted);cursor:pointer;text-decoration:underline;font:inherit;font-size:13px}
+.pair{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center}.pair button{border:0;border-radius:30px;background:var(--ink);color:var(--ivory);padding:12px 14px;font:500 14px Outfit,sans-serif;cursor:pointer}
+.mine a{display:block;padding:10px 4px;border-bottom:1px solid var(--line);font-weight:500;text-decoration:none}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 20px 40px}
+</style></head><body>
+<header class="hero"><div class="logo">Selecta<i>.</i></div><div class="em">🎅</div>
+<h1 id="ti">Babbo Natale <i>segreto</i></h1><p class="sub" id="hs">Crei il gruppo, mandi il link nella chat: l'estrazione la facciamo noi e ognuno scopre in privato a chi fa il regalo. Gratis, senza app.</p>
+<div class="chips" id="hc"></div></header>
+<main>
+<p class="hint" id="msg">Caricamento…</p>
+<!-- crea -->
+<section class="box" id="sCrea" hidden><h2>Crea il <i>gruppo</i></h2><p>Ufficio, amici, cugini, calcetto…</p>
+<label for="cn">Nome del gruppo</label><input id="cn" maxlength="40" placeholder="Es. Ufficio, Cugini">
+<label>Budget a testa</label><div class="bud" id="cb"></div>
+<label for="cd">Quando vi scambiate i regali? (facoltativo)</label><input type="date" id="cd">
+<label for="cm">Il tuo nome nel gruppo</label><input id="cm" maxlength="30" placeholder="Come ti conoscono (es. Giusy, zio Pino)">
+<div class="em1" hidden><label for="ce">La tua email (facoltativa): ti mandiamo il tuo link</label><input type="email" id="ce" autocomplete="email" placeholder="nome@esempio.it">
+<p class="hint">Non salviamo l'indirizzo: solo un'impronta cifrata per farti ritrovare il link.</p></div>
+<button class="go" id="cgo">Crea il gruppo</button><p class="hint" id="ch"></p>
+<div class="mine" id="mine" hidden><label>I tuoi gruppi su questo telefono</label></div>
+<p class="hint" style="text-align:center;margin-top:16px">Preferisci Telegram? <a id="tgc" href="#">Crealo con il bot</a></p></section>
+<!-- entra -->
+<section class="box" id="sEntra" hidden><h2>Partecipa al <i>gruppo</i></h2><p>Scrivi il nome con cui ti conoscono: lo vedrà chi ti pesca.</p>
+<label for="en">Il tuo nome</label><input id="en" maxlength="30" placeholder="Es. Giusy, zio Pino">
+<div class="em1" hidden><label for="ee">La tua email (facoltativa): ti mandiamo il tuo link</label><input type="email" id="ee" autocomplete="email" placeholder="nome@esempio.it"></div>
+<button class="go" id="ego">Partecipo</button><p class="hint" id="eh"></p>
+<a class="go lt" id="etg" target="_blank" rel="noopener">Preferisci Telegram? Entra con il bot (ti scriviamo noi)</a></section>
+<section class="box" id="sChiuso" hidden><h2>Estrazione <i>già fatta</i></h2><p>Chiedi a chi organizza di rifarla: così entri anche tu.</p></section>
+<!-- il mio -->
+<section id="sMe" hidden>
+<div class="keep" id="keep" hidden><b>🔑 Questo è il tuo link personale</b><br>Dopo l'estrazione, aprendolo scopri a chi fai il regalo. Lo ricorda anche questo telefono: salvalo, non mandarlo agli altri.
+<div class="bar"><button type="button" id="kcp">📋 Copia il mio link</button><a id="kwa" target="_blank" rel="noopener">📲 Mandalo a me su WhatsApp</a></div>
+<div id="kem" hidden style="margin-top:10px"><input type="email" id="kee" placeholder="Oppure mandamelo per email" autocomplete="email"><button class="go" id="keb" style="margin-top:8px">Invia per email</button></div><p class="hint" id="keh"></p></div>
+<div class="tgt" id="tgt" hidden><div class="k">Fai il regalo a</div><div class="n" id="tn"></div><div id="tb"></div><div class="w" id="tw" hidden></div>
+<a class="go" id="tl" target="_blank" rel="noopener" hidden>🎁 Apri la sua lista dei desideri</a>
+<a class="go" id="ti2" target="_blank" rel="noopener">💡 Idee regalo in offerta entro il budget</a><p class="hint" style="color:rgba(244,238,226,.7)">🤫 Acqua in bocca!</p></div>
+<div class="box" id="wait" hidden><h2>In attesa dell'<i>estrazione</i></h2><p id="wp"></p></div>
+<div class="box" id="adm" hidden><h2>Organizzi <i>tu</i></h2>
+<p>Manda questo link nella chat del gruppo: ognuno tocca, scrive il nome e ci siete.</p>
+<div class="bar"><button type="button" id="icp">📋 Copia il link d'invito</button><a id="iwa" target="_blank" rel="noopener">📲 Mandalo su WhatsApp</a><a id="itg" target="_blank" rel="noopener">✈️ Su Telegram</a></div>
+<label>Partecipanti</label><ul class="mem" id="mem"></ul>
+<div id="cpw"><label>Coppie che non devono pescarsi (es. marito e moglie)</label>
+<div class="pair"><select id="pa"></select><select id="pb"></select><button type="button" id="pgo">Aggiungi</button></div><p class="hint" id="pl"></p></div>
+<button class="go gold" id="dgo">🎲 Fai l'estrazione</button><p class="hint" id="dh">Nemmeno tu, che organizzi, saprai chi ha pescato chi.</p>
+<button class="go lt" id="del">❌ Elimina il gruppo</button></div>
+<div class="box" id="memb" hidden><h2>Il <i>gruppo</i></h2><p id="mlist"></p></div>
+<div class="box"><h2>I tuoi <i>desideri</i></h2><p>Aiuta chi ti ha pescato: 2-3 idee, la taglia, cosa NON vuoi.</p>
+<textarea id="wv" maxlength="300" placeholder="Es. libri gialli, taglia M, niente candele"></textarea><button class="go" id="wgo">Salva i desideri</button><p class="hint" id="wh"></p>
+<button class="go lt" id="lgo">🎁 Oppure fai la tua lista dei desideri (con le foto)</button></div>
+<button class="go lt" id="esc" hidden>🚪 Esci dal gruppo</button>
+</section>
+</main>
+<footer>#ad · I link alle idee regalo sono link affiliati Amazon. I nomi si vedono solo dentro il gruppo; il gruppo si cancella da solo dopo lo scambio. <a href="/privacy/">Privacy</a> · <a href="/vetrina/">selectaofferte.it</a></footer>
+<script>
+(function(){
+var API='https://api.selectaofferte.it',BOT='https://t.me/SelectaOfferte_bot?start=babbonatale';
+var Q=new URLSearchParams(location.search),G=(Q.get('g')||'').replace(/[^a-z0-9]/g,''),C=(Q.get('c')||'').replace(/[^a-z0-9]/g,''),T=(Q.get('t')||'').replace(/[^a-z0-9]/g,'');
+var $=function(i){return document.getElementById(i)};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function post(b){return fetch(API+'/bn',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function store(){try{return JSON.parse(localStorage.getItem('sel_bn')||'[]')}catch(e){return[]}}
+function remember(n){try{var a=store().filter(function(x){return x.g!=G});a.unshift({g:G,c:C,t:T,n:n});localStorage.setItem('sel_bn',JSON.stringify(a.slice(0,8)))}catch(e){}}
+function forget(){try{localStorage.setItem('sel_bn',JSON.stringify(store().filter(function(x){return x.g!=G})))}catch(e){}}
+function fdate(d){if(!d)return'';var x=new Date(d+'T12:00:00');return x.toLocaleDateString('it-IT',{day:'numeric',month:'long'})}
+function chips(r){var h=$('hc');h.innerHTML='';h.appendChild(el('span',null,'💶 '+(r.b?r.b+' €':'budget libero')));if(r.d)h.appendChild(el('span',null,'📅 '+fdate(r.d)));h.appendChild(el('span',null,'👥 '+r.k+(r.k==1?' partecipante':' partecipanti')))}
+function copy(t,b){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copiato ✓'},function(){prompt('Copia il link:',t)})}
+var MAIL=false;
+fetch(API+'/ping').then(function(r){return r.json()}).then(function(p){MAIL=!!p.mail;[].forEach.call(document.querySelectorAll('.em1'),function(x){x.hidden=!MAIL});if(MAIL&&!$('sMe').hidden)$('kem').hidden=false}).catch(function(){});
+if(!API||API.indexOf('__')==0){$('msg').innerHTML='Per ora si fa sul bot Telegram: <a href="'+BOT+'">apri il bot</a>.';return}
+if(!G){crea();return}
+if(!T){var s=store().filter(function(x){return x.g==G})[0];if(s&&s.t){location.replace('?g='+G+'&c='+C+'&t='+s.t);return}}
+load();
+function crea(){$('msg').hidden=true;$('sCrea').hidden=false;$('tgc').href=BOT;var bud=20;
+ [10,15,20,25,30,50,0].forEach(function(v){var b=el('button',v==bud?'on':null,v?v+' €':'Libero');b.type='button';b.onclick=function(){bud=v;[].forEach.call($('cb').children,function(x){x.classList.toggle('on',x==b)})};$('cb').appendChild(b)});
+ var a=store();if(a.length){$('mine').hidden=false;a.forEach(function(x){var l=el('a',null,'🎅 '+(x.n||'Il tuo gruppo'));l.href='?g='+x.g+'&c='+x.c+'&t='+x.t;$('mine').appendChild(l)})}
+ $('cgo').onclick=function(){var me=$('cm').value.trim();if(!me){$('ch').innerHTML='<span class="ko">Scrivi il tuo nome nel gruppo.</span>';return}
+  $('cgo').disabled=true;$('cgo').textContent='Un attimo…';
+  post({azione:'crea',nome:$('cn').value.trim(),budget:bud,giorno:$('cd').value||'',mionome:me,email:MAIL?$('ce').value.trim():''}).then(function(r){
+   if(!r.ok){$('cgo').disabled=false;$('cgo').textContent='Crea il gruppo';$('ch').innerHTML='<span class="ko"></span>';$('ch').firstChild.textContent=r.errore||'Non è andata, riprova.';return}
+   location.replace('?g='+r.g+'&c='+r.c+'&t='+r.t+'&nuovo=1'+(r.mail?'&em=1':''))}).catch(function(){$('cgo').disabled=false;$('cgo').textContent='Crea il gruppo';$('ch').textContent='Servizio non raggiungibile: riprova o usa Telegram.'})}}
+function load(){post({azione:'info',g:G,c:C,t:T}).then(function(r){$('msg').hidden=true;
+  if(!r.ok){$('msg').hidden=false;$('msg').textContent=r.errore||'Gruppo non trovato.';if(r.via)forget();return}
+  document.title='🎅 '+r.n+' · Babbo Natale segreto';$('ti').textContent=r.n;$('hs').textContent='Babbo Natale segreto';chips(r);
+  if(!r.me){if(T){forget()}if(r.x){$('sChiuso').hidden=false;return}if(!r.entra){$('msg').hidden=false;$('msg').textContent='Il gruppo è pieno.';return}
+   $('sEntra').hidden=false;$('etg').href=r.tg;
+   $('ego').onclick=function(){var n=$('en').value.trim();if(!n){$('eh').innerHTML='<span class="ko">Scrivi il tuo nome.</span>';return}$('ego').disabled=true;$('ego').textContent='Un attimo…';
+    post({azione:'entra',g:G,c:C,nome:n,email:MAIL?$('ee').value.trim():''}).then(function(x){if(!x.ok){$('ego').disabled=false;$('ego').textContent='Partecipo';$('eh').innerHTML='<span class="ko"></span>';$('eh').firstChild.textContent=x.errore||'Riprova.';return}
+     location.replace('?g='+G+'&c='+C+'&t='+x.t+'&nuovo=1'+(x.mail?'&em=1':''))}).catch(function(){$('ego').disabled=false;$('ego').textContent='Partecipo';$('eh').textContent='Servizio non raggiungibile: riprova.'})};return}
+  me(r)}).catch(function(){$('msg').textContent='Servizio non raggiungibile: riprova tra poco.'})}
+function seen(){try{return localStorage.getItem('sel_bn_seen_'+G)}catch(e){return null}}
+function me(r){remember(r.n);$('sMe').hidden=false;['tgt','wait','memb','adm'].forEach(function(i){$(i).hidden=true});var mine=location.origin+location.pathname+'?g='+G+'&c='+C+'&t='+T;
+ if(/nuovo=1/.test(location.search)||!seen()){$('keep').hidden=false;try{localStorage.setItem('sel_bn_seen_'+G,'1')}catch(e){}
+  if(/em=1/.test(location.search))$('keh').textContent='✉️ Te l\'abbiamo mandato anche per email.';else if(MAIL)$('kem').hidden=false;history.replaceState(null,'','?g='+G+'&c='+C+'&t='+T)}
+ $('kcp').onclick=function(){copy(mine,$('kcp'))};$('kwa').href='https://wa.me/?text='+encodeURIComponent('Il mio link del Babbo Natale segreto «'+r.n+'» (non condividerlo): '+mine);
+ $('keb').onclick=function(){var v=$('kee').value.trim();if(!v)return;post({azione:'email',g:G,c:C,t:T,email:v}).then(function(x){$('keh').textContent=x.ok?'✉️ Fatto: controlla la posta (anche lo spam).':'Email non valida o servizio non attivo.'})};
+ $('wv').value=r.me.desideri||'';
+ $('wgo').onclick=function(){post({azione:'desideri',g:G,c:C,t:T,v:$('wv').value}).then(function(x){$('wh').innerHTML=x.ok?'<span class="ok">✓ Salvati: chi ti ha pescato li vede.</span>':'Riprova.'})};
+ $('lgo').textContent=r.me.lista?'🎁 Apri la tua lista dei desideri':'🎁 Oppure fai la tua lista dei desideri (con le foto)';
+ $('lgo').onclick=function(){if(r.me.lista){window.open(r.me.lista,'_blank');return}var w=window.open('about:blank','_blank');
+  post({azione:'lista',g:G,c:C,t:T}).then(function(x){if(x.ok){if(w)w.location=x.url;else location.href=x.url;load()}else{if(w)w.close();alert(x.errore||'Riprova.')}})};
+ if(r.x&&r.regalo){$('tgt').hidden=false;$('tn').textContent=r.regalo.nome;$('tb').textContent='💶 '+(r.b?'Budget '+r.b+' €':'Budget libero')+(r.d?' · 📅 '+fdate(r.d):'');
+  if(r.regalo.desideri){$('tw').hidden=false;$('tw').textContent='📝 '+r.regalo.desideri}
+  if(r.regalo.lista){$('tl').hidden=false;$('tl').href=r.regalo.lista}$('ti2').href='/regalo/'+(r.b?'?max='+r.b:'')}
+ else if(!r.x){$('wait').hidden=false;$('wp').textContent='Ciao '+r.me.nome+'! Quando chi organizza fa l\'estrazione, riapri questo link e scopri a chi fai il regalo.'}
+ if(!r.me.admin){$('memb').hidden=false;$('mlist').textContent='👥 '+r.membri.join(', ');$('esc').hidden=!!r.x;
+  $('esc').onclick=function(){if(confirm('Uscire dal gruppo?'))post({azione:'esci',g:G,c:C,t:T}).then(function(){forget();location.replace('./')})};return}
+ $('adm').hidden=false;var inv=r.invito,txt='🎅 Babbo Natale segreto «'+r.n+'»: budget '+(r.b?r.b+' €':'libero')+(r.d?', scambio il '+fdate(r.d):'')+'. Tocca il link, scrivi il tuo nome e partecipa: l\'estrazione la fa Selecta, in privato.';
+ $('icp').onclick=function(){copy(inv,$('icp'))};$('iwa').href='https://wa.me/?text='+encodeURIComponent(txt+' '+inv);$('itg').href='https://t.me/share/url?url='+encodeURIComponent(inv)+'&text='+encodeURIComponent(txt);
+ var ul=$('mem');ul.innerHTML='';r.membri.forEach(function(n,i){var li=el('li');li.appendChild(el('span',null,n+(i==0?' (organizzi)':'')));
+  if(i>0&&!r.x){var b=el('button',null,'togli');b.type='button';b.onclick=function(){if(confirm('Togliere '+n+'?'))post({azione:'togli',g:G,c:C,t:T,i:i}).then(load)};li.appendChild(b)}ul.appendChild(li)});
+ ['pa','pb'].forEach(function(s){var x=$(s);x.innerHTML='';r.membri.forEach(function(n,i){var o=el('option',null,n);o.value=i;x.appendChild(o)})});if(r.membri.length>1)$('pb').value=1;
+ var pl=$('pl');pl.innerHTML='';if(r.coppie.length){pl.appendChild(document.createTextNode('🚫 '+r.coppie.map(function(p){return r.membri[p[0]]+' e '+r.membri[p[1]]}).join(' · ')+' '));
+  var z=el('a',null,'azzera');z.href='#';z.onclick=function(e){e.preventDefault();post({azione:'coppie0',g:G,c:C,t:T}).then(load)};pl.appendChild(z)}
+ $('pgo').onclick=function(){post({azione:'coppia',g:G,c:C,t:T,a:+$('pa').value,b:+$('pb').value}).then(function(x){if(!x.ok)alert(x.errore);load()})};
+ $('dgo').textContent=r.x?'🔁 Rifai l\'estrazione':'🎲 Fai l\'estrazione';
+ $('dgo').onclick=function(){if(r.membri.length<3){$('dh').innerHTML='<span class="ko">Servono almeno 3 partecipanti.</span>';return}
+  if(!confirm(r.x?'Rifare l\'estrazione cambia gli abbinamenti di tutti. Procedo?':'Ci sono tutti? Dopo l\'estrazione non entra più nessuno.'))return;
+  $('dgo').disabled=true;post({azione:'estrai',g:G,c:C,t:T}).then(function(x){$('dgo').disabled=false;if(!x.ok){$('dh').innerHTML='<span class="ko"></span>';$('dh').firstChild.textContent=x.errore;return}
+   $('dh').textContent='🎲 Fatto! Chi è su Telegram l\'ha ricevuto in privato, gli altri lo vedono aprendo il loro link.';load()})};
+ $('del').onclick=function(){if(confirm('Eliminare il gruppo per tutti?'))post({azione:'elimina',g:G,c:C,t:T}).then(function(){forget();location.replace('./')})}}
+})();
+</script></body></html>
