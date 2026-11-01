@@ -83,6 +83,7 @@ function show(){var all=pick(S.p,S.b);if(!all.length&&S.b&&!/^\d/.test(S.p))all=
  setTimeout(function(){r.scrollIntoView({behavior:'smooth'})},50)}
 fetch('regalo.json?v='+Date.now()).then(function(r){return r.json()}).then(function(j){D=j;$('crea').href=j.crea;
  var u=new URLSearchParams(location.search),per=u.get('per'),mx=parseInt(u.get('max')||'0',10);
+ var pf=u.get('prof');if(per&&!D.dir[per]&&pf&&D.prof[pf])D.dir[per]=pf;
  if(per&&D.dir[per]){S={who:per,p:D.dir[per],b:mx||0,o:0};$('q').innerHTML='';var bk=el('button','back','← scegli un altro regalo');bk.onclick=start;$('q').appendChild(bk);show()}else start()})
 .catch(function(){$('q').textContent='Pagina non disponibile in questo momento.'});
 })();
