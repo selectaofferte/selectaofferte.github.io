@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compleanni da non dimenticare · Selecta</title>
+<meta name="description" content="Aggiungi i compleanni al calendario: una settimana prima ti ricorda di guardare le idee regalo in offerta, nel tuo budget. Gratis, senza registrarti.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14233B;--ivory:#F4EEE2;--paper:#FBF8F2;--gold:#D4AF6A;--gold2:#B8924A;--muted:#6B7385;--line:rgba(20,35,59,.10);--ok:#2E7D4F}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 16px/1.45 Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.hero{background:var(--ink);color:var(--ivory);text-align:center;padding:40px 20px 34px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;left:50%;top:50%;width:900px;height:900px;transform:translate(-50%,-50%);border-radius:50%;
+background:radial-gradient(circle,rgba(212,175,106,.18),rgba(212,175,106,.04) 40%,transparent 68%)}
+.hero>*{position:relative}.logo{font:400 28px/1 "Instrument Serif",serif;opacity:.9}.logo i{color:var(--gold);font-style:normal}
+.em{font-size:44px;margin:16px 0 2px}h1{font:400 46px/1.03 "Instrument Serif",serif;margin:0}h1 i{color:var(--gold)}
+.sub{margin:12px auto 0;max-width:520px;color:rgba(244,238,226,.85);font-size:15px}
+main{max-width:640px;margin:0 auto;padding:22px 16px 40px}
+.box{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px 18px;margin-bottom:16px}
+.box h2{font:400 30px/1.1 "Instrument Serif",serif;margin:0 0 6px}.box h2 i{color:var(--gold2)}
+label{display:block;font-size:13px;color:var(--muted);margin:14px 0 6px}
+input,select{width:100%;border:1px solid rgba(20,35,59,.18);border-radius:14px;padding:12px;font:inherit;font-size:16px;background:var(--paper);outline:0}
+input:focus,select:focus{border-color:var(--gold)}
+.row{display:grid;grid-template-columns:1fr 1.6fr;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips button{border:1px solid var(--line);background:var(--paper);border-radius:30px;padding:8px 13px;font:500 14px Outfit,sans-serif;cursor:pointer;color:var(--ink)}
+.chips button.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.go{display:block;width:100%;margin-top:14px;border:0;border-radius:30px;padding:14px;background:var(--ink);color:var(--ivory);font:500 16px Outfit,sans-serif;cursor:pointer;text-align:center;text-decoration:none}
+.go.gold{background:var(--gold);color:var(--ink)}.go:disabled,.go.off{opacity:.45;pointer-events:none}
+.hint{font-size:12.5px;color:var(--muted);margin:8px 2px 0}.ok{color:var(--ok)}
+.mine li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 2px;border-bottom:1px solid var(--line);list-style:none}
+.mine ul{margin:0;padding:0}.mine a,.mine button{font-size:13px;color:var(--gold2);background:none;border:0;cursor:pointer;text-decoration:underline;font-family:inherit;white-space:nowrap}
+.warn{background:rgba(212,175,106,.16);border:1px solid rgba(212,175,106,.5);border-radius:14px;padding:10px 12px;font-size:13.5px;margin-top:12px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 20px 40px}
+</style></head><body>
+<header class="hero"><div class="logo">Selecta<i>.</i></div><div class="em">🎂</div>
+<h1>I compleanni da <i>non dimenticare</i></h1>
+<p class="sub">Aggiungi il compleanno al calendario del telefono: una settimana prima ti ricorda di guardare le idee regalo in offerta, nel tuo budget. Gratis, senza registrarti.</p></header>
+<main>
+<section class="box"><h2>Di chi è il <i>compleanno?</i></h2>
+<div class="chips" id="who"></div>
+<div id="agew" hidden><label>Quanti anni compie, più o meno?</label><div class="chips" id="age"></div></div>
+<div id="pasw" hidden><label id="pasl">Cosa gli piace?</label><div class="chips" id="pas"></div></div>
+<label for="nm">Come la chiami? (facoltativo)</label><input id="nm" maxlength="30" placeholder="Es. Mamma, Luca, nonna Rosa">
+<label>Quando compie gli anni?</label><div class="row"><select id="dd"></select><select id="mm"></select></div>
+<label>Quanto vuoi spendere, più o meno?</label><div class="chips" id="bud"></div>
+<a class="go off" id="cal">📅 Aggiungi al calendario</a>
+<a class="go gold off" id="idee">💡 Vedi subito le idee regalo</a>
+<p class="hint">Non salviamo niente: il promemoria resta nel calendario del tuo telefono (7 giorni prima e il giorno prima, alle 10).</p>
+<div class="warn" id="iab" hidden>📱 Sei nel browser di un'app: per aggiungere al calendario tocca ··· in alto e apri la pagina nel browser.</div>
+</section>
+<section class="box mine" id="mine" hidden><h2>I tuoi <i>compleanni</i></h2><p class="hint">Salvati solo su questo telefono.</p><ul id="ml"></ul></section>
+<p class="hint" style="text-align:center">Preferisci un messaggio con le idee già pronte? <a id="tg" href="#">Usa il bot Telegram</a></p>
+</main>
+<footer>#ad · Le idee regalo portano a offerte Amazon con link affiliati. <a href="/privacy/">Privacy</a> · <a href="/vetrina/">selectaofferte.it</a></footer>
+<script>
+(function(){
+var D={"who": [["mamma", "👩 La mamma"], ["papa", "👨 Il papà"], ["lei", "💃 Lei (partner, amica)"], ["lui", "🕺 Lui (partner, amico)"], ["nonni", "👵 I nonni"], ["collega", "💼 Un collega / Babbo Natale segreto"], ["bimbo", "🧒 Un bambino"], ["neonato", "👶 Un neonato"], ["ragazzo", "🧑 Un ragazzo"], ["altro", "✨ Un'altra persona"]], "ages": [["0-2", "0-2 anni"], ["3-5", "3-5 anni"], ["6-9", "6-9 anni"], ["10-13", "10-13 anni"]], "pas": [["tech", "📱 Tecnologia"], ["cucina", "🍳 Cucina"], ["benessere", "💆 Benessere"], ["sport", "🚴 Sport e aria aperta"], ["gaming", "🎮 Videogiochi"], ["comfort", "🛋️ Casa e relax"], ["sorpresa", "✨ Sorprendimi"]], "bud": [[15, "fino a 15 €"], [25, "fino a 25 €"], [50, "fino a 50 €"], [100, "fino a 100 €"], [0, "nessun limite"]], "dir": {"mamma": "mamma", "papa": "papa", "nonni": "nonni", "collega": "collega", "neonato": "0-2"}, "nomi": {"mamma": "la mamma", "papa": "il papà", "lei": "lei", "lui": "lui", "nonni": "i nonni", "collega": "un collega", "bimbo": "un bambino", "neonato": "un neonato", "ragazzo": "un ragazzo", "casa": "la casa"}, "di": {"mamma": "della mamma", "papa": "del papà", "nonni": "dei nonni", "collega": "di un collega", "lei": "di lei", "lui": "di lui", "bimbo": "di un bambino", "neonato": "di un neonato", "ragazzo": "di un ragazzo"}, "api": "https://api.selectaofferte.it", "bot": "https://t.me/SelectaOfferte_bot?start=compleanni"},$=function(i){return document.getElementById(i)};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+var MESI=['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+var S={w:'',p:'',b:25};$('tg').href=D.bot;
+if(/Instagram|FBAN|FBAV|FB_IAB|TikTok|musical_ly|Bytedance/i.test(navigator.userAgent))$('iab').hidden=false;
+function chips(box,opts,cb,on){$(box).innerHTML='';opts.forEach(function(o){var b=el('button',o[0]===on?'on':null,o[1]);b.type='button';
+ b.onclick=function(){[].forEach.call($(box).children,function(x){x.classList.toggle('on',x==b)});cb(o[0])};$(box).appendChild(b)})}
+chips('who',D.who,function(w){S.w=w;S.p=D.dir[w]||'';$('agew').hidden=w!='bimbo';$('pasw').hidden=!!D.dir[w]||w=='bimbo';
+ $('pasl').textContent=w=='lei'?'Cosa le piace?':'Cosa gli piace?';if(!D.dir[w]){S.p=w=='bimbo'?'':'sorpresa'}upd()});
+chips('age',D.ages,function(a){S.p=a;upd()});chips('pas',D.pas,function(p){S.p=p;upd()});
+chips('bud',D.bud.map(function(b){return[b[0],b[1]]}),function(b){S.b=b;upd()},25);
+var dd=$('dd'),mm=$('mm');dd.appendChild(new Option('Giorno',''));for(var i=1;i<=31;i++)dd.appendChild(new Option(i,i));
+mm.appendChild(new Option('Mese',''));MESI.forEach(function(m,i){mm.appendChild(new Option(m,i+1))});
+[dd,mm,$('nm')].forEach(function(x){x.oninput=x.onchange=upd});
+function q(x){x=x||S;return 'w='+encodeURIComponent(x.w)+'&n='+encodeURIComponent(x.n||'')+'&d='+x.d+'-'+x.m+'&b='+x.b+'&p='+encodeURIComponent(x.p)}
+function ideas(x){return '/regalo/?per='+encodeURIComponent(x.w)+'&max='+x.b+'&prof='+encodeURIComponent(x.p)}
+function upd(){S.n=$('nm').value.trim();S.d=dd.value;S.m=mm.value;var ok=S.w&&S.p&&S.d&&S.m;
+ $('cal').classList.toggle('off',!ok);$('idee').classList.toggle('off',!(S.w&&S.p));
+ if(ok)$('cal').href=D.api+'/ics?'+q();$('idee').href=S.w&&S.p?ideas(S):'#'}
+function load(){try{return JSON.parse(localStorage.getItem('sel_cp')||'[]')}catch(e){return[]}}
+function save(a){try{localStorage.setItem('sel_cp',JSON.stringify(a.slice(0,30)))}catch(e){}}
+$('cal').onclick=function(){var a=load().filter(function(x){return !(x.w==S.w&&x.d==S.d&&x.m==S.m&&x.n==S.n)});
+ a.push({w:S.w,p:S.p,b:S.b,n:S.n,d:S.d,m:S.m});a.sort(function(x,y){return x.m-y.m||x.d-y.d});save(a);setTimeout(list,300)};
+function label(x){return (x.n||((D.nomi[x.w]||'Compleanno').charAt(0).toUpperCase()+(D.nomi[x.w]||'compleanno').slice(1)))+' · '+x.d+' '+MESI[x.m-1]}
+function list(){var a=load(),ul=$('ml');ul.innerHTML='';$('mine').hidden=!a.length;
+ a.forEach(function(x,i){var li=el('li'),s=el('span',null,'🎂 '+label(x)),r=el('span');var c=el('a',null,'📅');c.href=D.api+'/ics?'+q(x);c.title='Aggiungi di nuovo al calendario';
+  var g=el('a',null,'💡 idee');g.href=ideas(x);var d=el('button',null,'togli');d.onclick=function(){var b=load();b.splice(i,1);save(b);list()};
+  r.appendChild(g);r.appendChild(document.createTextNode(' '));r.appendChild(c);r.appendChild(document.createTextNode(' '));r.appendChild(d);li.appendChild(s);li.appendChild(r);ul.appendChild(li)})}
+list();upd();
+})();
+</script></body></html>
