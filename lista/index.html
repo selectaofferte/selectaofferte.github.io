@@ -226,10 +226,11 @@ function card(it){
   tx.appendChild(oc)}
  c.appendChild(tx);return c}
 var OWN=false,APIB='https://api.selectaofferte.it';
-function edit(az,a,v){return post('/modifica',{l:id,m:m,azione:az,a:a||'',v:v||''}).then(function(r){if(!r.ok)alert(r.errore||'Non è andata, riprova.');return live()})}
+function edit(az,a,v){return post('/modifica',{l:id,m:m,azione:az,a:a||'',v:v||''}).then(function(r){if(!r.ok)alert(r.errore||'Non è andata, riprova.');if(r.via){forgetMe();location.replace('./');return}return live()})}
 function photo(a,f){if(!f)return;var rd=new FileReader();rd.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),cv=document.createElement('canvas');
  cv.width=Math.round(im.width*s);cv.height=Math.round(im.height*s);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);
  post('/foto',{l:id,m:m,a:a,d:cv.toDataURL('image/jpeg',.85)}).then(function(r){if(!r.ok)alert(r.errore||'Foto non caricata');live()})};im.src=rd.result};rd.readAsDataURL(f)}
+function forgetMe(){try{var k='sel_mie';localStorage.setItem(k,JSON.stringify(JSON.parse(localStorage.getItem(k)||'[]').filter(function(x){return x.l!=id})))}catch(e){}}
 function remember(L){try{var k='sel_mie',a=JSON.parse(localStorage.getItem(k)||'[]').filter(function(x){return x.l!=id});a.unshift({l:id,m:m,t:L.t,e:L.e});localStorage.setItem(k,JSON.stringify(a.slice(0,8)))}catch(e){}}
 var API='',CUR=null;
 function tok(a,v){var k='sel_'+id+'_'+a;try{if(v===undefined)return localStorage.getItem(k);if(v)localStorage.setItem(k,v);else localStorage.removeItem(k)}catch(e){}return null}
@@ -315,7 +316,9 @@ function setupOwn(L){
  if(L.api){$('obar').hidden=false;$('owa').href='https://wa.me/?text='+encodeURIComponent(L.e+' Ecco la mia '+L.t.toLowerCase()+': se scegli un regalo tocca «Lo regalo io» così nessuno lo prende due volte 🎁 '+share);
   $('otg').href=L.b+'c_'+id+'_'+m;$('oev').value=L.ev||'';$('oev').onchange=function(){edit('data','',$('oev').value)};
   $('obg').onclick=function(){bshow(false)};
-  $('odel').onclick=function(){if(confirm('Eliminare la lista? La pagina smetterà di funzionare.'))edit('elimina').then(function(){location.replace('./')})};
+  $('odel').onclick=function(){if(!confirm('Eliminare la lista? La pagina smetterà di funzionare.'))return;$('odel').disabled=true;
+   post('/modifica',{l:id,m:m,azione:'elimina'}).then(function(r){if(r.ok||r.via){forgetMe();alert('Lista eliminata.');location.replace('./');return}
+    $('odel').disabled=false;alert(r.errore||'Non è andata, riprova.')}).catch(function(){$('odel').disabled=false;alert('Servizio non raggiungibile: riprova tra poco.')})};
   $('lh').textContent="Dall'app Amazon: apri il prodotto → Condividi → Copia link, poi incollalo qui."}
  $('shb').onclick=function(){(navigator.clipboard?navigator.clipboard.writeText(share):Promise.reject()).then(function(){$('shb').textContent='Copiato ✓'},function(){prompt('Copia questo link:',share)})};
  var go=function(p){window.open(L.b+p,'_blank')};
@@ -386,7 +389,7 @@ function render(L){
 function getj(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json()})}
 var hasApi=APIB&&APIB.indexOf('__')!=0;
 // prima il servizio web (sempre aggiornato, anche per le liste appena create), poi la copia sul sito
-(hasApi?getj(APIB+'/l/'+id).catch(function(){return getj('d/'+id+'.json?v='+Date.now())}):getj('d/'+id+'.json?v='+Date.now()).then(function(L){setTimeout(live,0);return L}))
+(hasApi?fetch(APIB+'/l/'+id).then(function(r){if(r.status==404){forgetMe();throw 'via'}if(!r.ok)throw 0;return r.json()}).catch(function(e){if(e=='via')throw e;return getj('d/'+id+'.json?v='+Date.now())}):getj('d/'+id+'.json?v='+Date.now()).then(function(L){setTimeout(live,0);return L}))
 .then(render).catch(function(){$('msg').textContent='Lista non trovata: forse è stata eliminata.'});
 })();
 </script></body></html>
