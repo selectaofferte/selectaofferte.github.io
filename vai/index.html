@@ -34,8 +34,8 @@
 // Pagina di passaggio: apre il prodotto nell'app Amazon (se c'è), altrimenti su amazon.it.
 // Accetta solo prodotti amazon.it (?a=ASIN di 10 caratteri) e tag affiliati "-21": non porta altrove.
 // Contatore dei clic (GoatCounter sul nostro server, anonimo e senza cookie): conta "/clic/<tag>/<asin>" per
-// sapere da quale canale arrivano. Vuoto = nessun conteggio (lo riempie il bot quando /contatore è acceso).
-var CONTATORE = "";
+// sapere da quale canale arrivano. Vuoto = nessun conteggio (lo riempie il bot quando le statistiche del sito, /visite, sono accese).
+var CONTATORE = "https://stats.selectaofferte.it/count";
 function conta(tag, asin) {
   if (!CONTATORE) return;
   try {
