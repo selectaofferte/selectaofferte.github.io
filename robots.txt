@@ -1,0 +1,8 @@
+# selectaofferte.it
+User-agent: *
+Allow: /
+# pagine di passaggio verso Amazon: non servono su Google
+Disallow: /vai/
+Disallow: /*?a=
+
+Sitemap: https://selectaofferte.it/sitemap.xml
