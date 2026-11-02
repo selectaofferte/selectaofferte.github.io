@@ -1227,6 +1227,12 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
 @media (max-width: 960px){ .drop .card__now{font-size:1.8rem} .drop .card__was{font-size:1.1rem} }
 
 /* ===================================================== v3 aggiunte ===== */
+/* ---- «Come funziona» sotto Liste regali e Babbo Natale segreto ---- */
+.dir .dir__how{display:inline-flex;align-items:center;gap:.35rem;min-height:2.75rem;margin:-1rem 0 .55rem .25rem;padding:0;font-size:.9rem;font-weight:600;color:var(--blu);
+  text-decoration:underline;text-decoration-color:var(--oro-scuro);text-decoration-thickness:1.5px;text-underline-offset:.28em}
+.dir .dir__how::before{display:none}
+.dir .dir__how:hover{color:var(--blu);text-decoration-color:var(--blu)}
+.dir .dir__how:focus-visible{outline:2px solid var(--blu);outline-offset:2px;border-radius:4px}
 /* ---- Idee regalo pronte (pagine /idee/ del bot) ---- */
 .peak__list{min-width:0}
 .ideas{margin-top:clamp(2.2rem, 4vw, 3.2rem);padding:clamp(1.3rem, 2.5vw, 1.8rem);border-radius:18px;background:var(--carta);box-shadow:0 1px 2px rgba(20,35,59,.08), 0 18px 34px -24px rgba(20,35,59,.45)}
@@ -1504,10 +1510,10 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
         </div>
         <div class="peak__list">
         <ul class="dir">
-          <li><a href="https://selectaofferte.it/lista/"><span class="dir__name">Liste regali</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">Liste con le foto per nascita, compleanno e Natale. Niente doppioni, anche di gruppo.</span></a></li>
+          <li><a href="https://selectaofferte.it/lista/"><span class="dir__name">Liste regali</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">Liste con le foto per nascita, compleanno e Natale. Niente doppioni, anche di gruppo.</span></a><a class="dir__how" href="https://selectaofferte.it/idee/lista-nascita-gratis/">Come funziona<span class="vh">: Lista nascita gratis</span><span aria-hidden="true"> →</span></a></li>
           <li><a href="https://selectaofferte.it/regalo/" id="tool-regalo"><span class="dir__name">Che regalo faccio?</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">Tre domande, cinque regali di marca in offerta.</span></a></li>
           <li><a href="https://selectaofferte.it/lista/?k=letterina"><span class="dir__name">Letterina a Babbo Natale</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">I bambini scelgono, la lista con le foto arriva ai nonni.</span><span class="dir__when" data-when="natale"></span></a></li>
-          <li><a href="https://selectaofferte.it/babbonatale/"><span class="dir__name">Babbo Natale segreto</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">Crei il gruppo e mandi il link in chat. L'estrazione la fa il sito, ognuno scopre in privato a chi tocca.</span><span class="dir__when" data-when="natale"></span></a></li>
+          <li><a href="https://selectaofferte.it/babbonatale/"><span class="dir__name">Babbo Natale segreto</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">Crei il gruppo e mandi il link in chat. L'estrazione la fa il sito, ognuno scopre in privato a chi tocca.</span><span class="dir__when" data-when="natale"></span></a><a class="dir__how" href="https://selectaofferte.it/idee/babbo-natale-segreto-online/">Come funziona<span class="vh">: Babbo Natale segreto online</span><span aria-hidden="true"> →</span></a></li>
           <li><a href="https://selectaofferte.it/compleanni/"><span class="dir__name">Compleanni</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">Il promemoria va nel calendario del telefono, con le idee regalo una settimana prima.</span></a></li>
           <li><a href="https://selectaofferte.it/avvisi/"><span class="dir__name">Avvisi su misura</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">Scrivi cosa cerchi: ti avvisiamo quando va in offerta.</span></a></li>
           <li><a href="https://selectaofferte.it/avvento/"><span class="dir__name">Calendario dell'Avvento</span><span class="dir__go" aria-hidden="true">→</span><span class="dir__desc">Una finestrella al giorno fino a Natale.</span><span class="dir__when" data-when="avvento"></span></a></li>
@@ -3021,7 +3027,9 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
     ['Compleanni', 'https://selectaofferte.it/compleanni/', 'compleanni compleanno promemoria calendario'],
     ['Avvisi su misura', 'https://selectaofferte.it/avvisi/', 'avvisi avviso prezzo notifica'],
     ["Calendario dell'Avvento", 'https://selectaofferte.it/avvento/', 'avvento calendario natale'],
-    ['Idee regalo pronte', 'https://selectaofferte.it/idee/', 'idee regalo mamma papa lei lui nonni colleghi bambini neonati casa tech natale']
+    ['Idee regalo pronte', 'https://selectaofferte.it/idee/', 'idee regalo mamma papa lei lui nonni colleghi bambini neonati casa tech natale'],
+    ['Lista nascita gratis: come funziona', 'https://selectaofferte.it/idee/lista-nascita-gratis/', 'come funziona lista nascita liste regali gratis'],
+    ['Babbo Natale segreto online: come funziona', 'https://selectaofferte.it/idee/babbo-natale-segreto-online/', 'come funziona babbo natale segreto online secret santa estrazione']
   ];
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
