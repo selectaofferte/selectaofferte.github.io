@@ -3169,6 +3169,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
       o.url = o.link || ('https://selectaofferte.it/?a=' + encodeURIComponent(o.asin) + '&t=' + encodeURIComponent(o.tag));
       if (!CATS[o.cat]) o.cat = 'tech';
       o.hist = normHist(o.prezzi_30g, o);
+      o.pri = typeof o.priorita === 'number' && isFinite(o.priorita) ? o.priorita : -1;
       o.top = o.marca_top === true ? 1 : 0;
       o.fid = o.marca_fidata === true || o.top ? 1 : 0;
       o.brand = typeof o.marca === 'string' ? o.marca.trim() : '';
@@ -3299,8 +3300,12 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   }
   /* parti in alto (apertura, Il meglio di oggi, il momento): prima le super marche, poi le marche fidate, poi come prima.
      Se il file dati non ha i campi marca, l'ordine resta quello di rank(). La vetrina e la ricerca restano su rank(). */
-  function rankTop(a, b){ return (b.top - a.top) || (b.fid - a.fid) || rank(a, b); }
+  function rankTop(a, b){ return (b.pri - a.pri) || (b.top - a.top) || (b.fid - a.fid) || rank(a, b); }
   function brandFirst(list){ return list.some(function(o){ return o.top || o.fid; }); }
+  /* testo che dice in che ordine sono le offerte, solo se è vero per quelle mostrate */
+  function orderHead(list){ return list.some(function(o){ return o.top; }) ? 'prima i prodotti di punta delle grandi marche' : (brandFirst(list) ? 'prima le grandi marche' : ''); }
+  function orderNote(list){ var h = orderHead(list); if (!h) return ''; return h + (list.some(function(o){ return o.pri >= 0; }) ? ', poi le altre offerte scelte' : ', poi gli sconti più forti'); }
+  function cap(t){ return t.charAt(0).toUpperCase() + t.slice(1); }
   function pool(){ return OFFERS.filter(function(o){ return fits(o) && visible(o); }).sort(rankTop); }
   function heroPool(){ var p = pool(); if (!CATS[ROUTE]) return p; var c = p.filter(function(o){ return o.cat === ROUTE; }); return c.length >= 3 ? c.concat(p.filter(function(o){ return o.cat !== ROUTE; })) : p; }
 
@@ -3419,15 +3424,15 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
     rail.insertAdjacentHTML('beforeend', html);
     if (railSwipe) [].forEach.call(rail.querySelectorAll('.rail__note'), function(n){ n.classList.add('moment__more'); });
     var title = $('shelf-title'), date = $('rail-date');
-    var bf1 = brandFirst(all);
-    var base = bf1
-      ? 'Prima le grandi marche, poi gli sconti più forti' + (state.budget ? ' ' + budgetText() : '') + ', da tutti e tre i reparti.'
+    var note = orderNote(all), bf1 = !!note;
+    var base = note
+      ? cap(note) + (state.budget ? ', ' + budgetText() : '') + ', da tutti e tre i reparti.'
       : (state.budget ? 'Gli sconti più forti ' + budgetText() + ', da tutti e tre i reparti.' : 'Gli sconti più forti tra quelli scelti, da tutti e tre i reparti.');
     if (bfOn) {
       title.innerHTML = { week: 'Verso il <i>Black Friday</i>', day: 'È <i>Black Friday</i>', after: 'Black Friday, <i>fino a lunedì</i>' }[BF.phase];
       date.textContent = { week: '27 novembre', day: 'Oggi', after: 'Fino al Cyber Monday' }[BF.phase]; date.hidden = false;
       $('rail-lede').textContent = useRecent
-        ? 'Le offerte scelte nelle ultime 48 ore, ' + (bf1 ? 'prima le grandi marche' : 'dalla più scontata') + (state.budget ? ', ' + budgetText() : '') + '.'
+        ? 'Le offerte scelte nelle ultime 48 ore, ' + (bf1 ? orderHead(all) : 'dalla più scontata') + (state.budget ? ', ' + budgetText() : '') + '.'
         : base;
     } else {
       title.innerHTML = 'Il meglio di <i>oggi</i>'; date.hidden = true;
@@ -4072,7 +4077,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
     if (items.length < 3) { m = { when: 'Oggi', title: 'Le più <i>scontate</i>', lede: 'Le offerte con lo sconto più forte ' + budgetText() + '.' }; items = pool0.slice(); plain = true; }
     var mb = !plain && brandFirst(items);
     items = items.sort(mb ? rankTop : rank).slice(0, 12);
-    $('moment-when').textContent = m.when; $('moment-title').innerHTML = m.title; $('moment-lede').textContent = m.lede + (mb ? ' Prima le grandi marche.' : '');
+    $('moment-when').textContent = m.when; $('moment-title').innerHTML = m.title; $('moment-lede').textContent = m.lede + (mb ? ' ' + cap(orderHead(items)) + '.' : '');
     $('moment-rail').innerHTML = items.map(function(o){ return cardHTML(o, { share: true }); }).join('') +
       '<div class="moment__more"><p>Tutte le offerte, divise per reparto.</p><a href="#offerte">Vedi la vetrina</a></div>';
     $('moment-rail').scrollLeft = 0; navState();
