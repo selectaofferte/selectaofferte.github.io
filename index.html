@@ -1251,6 +1251,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
 @media (max-width: 960px){ .drop .card__now{font-size:1.8rem} .drop .card__was{font-size:1.1rem} }
 
 /* ===================================================== v3 aggiunte ===== */
+.card__brand{display:block;margin:.1rem 0 -.15rem;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blu);line-height:1.3}
 /* ---- «Come funziona» sotto Liste regali e Babbo Natale segreto ---- */
 .dir .dir__how{display:inline-flex;align-items:center;gap:.35rem;min-height:2.75rem;margin:-1rem 0 .55rem .25rem;padding:0;font-size:.9rem;font-weight:600;color:var(--blu);
   text-decoration:underline;text-decoration-color:var(--oro-scuro);text-decoration-thickness:1.5px;text-underline-offset:.28em}
@@ -3109,7 +3110,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   function euro(n){ return n.toFixed(2).replace('.', ',') + ' €'; }
   function fits(o){ return !state.budget || o.price <= state.budget || o.asin === state.shared; }
   function budgetText(){ return state.budget ? 'fino a ' + state.budget + ' €' : 'senza limite'; }
-  function visible(o){ return !(anyPhotoLoaded && badPhotos[o.asin]) && (o.foto || !anyPhotoLoaded); }
+  function visible(o){ return !!o.foto && !(anyPhotoLoaded && badPhotos[o.asin]); }
   function rank(a, b){ return (b.off - a.off) || ((b.badge === 'Scelta Selecta') - (a.badge === 'Scelta Selecta')) || (a.i - b.i); }
   var SORTS = {
     sconto: rank,
@@ -3168,6 +3169,9 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
       o.url = o.link || ('https://selectaofferte.it/?a=' + encodeURIComponent(o.asin) + '&t=' + encodeURIComponent(o.tag));
       if (!CATS[o.cat]) o.cat = 'tech';
       o.hist = normHist(o.prezzi_30g, o);
+      o.top = o.marca_top === true ? 1 : 0;
+      o.fid = o.marca_fidata === true || o.top ? 1 : 0;
+      o.brand = typeof o.marca === 'string' ? o.marca.trim() : '';
       return o;
     });
     var agg = d.aggiornata || '';
@@ -3282,6 +3286,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
       (o.sconto ? '<span class="card__off">' + esc(o.sconto) + '</span>' : '') +
       '<div class="card__body">' +
         '<span class="card__shelf">' + esc(CATS[o.cat].name) + ' · ' + esc(o.sub) + '</span>' +
+        (o.brand ? '<span class="card__brand">' + esc(o.brand) + '</span>' : '') +
         '<p class="card__name">' + esc(o.nome) + '</p>' +
         '<div class="card__prices">' + (o.listino ? '<span class="card__was"><span class="vh">Prezzo di listino </span>' + esc(o.listino) + '</span>' : '') +
           '<span class="card__now"><span class="vh">Prezzo in offerta </span>' + esc(o.prezzo) + '</span></div>' +
@@ -3292,7 +3297,11 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
       (opts.share ? favHTML(o) + actionsHTML(o) + '<span class="card__flag">Te l\'hanno mandata</span>' : '') +
       '</div>';
   }
-  function pool(){ return OFFERS.filter(function(o){ return fits(o) && visible(o); }).sort(rank); }
+  /* parti in alto (apertura, Il meglio di oggi, il momento): prima le super marche, poi le marche fidate, poi come prima.
+     Se il file dati non ha i campi marca, l'ordine resta quello di rank(). La vetrina e la ricerca restano su rank(). */
+  function rankTop(a, b){ return (b.top - a.top) || (b.fid - a.fid) || rank(a, b); }
+  function brandFirst(list){ return list.some(function(o){ return o.top || o.fid; }); }
+  function pool(){ return OFFERS.filter(function(o){ return fits(o) && visible(o); }).sort(rankTop); }
   function heroPool(){ var p = pool(); if (!CATS[ROUTE]) return p; var c = p.filter(function(o){ return o.cat === ROUTE; }); return c.length >= 3 ? c.concat(p.filter(function(o){ return o.cat !== ROUTE; })) : p; }
 
   /* ---------------------------------------------------- hero: the window */
@@ -3410,12 +3419,15 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
     rail.insertAdjacentHTML('beforeend', html);
     if (railSwipe) [].forEach.call(rail.querySelectorAll('.rail__note'), function(n){ n.classList.add('moment__more'); });
     var title = $('shelf-title'), date = $('rail-date');
-    var base = state.budget ? 'Gli sconti più forti ' + budgetText() + ', da tutti e tre i reparti.' : 'Gli sconti più forti tra quelli scelti, da tutti e tre i reparti.';
+    var bf1 = brandFirst(all);
+    var base = bf1
+      ? 'Prima le grandi marche, poi gli sconti più forti' + (state.budget ? ' ' + budgetText() : '') + ', da tutti e tre i reparti.'
+      : (state.budget ? 'Gli sconti più forti ' + budgetText() + ', da tutti e tre i reparti.' : 'Gli sconti più forti tra quelli scelti, da tutti e tre i reparti.');
     if (bfOn) {
       title.innerHTML = { week: 'Verso il <i>Black Friday</i>', day: 'È <i>Black Friday</i>', after: 'Black Friday, <i>fino a lunedì</i>' }[BF.phase];
       date.textContent = { week: '27 novembre', day: 'Oggi', after: 'Fino al Cyber Monday' }[BF.phase]; date.hidden = false;
       $('rail-lede').textContent = useRecent
-        ? 'Le offerte scelte nelle ultime 48 ore, dalla più scontata' + (state.budget ? ', ' + budgetText() : '') + '.'
+        ? 'Le offerte scelte nelle ultime 48 ore, ' + (bf1 ? 'prima le grandi marche' : 'dalla più scontata') + (state.budget ? ', ' + budgetText() : '') + '.'
         : base;
     } else {
       title.innerHTML = 'Il meglio di <i>oggi</i>'; date.hidden = true;
@@ -4056,9 +4068,11 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
     var m = momentNow(), pool0 = OFFERS.filter(function(o){ return visible(o) && fits(o); });
     var items = m ? pool0.filter(m.test) : [];
     if (items.length < 3) { m = MOMENT_DEFAULT; items = pool0.filter(m.test); }
-    if (items.length < 3) { m = { when: 'Oggi', title: 'Le più <i>scontate</i>', lede: 'Le offerte con lo sconto più forte ' + budgetText() + '.' }; items = pool0.slice(); }
-    items = items.sort(rank).slice(0, 12);
-    $('moment-when').textContent = m.when; $('moment-title').innerHTML = m.title; $('moment-lede').textContent = m.lede;
+    var plain = false;
+    if (items.length < 3) { m = { when: 'Oggi', title: 'Le più <i>scontate</i>', lede: 'Le offerte con lo sconto più forte ' + budgetText() + '.' }; items = pool0.slice(); plain = true; }
+    var mb = !plain && brandFirst(items);
+    items = items.sort(mb ? rankTop : rank).slice(0, 12);
+    $('moment-when').textContent = m.when; $('moment-title').innerHTML = m.title; $('moment-lede').textContent = m.lede + (mb ? ' Prima le grandi marche.' : '');
     $('moment-rail').innerHTML = items.map(function(o){ return cardHTML(o, { share: true }); }).join('') +
       '<div class="moment__more"><p>Tutte le offerte, divise per reparto.</p><a href="#offerte">Vedi la vetrina</a></div>';
     $('moment-rail').scrollLeft = 0; navState();
