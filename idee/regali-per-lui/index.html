@@ -194,6 +194,14 @@ form[hidden] + .sx-info,[hidden] > .sx-info{display:none}
 .hub b{display:block;font:400 28px/1.05 "Instrument Serif",Georgia,serif;margin-bottom:6px}
 .hub span{color:var(--muted);font-size:15px}
 .note{font-size:13px;color:var(--muted);margin-top:14px}
+.passi{list-style:none;counter-reset:p;padding:0;margin:0;display:grid;gap:10px}
+.passi li{counter-increment:p;position:relative;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px 14px 62px}
+.passi li:before{content:counter(p);position:absolute;left:16px;top:14px;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font:400 20px/1 "Instrument Serif",Georgia,serif}
+.passi b{display:block;font-weight:600;margin-bottom:3px}.passi span{color:var(--muted);font-size:15px;line-height:1.45}
+.gobox{text-align:center;margin:26px 0 6px}
+.gobtn{display:inline-block;padding:13px 24px;border-radius:30px;background:var(--gold);color:var(--ink);font-weight:600;font-size:16px}
+.hubh{font:400 clamp(28px,4vw,38px)/1.1 "Instrument Serif",Georgia,serif;margin:38px 0 0}.hubh i{color:var(--gold2,#866830)}
 </style>
 <script data-goatcounter="https://stats.selectaofferte.it/count" async src="https://stats.selectaofferte.it/count.js"></script>
 </head><body>
