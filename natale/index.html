@@ -1227,6 +1227,54 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
 @media (max-width: 960px){ .drop .card__now{font-size:1.8rem} .drop .card__was{font-size:1.1rem} }
 
 /* ===================================================== v3 aggiunte ===== */
+/* ---- Dal blog: ultimi articoli ---- */
+.blogbox__list{list-style:none;margin:.4rem 0 0;padding:0;flex:1 1 100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.blogcard a{display:flex;flex-direction:column;height:100%;border-radius:14px;overflow:hidden;background:var(--carta);color:var(--blu);text-decoration:none;
+  box-shadow:0 2px 3px rgba(6,12,24,.3), 0 18px 30px -22px rgba(6,12,24,.9);transition:transform .25s var(--sc-ease-out)}
+.blogcard a:hover{transform:translateY(-3px)}
+.blogcard a:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+.blogcard__ph{display:block;aspect-ratio:16/10;background:var(--bianco);padding:.8rem}
+.blogcard__ph img{width:100%;height:100%;object-fit:contain}
+.blogcard__b{display:flex;flex-direction:column;gap:.35rem;padding:1rem 1.1rem 1.1rem;flex:1}
+.blogcard__c{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--oro-testo)}
+.blogcard__t{font-family:var(--sc-font-display);font-weight:400;font-size:1.3rem;line-height:1.12;text-wrap:balance}
+.blogcard__d{font-size:.88rem;line-height:1.5;color:var(--grigio-testo);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.blogcard__x{margin-top:auto;padding-top:.4rem;font-size:.78rem;color:var(--grigio-testo)}
+@media (max-width: 860px){ .blogbox__list{grid-template-columns:minmax(0,1fr)} .blogcard__ph{aspect-ratio:auto;height:9rem} }
+
+/* ---- Blog in alto: pagina a parte, staccata dalle sezioni ---- */
+.index__page{display:flex;align-items:center;margin-left:.55rem;padding-left:.7rem;border-left:1px solid rgba(212,175,106,.45)}
+.index__page a{display:inline-flex;align-items:center;gap:.3rem;color:var(--avorio)}
+.index__page svg{width:.7rem;height:.7rem;color:var(--oro)}
+.bloglink{display:none}
+@media (max-width: 1180px){
+  .bloglink{display:inline-flex;align-items:center;height:2.6rem;padding:0 .85rem;border-radius:999px;border:1px solid rgba(212,175,106,.55);
+    color:var(--avorio);font-size:.9rem;font-weight:500;text-decoration:none;transition:background-color .16s var(--sc-ease-out)}
+  .bloglink:hover{background:rgba(244,238,226,.08)}
+  .bloglink:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+}
+@media (max-width: 460px){ .bar__in{gap:.5rem} .bloglink{padding:0 .7rem;font-size:.86rem} .budget__word{display:inline;position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap} }
+@media (max-width: 350px){ .bar__in{gap:.35rem} .mark svg{height:32px} .find,.favbtn{width:2.4rem;height:2.4rem} .bloglink{height:2.4rem;padding:0 .55rem} .budget__btn{padding-left:.7rem;padding-right:.6rem} }
+.bar__in > *{flex-shrink:0}
+.bar__in > nav{flex-shrink:1;min-width:0}
+
+/* ---- Usato: etichetta al posto dello sconto ---- */
+.card__used{position:absolute;top:.7rem;left:.7rem;z-index:1;display:inline-flex;align-items:center;gap:.35rem;font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--carta);color:var(--blu);border:1.5px solid var(--blu);border-radius:999px;padding:.24rem .65rem .24rem .5rem}
+.card__used svg{width:1rem;height:1rem}
+/* ---- Dal blog (in «Come funziona») ---- */
+.blogbox{margin-top:clamp(3rem, 6vw, 4.5rem);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.2rem 2rem;
+  padding:clamp(1.3rem, 2.6vw, 1.9rem) clamp(1.3rem, 3vw, 2.2rem);border-radius:18px;border:1px solid rgba(212,175,106,.35);background:rgba(244,238,226,.04)}
+.blogbox__txt{min-width:0;flex:1 1 20rem}
+.blogbox h3{font-family:var(--sc-font-display);font-weight:400;font-size:clamp(1.8rem, 1.3rem + 1.2vw, 2.4rem);line-height:1;margin:0}
+.blogbox h3 i{color:var(--oro)}
+.blogbox p{margin:.55rem 0 0;color:var(--ink-soft-dark);line-height:1.55;max-width:34rem}
+.blogbox__go{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem}
+.blogbox__main{display:inline-flex;align-items:center;min-height:2.9rem;padding:0 1.3rem;border-radius:999px;background:var(--oro);color:var(--blu);font-weight:600;text-decoration:none;transition:background-color .2s var(--sc-ease-out)}
+.blogbox__main:hover{background:#E8CD95}
+.blogbox__sub{color:var(--avorio);font-weight:500;text-decoration:underline;text-decoration-color:rgba(212,175,106,.7);text-underline-offset:.28em;min-height:2.75rem;display:inline-flex;align-items:center}
+.blogbox a:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+
 .card__brand{display:block;margin:.1rem 0 -.15rem;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blu);line-height:1.3}
 /* ---- «Come funziona» sotto Liste regali e Babbo Natale segreto ---- */
 .dir .dir__how{display:inline-flex;align-items:center;gap:.35rem;min-height:2.75rem;margin:-1rem 0 .55rem .25rem;padding:0;font-size:.9rem;font-weight:600;color:var(--blu);
@@ -1360,6 +1408,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
 <header class="bar">
   <div class="bar__in">
     <a class="mark" href="#top" aria-label="Selecta, torna su"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2667 1420" aria-hidden="true" focusable="false"><g transform="translate(60,60)"><path d="M184.0 999Q164.0 999 139.5 995.0Q115.0 991 93.5 985.0Q72.0 979 60.0 972Q53.0 968 49.5 963.5Q46.0 959 46.0 948L41.0 791Q41.0 771 54.0 771Q65.0 771 69.0 789L78.0 827Q112.0 970 205.0 970Q255.0 970 284.5 936.5Q314.0 903 314.0 842Q314.0 783 283.5 732.0Q253.0 681 186.0 631Q112.0 578 78.0 528.5Q44.0 479 44.0 423Q44.0 349 95.5 304.5Q147.0 260 227.0 260Q257.0 260 285.0 267.0Q313.0 274 331.0 287Q337.0 291 340.5 296.0Q344.0 301 344.0 309L347.0 460Q347.0 477 334.0 477Q325.0 477 321.0 463L314.0 438Q292.0 361 268.5 325.5Q245.0 290 201.0 290Q158.0 290 132.5 318.0Q107.0 346 107.0 397Q107.0 440 135.0 479.0Q163.0 518 233.0 574Q308.0 635 342.5 691.5Q377.0 748 377.0 812Q377.0 868 352.0 910.0Q327.0 952 283.5 975.5Q240.0 999 184.0 999Z" fill="#F4EEE2"/><path d="M599.0 999Q551.0 999 513.0 967.0Q475.0 935 452.5 876.5Q430.0 818 430.0 741Q430.0 662 453.0 602.0Q476.0 542 516.0 508.0Q556.0 474 605.0 474Q664.0 474 700.5 522.5Q737.0 571 737.0 680Q737.0 713 712.0 713H522.0Q502.0 713 502.0 736Q502.0 842 533.0 895.0Q564.0 948 612.0 948Q650.0 948 674.0 921.0Q698.0 894 713.0 830Q716.0 819 726.0 819Q738.0 819 735.0 839Q719.0 928 684.0 963.5Q649.0 999 599.0 999ZM519.0 688H620.0Q668.0 688 668.0 638Q668.0 573 652.0 536.0Q636.0 499 604.0 499Q565.0 499 538.5 544.0Q512.0 589 504.0 672Q502.0 688 519.0 688Z" fill="#F4EEE2"/><path d="M782.0 990Q770.0 990 770.0 979Q770.0 969 781.0 967L795.0 965Q816.0 962 826.0 953.0Q836.0 944 836.0 923V350Q836.0 332 830.5 325.0Q825.0 318 811.0 317L788.0 314Q777.0 312 777.0 302Q777.0 292 788.0 290Q816.0 284 836.0 276.0Q856.0 268 869.0 260Q885.0 250 893.0 250Q904.0 250 904.0 266V923Q904.0 944 910.5 952.5Q917.0 961 938.0 964L961.0 967Q972.0 969 972.0 979Q972.0 990 960.0 990Z" fill="#F4EEE2"/><path d="M1174.0 999Q1126.0 999 1088.0 967.0Q1050.0 935 1027.5 876.5Q1005.0 818 1005.0 741Q1005.0 662 1028.0 602.0Q1051.0 542 1091.0 508.0Q1131.0 474 1180.0 474Q1239.0 474 1275.5 522.5Q1312.0 571 1312.0 680Q1312.0 713 1287.0 713H1097.0Q1077.0 713 1077.0 736Q1077.0 842 1108.0 895.0Q1139.0 948 1187.0 948Q1225.0 948 1249.0 921.0Q1273.0 894 1288.0 830Q1291.0 819 1301.0 819Q1313.0 819 1310.0 839Q1294.0 928 1259.0 963.5Q1224.0 999 1174.0 999ZM1094.0 688H1195.0Q1243.0 688 1243.0 638Q1243.0 573 1227.0 536.0Q1211.0 499 1179.0 499Q1140.0 499 1113.5 544.0Q1087.0 589 1079.0 672Q1077.0 688 1094.0 688Z" fill="#F4EEE2"/><path d="M1517.0 999Q1473.0 999 1437.5 969.5Q1402.0 940 1381.0 885.0Q1360.0 830 1360.0 754Q1360.0 669 1385.5 606.0Q1411.0 543 1455.0 508.5Q1499.0 474 1553.0 474Q1599.0 474 1625.0 492Q1635.0 499 1635.0 514L1637.0 636Q1637.0 651 1625.0 651Q1614.0 651 1611.0 638Q1597.0 583 1584.0 553.0Q1571.0 523 1557.0 511.5Q1543.0 500 1526.0 500Q1506.0 500 1484.5 523.0Q1463.0 546 1448.5 597.5Q1434.0 649 1434.0 733Q1434.0 840 1461.5 894.0Q1489.0 948 1533.0 948Q1568.0 948 1591.5 919.0Q1615.0 890 1632.0 814Q1635.0 803 1644.0 803Q1656.0 803 1653.0 823Q1642.0 893 1622.5 931.5Q1603.0 970 1576.5 984.5Q1550.0 999 1517.0 999Z" fill="#F4EEE2"/><path d="M1823.0 999Q1788.0 999 1765.5 974.5Q1743.0 950 1743.0 894V520Q1743.0 508 1731.0 508H1702.0Q1686.0 508 1686.0 496Q1686.0 488 1695.0 482Q1728.0 459 1748.0 432.5Q1768.0 406 1783.0 360Q1790.0 339 1800.0 339Q1811.0 339 1811.0 355V466Q1811.0 480 1825.0 480H1890.0Q1906.0 480 1906.0 494Q1906.0 508 1890.0 508H1825.0Q1811.0 508 1811.0 522V895Q1811.0 917 1818.0 929.5Q1825.0 942 1844.0 942Q1865.0 942 1878.5 921.0Q1892.0 900 1896.0 853Q1898.0 839 1909.0 839Q1921.0 839 1921.0 854Q1918.0 931 1889.5 965.0Q1861.0 999 1823.0 999Z" fill="#F4EEE2"/><path d="M2055.0 999Q2013.0 999 1986.0 972.5Q1959.0 946 1959.0 902Q1959.0 859 1986.0 820.5Q2013.0 782 2060.0 751.0Q2107.0 720 2167.0 701Q2180.0 697 2180.0 684V593Q2180.0 545 2165.0 524.5Q2150.0 504 2124.0 504Q2099.0 504 2078.5 526.5Q2058.0 549 2049.0 602Q2044.0 634 2027.5 648.5Q2011.0 663 1994.0 663Q1966.0 663 1966.0 635Q1966.0 606 1982.5 577.5Q1999.0 549 2026.0 525.5Q2053.0 502 2085.0 488.0Q2117.0 474 2149.0 474Q2248.0 474 2248.0 589V895Q2248.0 937 2269.0 937Q2282.0 937 2293.0 919.5Q2304.0 902 2304.0 860Q2304.0 844 2317.0 844Q2329.0 844 2329.0 861Q2329.0 934 2303.5 966.5Q2278.0 999 2246.0 999Q2222.0 999 2208.0 979.5Q2194.0 960 2189.0 933Q2188.0 923 2180.5 922.5Q2173.0 922 2166.0 932Q2142.0 965 2117.0 982.0Q2092.0 999 2055.0 999ZM2082.0 953Q2108.0 953 2130.0 934.5Q2152.0 916 2166.0 885.0Q2180.0 854 2180.0 815V742Q2180.0 723 2159.0 731Q2098.0 753 2064.5 791.5Q2031.0 830 2031.0 884Q2031.0 953 2082.0 953Z" fill="#F4EEE2"/><path d="M2441.0 999Q2419.0 999 2403.5 984.5Q2388.0 970 2388.0 946Q2388.0 923 2403.5 908.5Q2419.0 894 2441.0 894Q2461.0 894 2477.0 908.5Q2493.0 923 2493.0 946Q2493.0 970 2477.0 984.5Q2461.0 999 2441.0 999Z" fill="#D4AF6A"/></g></svg></a>
+    <a class="bloglink" href="https://selectaofferte.it/blog/">Blog</a>
     <nav aria-label="Sezioni">
       <ul class="index">
         <li><a href="#tech" data-cat="tech">Tech</a></li>
@@ -1367,6 +1416,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
         <li><a href="#bimbi" data-cat="bimbi">Bimbi</a></li>
         <li><a href="#regali">Regali</a></li>
         <li><a href="#seguici">Seguici</a></li>
+        <li class="index__page"><a href="https://selectaofferte.it/blog/">Blog<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
       </ul>
     </nav>
     <button class="find" id="find-btn" type="button" aria-label="Cerca tra offerte e strumenti" aria-haspopup="dialog">
@@ -1630,6 +1680,17 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
           <li class="qa__tag"><div class="qa__swing"><div class="qa__card"><div class="qa__face qa__front"><h3 class="qa__qt" id="qa-q6">Devo usare Telegram?</h3><span class="qa__more" aria-hidden="true"><span>Gira il cartellino</span><b>+</b></span><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-a6" aria-labelledby="qa-q6"></button></div><div class="qa__face qa__back" id="qa-a6" role="region" aria-labelledby="qa-q6"><p class="qa__a">No. Offerte e strumenti funzionano tutti qui sul sito.</p><p class="qa__a">I canali Telegram e WhatsApp servono se vuoi ricevere le offerte appena escono.</p><button class="qa__close" type="button" data-qa-close>Rigira il cartellino</button></div></div></div></li>
         </ul>
       </div>
+      <div class="blogbox">
+        <div class="blogbox__txt">
+          <h3 id="blog-title">Dal <i>blog</i></h3>
+          <p>Gli articoli di Selecta sui prodotti in offerta, e come scegliamo le offerte che pubblichiamo.</p>
+        </div>
+        <div class="blogbox__go">
+          <a class="blogbox__main" href="https://selectaofferte.it/blog/">Leggi il blog</a>
+          <a class="blogbox__sub" href="https://selectaofferte.it/blog/come-lavoriamo/">Come lavoriamo</a>
+        </div>
+        <ul class="blogbox__list" id="blog-list" hidden></ul>
+      </div>
     </div>
   </section>
 
@@ -1667,7 +1728,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
           <li><a href="https://www.tiktok.com/@selectaofferte" target="_blank" rel="noopener" aria-label="TikTok"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a></li>
           <li><a href="https://www.youtube.com/@selectaofferte" target="_blank" rel="noopener" aria-label="YouTube"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a></li>
         </ul>
-        <span><a href="https://selectaofferte.it/privacy/">Privacy e cookie</a> · <a href="https://selectaofferte.it/idee/">Idee regalo</a> · <a href="#domande">Come funziona</a> · © 2026 Selecta Offerte</span>
+        <span><a href="https://selectaofferte.it/privacy/">Privacy e cookie</a> · <a href="https://selectaofferte.it/idee/">Idee regalo</a> · <a href="https://selectaofferte.it/blog/">Blog</a> · <a href="https://selectaofferte.it/chi-siamo/">Chi siamo</a> · <a href="#domande">Come funziona</a> · © 2026 Selecta Offerte</span>
       </div>
     </div>
   </section>
@@ -3145,8 +3206,10 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
       o.url = o.link || ('https://selectaofferte.it/?a=' + encodeURIComponent(o.asin) + '&t=' + encodeURIComponent(o.tag));
       if (!CATS[o.cat]) o.cat = 'tech';
       o.hist = normHist(o.prezzi_30g, o);
+      o.used = o.usato === true;
+      if (o.used) { o.off = 0; o.listino = ''; o.sconto = ''; }
       o.pri = typeof o.priorita === 'number' && isFinite(o.priorita) ? o.priorita : -1;
-      o.top = o.marca_top === true ? 1 : 0;
+      o.top = o.marca_top === true && !o.used ? 1 : 0;
       o.fid = o.marca_fidata === true || o.top ? 1 : 0;
       o.brand = typeof o.marca === 'string' ? o.marca.trim() : '';
       return o;
@@ -3194,9 +3257,18 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
     el.innerHTML = '<b>Black Friday</b><span class="vh"> tra </span><span aria-hidden="true">' + g + 'g ' + pad(h) + 'h ' + pad(m) + 'm ' + pad(ss) + 's</span><span class="vh">' + g + ' giorni</span>';
   }
 
+  var USED_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6.2 3.1L8 1.8l1.8 1.3M8 1.8v4.4M3 9.6L1.8 7.8l1.3-1.9M1.8 7.8l3.9 2.2M13 9.6l1.2-1.8-1.3-1.9M14.2 7.8l-3.9 2.2M5 13.9h6M5 13.9l-.8-2.1M11 13.9l.8-2.1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  /* indirizzi di riserva delle foto Amazon, provati in ordine prima di nascondere la scheda */
+  function photoAlts(o){
+    var a = String(o.asin || ''); if (!/^[A-Z0-9]{10}$/.test(a)) return '';
+    return ['https://m.media-amazon.com/images/P/' + a + '.01._SCLZZZZZZZ_.jpg',
+            'https://images-eu.ssl-images-amazon.com/images/P/' + a + '.01.LZZZZZZZ.jpg',
+            'https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=' + a + '&Format=_SL400_&ID=AsinImage&MarketPlace=IT&ServiceVersion=20070822&WS=1' + (o.tag ? '&tag=' + encodeURIComponent(o.tag) : '')]
+      .filter(function(u){ return u !== o.foto; }).join(' ');
+  }
   function photoHTML(o){
     if (!o.foto) return '<div class="card__photo is-empty"></div>';
-    return '<div class="card__photo"><img src="' + esc(o.foto) + '" alt="" loading="lazy" decoding="async" data-asin="' + esc(o.asin) + '"></div>';
+    return '<div class="card__photo"><img src="' + esc(o.foto) + '" alt="" loading="lazy" decoding="async" data-asin="' + esc(o.asin) + '" data-alt="' + esc(photoAlts(o)) + '"></div>';
   }
   function shortName(n){ n = String(n || ''); var c = n.split(/[,|(]/)[0].trim(); if (c.length > 60) c = c.slice(0, 57).replace(/\s+\S*$/, '') + '…'; return c || n; }
   function shareURL(o){ return 'https://selectaofferte.it/?offerta=' + encodeURIComponent(o.asin); }
@@ -3253,19 +3325,19 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
     var el = opts.link === false ? 'div' : 'a';
     var attrs = el === 'a' ? ' href="' + esc(o.url) + '" target="_blank" rel="sponsored noopener"' : '';
     var seen = seenInfo(o);
-    var fact = o.min30 ? '<strong title="Prezzo più basso visto da Selecta negli ultimi 30 giorni">Minimo 30 giorni</strong>'
+    var fact = o.used ? '' : o.min30 ? '<strong title="Prezzo più basso visto da Selecta negli ultimi 30 giorni">Minimo 30 giorni</strong>'
       : (o.badge ? '<strong>' + esc(o.badge) + '</strong>' : '');
     if (o.alla_cassa) fact += (fact ? ' · ' : '') + '<span>Sconto alla cassa</span>';
     var cls = 'card' + (o.off >= 50 ? ' is-hot' : '') + (opts.cls ? ' ' + opts.cls : '') + (opts.link !== false && o.asin === state.shared ? ' is-shared' : '');
     return '<div class="' + cls + '" style="--dot:' + CATS[o.cat].dot + (opts.i != null ? ';--i:' + opts.i : '') + '">' +
       '<' + el + ' class="card__link"' + attrs + '>' +
       photoHTML(o) +
-      (o.sconto ? '<span class="card__off">' + esc(o.sconto) + '</span>' : '') +
+      (o.used ? '<span class="card__used">' + USED_ICON + 'Usato</span>' : (o.sconto ? '<span class="card__off">' + esc(o.sconto) + '</span>' : '')) +
       '<div class="card__body">' +
         '<span class="card__shelf">' + esc(CATS[o.cat].name) + ' · ' + esc(o.sub) + '</span>' +
         (o.brand ? '<span class="card__brand">' + esc(o.brand) + '</span>' : '') +
         '<p class="card__name">' + esc(o.nome) + '</p>' +
-        '<div class="card__prices">' + (o.listino ? '<span class="card__was"><span class="vh">Prezzo di listino </span>' + esc(o.listino) + '</span>' : '') +
+        '<div class="card__prices">' + (o.listino && !o.used ? '<span class="card__was"><span class="vh">Prezzo di listino </span>' + esc(o.listino) + '</span>' : '') +
           '<span class="card__now"><span class="vh">Prezzo in offerta </span>' + esc(o.prezzo) + '</span></div>' +
         (opts.share ? trendHTML(o) : '') +
         '<div class="card__facts"><span>' + (fact || '&nbsp;') + '</span><span' + (seen.title ? ' title="' + esc(seen.title) + '"' : '') + '>' + esc(seen.text) + '</span></div>' +
@@ -3283,7 +3355,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   function orderNote(list){ var h = orderHead(list); if (!h) return ''; return h + (list.some(function(o){ return o.pri >= 0; }) ? ', poi le altre offerte scelte' : ', poi gli sconti più forti'); }
   function cap(t){ return t.charAt(0).toUpperCase() + t.slice(1); }
   function pool(){ return OFFERS.filter(function(o){ return fits(o) && visible(o); }).sort(rankTop); }
-  function heroPool(){ var p = pool(); if (!CATS[ROUTE]) return p; var c = p.filter(function(o){ return o.cat === ROUTE; }); return c.length >= 3 ? c.concat(p.filter(function(o){ return o.cat !== ROUTE; })) : p; }
+  function heroPool(){ var p = pool().filter(function(o){ return !o.used; }); if (!CATS[ROUTE]) return p; var c = p.filter(function(o){ return o.cat === ROUTE; }); return c.length >= 3 ? c.concat(p.filter(function(o){ return o.cat !== ROUTE; })) : p; }
 
   /* ---------------------------------------------------- hero: the window */
   var dropTimer, heroKey = '', swapTimer;
@@ -3384,7 +3456,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   function renderRail(){
     var rail = $('rail');
     [].slice.call(rail.querySelectorAll('.card, .rail__note, .rail__empty')).forEach(function(n){ n.parentNode.removeChild(n); });
-    var all = pool();
+    var all = pool().filter(function(o){ return !o.used; });
     var bfOn = BF.phase === 'week' || BF.phase === 'day' || BF.phase === 'after';
     var recent = [];
     if (bfOn) {
@@ -3606,20 +3678,40 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   /* photos: only the feed's own field. A photo that fails hides its product,
      unless no photo has loaded at all (a preview that cannot reach Amazon). */
   var photoTimer;
-  document.addEventListener('load', function(e){
-    if (e.target.tagName === 'IMG' && e.target.dataset.asin) {
-      if (!anyPhotoLoaded) { anyPhotoLoaded = true; schedule(); }
+  /* foto che non arriva: prima gli indirizzi di riserva, poi la scheda sparisce (niente riquadri vuoti).
+     Una foto «minuscola» (sotto i 50 px, il pixel trasparente che Amazon dà quando manca) conta come errore.
+     Se nessuna foto è mai arrivata (anteprima che non raggiunge Amazon) non si nasconde niente. */
+  function nextAlt(img){
+    var alts = (img.getAttribute('data-alt') || '').split(' ').filter(Boolean);
+    if (!alts.length) return false;
+    img.setAttribute('data-alt', alts.slice(1).join(' '));
+    img.src = alts[0];
+    return true;
+  }
+  function photoFailed(img){
+    if (img.hasAttribute('data-blog')) { var li = img.closest('.blogcard'); if (li) li.classList.add('is-text'); img.parentNode.remove(); return; }
+    if (nextAlt(img)) return;
+    if (img.dataset.thumb != null) {
+      var row = img.hasAttribute('data-hide-row') && img.closest('li');
+      if (row && anyPhotoLoaded) { row.hidden = true; return; }
+      var par = img.parentNode; if (par.classList.contains('finder__thumb')) par.classList.add('is-tool'); par.textContent = 'S.'; return;
     }
-  }, true);
-  document.addEventListener('error', function(e){
-    var img = e.target;
-    if (img.tagName !== 'IMG') return;
-    if (img.dataset.thumb != null) { var par = img.parentNode; if (par.classList.contains('finder__thumb')) par.classList.add('is-tool'); par.textContent = 'S.'; return; }
     if (!img.dataset.asin) return;
     badPhotos[img.dataset.asin] = true;
+    var card = img.closest('.card');
+    if (card && anyPhotoLoaded && !card.closest('.tag')) card.hidden = true;
     img.parentNode.className = 'card__photo is-empty';
     img.parentNode.removeChild(img);
     schedule();
+  }
+  document.addEventListener('load', function(e){
+    var img = e.target;
+    if (img.tagName !== 'IMG' || (!img.dataset.asin && img.dataset.thumb == null && !img.hasAttribute('data-blog'))) return;
+    if (img.naturalWidth && img.naturalWidth < 50) { photoFailed(img); return; }
+    if (img.dataset.asin && !anyPhotoLoaded) { anyPhotoLoaded = true; schedule(); }
+  }, true);
+  document.addEventListener('error', function(e){
+    if (e.target.tagName === 'IMG') photoFailed(e.target);
   }, true);
   function schedule(){ clearTimeout(photoTimer); photoTimer = setTimeout(function(){ if (anyPhotoLoaded) renderAll(); }, 400); }
 
@@ -3724,7 +3816,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
       var seen = seenInfo(o);
       fItems.push(o.url);
       html += '<li role="option" id="fi-' + (fItems.length - 1) + '"><a href="' + esc(o.url) + '" target="_blank" rel="sponsored noopener" tabindex="-1">' +
-        '<span class="finder__thumb">' + (o.foto ? '<img src="' + esc(o.foto) + '" alt="" loading="lazy" data-thumb>' : 'S.') + '</span>' +
+        '<span class="finder__thumb">' + (o.foto ? '<img src="' + esc(o.foto) + '" alt="" loading="lazy" data-thumb data-hide-row data-alt="' + esc(photoAlts(o)) + '">' : 'S.') + '</span>' +
         '<span class="finder__t"><b>' + esc(shortName(o.nome)) + '</b><small>' + esc(CATS[o.cat].name + ' · ' + o.sub + ' · ' + seen.text) + '</small></span>' +
         '<span class="finder__p"><b>' + esc(o.prezzo) + '</b>' + (o.sconto ? '<small>' + esc(o.sconto) + '</small>' : '') + '</span></a></li>';
     });
@@ -3966,7 +4058,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   }
   function newest(a, b){ return ((b.seenOk ? b.seen : 0) - (a.seenOk ? a.seen : 0)) || (offerDay(b) - offerDay(a)) || (a.i - b.i); }
   function liveRow(o){
-    return '<li><a href="' + esc(o.url) + '" target="_blank" rel="sponsored noopener"><span class="live__thumb">' + (o.foto ? '<img src="' + esc(o.foto) + '" alt="" loading="lazy" data-thumb>' : 'S.') + '</span>' +
+    return '<li><a href="' + esc(o.url) + '" target="_blank" rel="sponsored noopener"><span class="live__thumb">' + (o.foto ? '<img src="' + esc(o.foto) + '" alt="" loading="lazy" data-thumb data-hide-row data-alt="' + esc(photoAlts(o)) + '">' : 'S.') + '</span>' +
       '<span class="live__t"><b>' + esc(shortName(o.nome)) + '</b><small>' + esc(CATS[o.cat].name + ' · ' + seenInfo(o).text) + '</small></span>' +
       '<span class="live__p"><b>' + esc(o.prezzo) + '</b>' + (o.sconto ? '<small>' + esc(o.sconto) + '</small>' : '') + '</span></a></li>';
   }
@@ -4084,7 +4176,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
 
 
   /* ---------------- pagine del sito in una nuova scheda (la home resta dov'eri) */
-  var PAGE_RE = /^(?:https:\/\/selectaofferte\.it)?\/(?:lista|regalo|babbonatale|compleanni|avvisi|avvento|privacy|vetrina|idee)\//;
+  var PAGE_RE = /^(?:https:\/\/selectaofferte\.it)?\/(?:lista|regalo|babbonatale|compleanni|avvisi|avvento|privacy|vetrina|idee|blog|chi-siamo)\//;
   var ntRaf = 0;
   function newTabs(){
     ntRaf = 0;
@@ -4122,6 +4214,28 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   function dockMark(){ [].forEach.call(document.querySelectorAll('[data-dock-cat]'), function(a){ a.setAttribute('aria-current', String(a.getAttribute('data-dock-cat') === state.cat)); }); }
   dockMark();
   var setCat0 = setCat; setCat = function(c){ setCat0(c); dockMark(); };
+
+  /* ---------------- Dal blog: gli ultimi 3 articoli da /blog/indice.json (scritto dal bot).
+     Se il file non arriva resta il riquadro con i due link. Prezzo e giudizio non si mostrano qui. */
+  var BLOG_FEED = 'https://selectaofferte.it/blog/indice.json';
+  var BLOG_CATS = { 'tecnologia': 'Tecnologia', 'casa-e-cucina': 'Casa e cucina', 'bambini': 'Bambini', 'migliori-offerte': 'Migliori offerte' };
+  function blogCat(c){ c = String(c || ''); return BLOG_CATS[c] || (c ? (c.charAt(0).toUpperCase() + c.slice(1)).replace(/-/g, ' ') : ''); }
+  function renderBlog(list){
+    var ul = $('blog-list');
+    var html = list.filter(function(a){ return a && a.s && a.t && /^[a-z0-9-]+$/.test(a.s); }).slice(0, 3).map(function(a){
+      var img = /^https:\/\//.test(a.f || '') ? '<span class="blogcard__ph"><img src="' + esc(a.f) + '" alt="" loading="lazy" decoding="async" data-blog></span>' : '';
+      return '<li class="blogcard' + (img ? '' : ' is-text') + '"><a href="https://selectaofferte.it/blog/' + a.s + '/">' + img +
+        '<span class="blogcard__b">' + (a.c ? '<span class="blogcard__c">' + esc(blogCat(a.c)) + '</span>' : '') +
+        '<b class="blogcard__t">' + esc(a.t) + '</b>' + (a.d ? '<span class="blogcard__d">' + esc(a.d) + '</span>' : '') +
+        (a.x ? '<span class="blogcard__x">' + esc(a.x) + '</span>' : '') + '</span></a></li>';
+    }).join('');
+    if (!html) return;
+    ul.innerHTML = html; ul.hidden = false;
+  }
+  try {
+    fetch(BLOG_FEED, { cache: 'no-cache' }).then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){ if (d && d.articoli && d.articoli.length) renderBlog(d.articoli); }).catch(function(){});
+  } catch (e) {}
 
   /* data: the embedded copy first, then the live file the bot keeps updated */
   load(JSON.parse($('dati-riserva').textContent));
