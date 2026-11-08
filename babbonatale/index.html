@@ -254,7 +254,7 @@ function me(r){remember(r.n);$('sMe').hidden=false;['tgt','wait','memb','adm'].f
   post({azione:'lista',g:G,c:C,t:T}).then(function(x){if(x.ok){if(w)w.location=x.url;else location.href=x.url;load()}else{if(w)w.close();alert(x.errore||'Riprova.')}})};
  if(r.x&&r.regalo){$('tgt').hidden=false;$('tn').textContent=r.regalo.nome;$('tb').textContent='💶 '+(r.b?'Budget '+r.b+' €':'Budget libero')+(r.d?' · 📅 '+fdate(r.d):'');
   if(r.regalo.desideri){$('tw').hidden=false;$('tw').textContent='📝 '+r.regalo.desideri}
-  if(r.regalo.lista){$('tl').hidden=false;$('tl').href=r.regalo.lista}$('ti2').href='/regalo/'+(r.b?'?max='+r.b:'')}
+  if(r.regalo.lista){$('tl').hidden=false;$('tl').href=r.regalo.lista}$('ti2').href='/regalo/?per=segreto&prof=tutto&max='+(r.b||0)}
  else if(!r.x){$('wait').hidden=false;$('wp').textContent='Ciao '+r.me.nome+'! Quando chi organizza fa l\'estrazione, riapri questo link e scopri a chi fai il regalo.'}
  if(!r.me.admin){$('memb').hidden=false;$('mlist').textContent='👥 '+r.membri.join(', ');$('esc').hidden=!!r.x;
   $('esc').onclick=function(){if(confirm('Uscire dal gruppo?'))post({azione:'esci',g:G,c:C,t:T}).then(function(){forget();location.replace('./')})};return}
