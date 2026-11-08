@@ -5,20 +5,4 @@ Allow: /
 Disallow: /vai/
 Disallow: /*?a=
 
-# Motori di ricerca e assistenti AI: benvenuti, con le stesse regole di tutti (aggiunto dal bot di Selecta)
-User-agent: OAI-SearchBot
-User-agent: ChatGPT-User
-User-agent: GPTBot
-User-agent: PerplexityBot
-User-agent: Perplexity-User
-User-agent: Claude-SearchBot
-User-agent: Claude-User
-User-agent: ClaudeBot
-User-agent: Google-Extended
-User-agent: Applebot-Extended
-User-agent: CCBot
-Allow: /
-Disallow: /vai/
-Disallow: /*?a=
-
 Sitemap: https://selectaofferte.it/sitemap.xml
