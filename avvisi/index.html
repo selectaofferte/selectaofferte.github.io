@@ -164,6 +164,43 @@ form[hidden] + .sx-info,[hidden] > .sx-info{display:none}
   .sx-bloglink:focus-visible{outline:2px solid #D4AF6A;outline-offset:2px}
 }
 </style>
+<style id="sx-cart-css">
+.sx-ck{position:absolute;left:8px;bottom:8px;z-index:3;display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:6px 12px 6px 9px;border-radius:999px;
+background:rgba(251,248,242,.96);color:#14233B;border:1px solid rgba(20,35,59,.18);box-shadow:0 2px 8px -3px rgba(20,35,59,.35);
+font:600 13px/1 Outfit,system-ui,sans-serif;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.sx-ck input{appearance:none;-webkit-appearance:none;width:18px;height:18px;margin:0;border-radius:5px;border:2px solid #14233B;background:#fff;display:grid;place-content:center;cursor:pointer;flex:none}
+.sx-ck input:checked{background:#14233B}
+.sx-ck input:checked::after{content:"";width:9px;height:5px;border:2px solid #F4EEE2;border-top:0;border-right:0;transform:translateY(-1px) rotate(-45deg)}
+.sx-ck input:focus-visible{outline:2px solid #B8924A;outline-offset:2px}
+.sx-ck.is-on{background:#D4AF6A;border-color:#B8924A}
+.sx-ck.is-off{opacity:.55;cursor:not-allowed}.sx-ck.is-off input{cursor:not-allowed}
+.sx-ck--done{cursor:default;background:#2E7D4F;color:#fff;border-color:#2E7D4F}
+li .sx-ck{position:static;flex:none;box-shadow:none;order:3;padding:5px 11px 5px 8px}
+#sx-their li{flex-wrap:wrap}#sx-their li .nm{flex:1 1 calc(100% - 64px)}#sx-their li a{order:4;margin-left:auto}
+.sx-cart{position:fixed;left:0;right:0;bottom:0;z-index:18;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+background:#14233B;color:#F4EEE2;box-shadow:0 -10px 30px -12px rgba(10,18,30,.55);font:400 14px/1.4 Outfit,system-ui,sans-serif}
+.sx-cart__in{max-width:620px;margin:0 auto;display:grid;gap:6px}
+.sx-cart__row{display:flex;align-items:center;gap:8px}
+.sx-cart__go{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 14px;border-radius:999px;background:#D4AF6A;color:#14233B;
+font-weight:600;font-size:15.5px;text-decoration:none;text-align:center}
+.sx-cart__go:hover{background:#E0BF80}.sx-cart__go:focus-visible,.sx-cart__x:focus-visible,.sx-cart button:focus-visible{outline:2px solid #F4EEE2;outline-offset:2px}
+.sx-cart__x{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,238,226,.35);background:transparent;color:#F4EEE2;font-size:17px;cursor:pointer}
+.sx-cart__ad,.sx-cart__note,.sx-cart__max{margin:0;text-align:center;font-size:12px;color:rgba(244,238,226,.78)}
+.sx-cart__max{color:#E8C98A}
+.sx-cart__p h2{margin:0;font:400 24px/1.1 "Instrument Serif",Georgia,serif;color:#F4EEE2}
+.sx-cart__p p{margin:4px 0 0;font-size:14px;color:rgba(244,238,226,.85)}
+.sx-cart__p ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;max-height:34vh;overflow:auto}
+.sx-cart__p li{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:6px 0;border-top:1px solid rgba(244,238,226,.14)}
+.sx-cart__p li span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sx-cart__p li b{flex:none;font-weight:600}.sx-cart__p li b.ok{color:#9FD8B4}.sx-cart__p li b.ko{color:#F2B8A8}
+.sx-cart__btns{display:flex;gap:8px;margin-top:10px}
+.sx-cart__btns button{flex:1;min-height:46px;border-radius:999px;border:1px solid rgba(244,238,226,.4);background:transparent;color:#F4EEE2;font:600 14px Outfit,system-ui,sans-serif;cursor:pointer}
+.sx-cart__btns button.yes{background:#D4AF6A;border-color:#D4AF6A;color:#14233B}
+.sx-cart__btns button:disabled{opacity:.6;cursor:default}
+.sx-vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:720px){.sx-cart{left:50%;right:auto;bottom:16px;width:min(620px,calc(100% - 32px));transform:translateX(-50%);border-radius:22px;padding:12px 14px}}
+@media(prefers-reduced-motion:no-preference){.sx-cart{animation:sxCartIn .22s ease-out}@keyframes sxCartIn{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}}
+</style>
 </head><body>
 <div class="sx-bar" role="navigation" aria-label="Menu di Selecta"><div class="sx-bar__in"><a class="sx-logo" href="/" aria-label="Selecta, vai alla pagina principale"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2667 1420" aria-hidden="true" focusable="false"><g transform="translate(60,60)"><path d="M184.0 999Q164.0 999 139.5 995.0Q115.0 991 93.5 985.0Q72.0 979 60.0 972Q53.0 968 49.5 963.5Q46.0 959 46.0 948L41.0 791Q41.0 771 54.0 771Q65.0 771 69.0 789L78.0 827Q112.0 970 205.0 970Q255.0 970 284.5 936.5Q314.0 903 314.0 842Q314.0 783 283.5 732.0Q253.0 681 186.0 631Q112.0 578 78.0 528.5Q44.0 479 44.0 423Q44.0 349 95.5 304.5Q147.0 260 227.0 260Q257.0 260 285.0 267.0Q313.0 274 331.0 287Q337.0 291 340.5 296.0Q344.0 301 344.0 309L347.0 460Q347.0 477 334.0 477Q325.0 477 321.0 463L314.0 438Q292.0 361 268.5 325.5Q245.0 290 201.0 290Q158.0 290 132.5 318.0Q107.0 346 107.0 397Q107.0 440 135.0 479.0Q163.0 518 233.0 574Q308.0 635 342.5 691.5Q377.0 748 377.0 812Q377.0 868 352.0 910.0Q327.0 952 283.5 975.5Q240.0 999 184.0 999Z" fill="#F4EEE2"/><path d="M599.0 999Q551.0 999 513.0 967.0Q475.0 935 452.5 876.5Q430.0 818 430.0 741Q430.0 662 453.0 602.0Q476.0 542 516.0 508.0Q556.0 474 605.0 474Q664.0 474 700.5 522.5Q737.0 571 737.0 680Q737.0 713 712.0 713H522.0Q502.0 713 502.0 736Q502.0 842 533.0 895.0Q564.0 948 612.0 948Q650.0 948 674.0 921.0Q698.0 894 713.0 830Q716.0 819 726.0 819Q738.0 819 735.0 839Q719.0 928 684.0 963.5Q649.0 999 599.0 999ZM519.0 688H620.0Q668.0 688 668.0 638Q668.0 573 652.0 536.0Q636.0 499 604.0 499Q565.0 499 538.5 544.0Q512.0 589 504.0 672Q502.0 688 519.0 688Z" fill="#F4EEE2"/><path d="M782.0 990Q770.0 990 770.0 979Q770.0 969 781.0 967L795.0 965Q816.0 962 826.0 953.0Q836.0 944 836.0 923V350Q836.0 332 830.5 325.0Q825.0 318 811.0 317L788.0 314Q777.0 312 777.0 302Q777.0 292 788.0 290Q816.0 284 836.0 276.0Q856.0 268 869.0 260Q885.0 250 893.0 250Q904.0 250 904.0 266V923Q904.0 944 910.5 952.5Q917.0 961 938.0 964L961.0 967Q972.0 969 972.0 979Q972.0 990 960.0 990Z" fill="#F4EEE2"/><path d="M1174.0 999Q1126.0 999 1088.0 967.0Q1050.0 935 1027.5 876.5Q1005.0 818 1005.0 741Q1005.0 662 1028.0 602.0Q1051.0 542 1091.0 508.0Q1131.0 474 1180.0 474Q1239.0 474 1275.5 522.5Q1312.0 571 1312.0 680Q1312.0 713 1287.0 713H1097.0Q1077.0 713 1077.0 736Q1077.0 842 1108.0 895.0Q1139.0 948 1187.0 948Q1225.0 948 1249.0 921.0Q1273.0 894 1288.0 830Q1291.0 819 1301.0 819Q1313.0 819 1310.0 839Q1294.0 928 1259.0 963.5Q1224.0 999 1174.0 999ZM1094.0 688H1195.0Q1243.0 688 1243.0 638Q1243.0 573 1227.0 536.0Q1211.0 499 1179.0 499Q1140.0 499 1113.5 544.0Q1087.0 589 1079.0 672Q1077.0 688 1094.0 688Z" fill="#F4EEE2"/><path d="M1517.0 999Q1473.0 999 1437.5 969.5Q1402.0 940 1381.0 885.0Q1360.0 830 1360.0 754Q1360.0 669 1385.5 606.0Q1411.0 543 1455.0 508.5Q1499.0 474 1553.0 474Q1599.0 474 1625.0 492Q1635.0 499 1635.0 514L1637.0 636Q1637.0 651 1625.0 651Q1614.0 651 1611.0 638Q1597.0 583 1584.0 553.0Q1571.0 523 1557.0 511.5Q1543.0 500 1526.0 500Q1506.0 500 1484.5 523.0Q1463.0 546 1448.5 597.5Q1434.0 649 1434.0 733Q1434.0 840 1461.5 894.0Q1489.0 948 1533.0 948Q1568.0 948 1591.5 919.0Q1615.0 890 1632.0 814Q1635.0 803 1644.0 803Q1656.0 803 1653.0 823Q1642.0 893 1622.5 931.5Q1603.0 970 1576.5 984.5Q1550.0 999 1517.0 999Z" fill="#F4EEE2"/><path d="M1823.0 999Q1788.0 999 1765.5 974.5Q1743.0 950 1743.0 894V520Q1743.0 508 1731.0 508H1702.0Q1686.0 508 1686.0 496Q1686.0 488 1695.0 482Q1728.0 459 1748.0 432.5Q1768.0 406 1783.0 360Q1790.0 339 1800.0 339Q1811.0 339 1811.0 355V466Q1811.0 480 1825.0 480H1890.0Q1906.0 480 1906.0 494Q1906.0 508 1890.0 508H1825.0Q1811.0 508 1811.0 522V895Q1811.0 917 1818.0 929.5Q1825.0 942 1844.0 942Q1865.0 942 1878.5 921.0Q1892.0 900 1896.0 853Q1898.0 839 1909.0 839Q1921.0 839 1921.0 854Q1918.0 931 1889.5 965.0Q1861.0 999 1823.0 999Z" fill="#F4EEE2"/><path d="M2055.0 999Q2013.0 999 1986.0 972.5Q1959.0 946 1959.0 902Q1959.0 859 1986.0 820.5Q2013.0 782 2060.0 751.0Q2107.0 720 2167.0 701Q2180.0 697 2180.0 684V593Q2180.0 545 2165.0 524.5Q2150.0 504 2124.0 504Q2099.0 504 2078.5 526.5Q2058.0 549 2049.0 602Q2044.0 634 2027.5 648.5Q2011.0 663 1994.0 663Q1966.0 663 1966.0 635Q1966.0 606 1982.5 577.5Q1999.0 549 2026.0 525.5Q2053.0 502 2085.0 488.0Q2117.0 474 2149.0 474Q2248.0 474 2248.0 589V895Q2248.0 937 2269.0 937Q2282.0 937 2293.0 919.5Q2304.0 902 2304.0 860Q2304.0 844 2317.0 844Q2329.0 844 2329.0 861Q2329.0 934 2303.5 966.5Q2278.0 999 2246.0 999Q2222.0 999 2208.0 979.5Q2194.0 960 2189.0 933Q2188.0 923 2180.5 922.5Q2173.0 922 2166.0 932Q2142.0 965 2117.0 982.0Q2092.0 999 2055.0 999ZM2082.0 953Q2108.0 953 2130.0 934.5Q2152.0 916 2166.0 885.0Q2180.0 854 2180.0 815V742Q2180.0 723 2159.0 731Q2098.0 753 2064.5 791.5Q2031.0 830 2031.0 884Q2031.0 953 2082.0 953Z" fill="#F4EEE2"/><path d="M2441.0 999Q2419.0 999 2403.5 984.5Q2388.0 970 2388.0 946Q2388.0 923 2403.5 908.5Q2419.0 894 2441.0 894Q2461.0 894 2477.0 908.5Q2493.0 923 2493.0 946Q2493.0 970 2477.0 984.5Q2461.0 999 2441.0 999Z" fill="#D4AF6A"/></g></svg></a><a class="sx-bloglink" href="/blog/">Blog</a><nav aria-label="Selecta"><ul class="sx-nav"><li><a href="/tech/">Tech</a></li><li><a href="/casa/">Casa</a></li><li><a href="/bimbi/">Bimbi</a></li><li><a href="/#regali" aria-current="page">Regali</a></li><li><a href="/#seguici">Seguici</a></li><li class="sx-page"><a href="/blog/">Blog<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></nav><a class="sx-home" href="/" data-sx-home><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M9.5 3.5L5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Home</a></div></div>
 
@@ -227,6 +264,198 @@ fetch('/regalo/regalo.json?v='+Date.now()).then(function(r){return r.json()}).th
     try { window.close(); } catch (_) {}
     setTimeout(function () { location.href = '/'; }, 300);
   });
+})();
+</script>
+<script id="sx-cart">
+/* «Metti nel carrello Amazon»: stessa funzione su lista, Babbo Natale segreto, Che regalo faccio?, Avvisi e Avvento. */
+(function(){
+  var PAGE = 'avvisi', MAX = 10, CART = 'https://www.amazon.it/gp/aws/cart/add.html';
+  var sel = [];            /* prodotti scelti, in ordine: {a: ASIN, t: TAG, n: nome, it: regalo della lista} */
+  var bar = null, panel = false, key = '';
+  function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function idx(a){ for (var i = 0; i < sel.length; i++) if (sel[i].a === a) return i; return -1; }
+  /* ASIN e TAG dal link del prodotto: https://selectaofferte.it/?a=ASIN&t=TAG */
+  function parse(h){
+    try {
+      var u = new URL(h, location.href), host = u.hostname.replace(/^www\./, '');
+      if (host !== 'selectaofferte.it' && u.host !== location.host) return null;
+      var a = (u.searchParams.get('a') || '').toUpperCase(), t = u.searchParams.get('t') || '';
+      if (!/^[A-Z0-9]{10}$/.test(a)) return null;
+      return { a: a, t: /^[A-Za-z0-9-]{3,40}$/.test(t) ? t : '' };
+    } catch (e) { return null; }
+  }
+  /* il tag più frequente tra i prodotti scelti (a parità, quello scelto per primo) */
+  function tag(){
+    var n = {}, best = '', bn = 0;
+    sel.forEach(function(x){ if (!x.t) return; n[x.t] = (n[x.t] || 0) + 1; if (n[x.t] > bn) { bn = n[x.t]; best = x.t; } });
+    return best;
+  }
+  function cartUrl(){
+    var q = [], t = tag();
+    if (t) q.push('AssociateTag=' + encodeURIComponent(t));
+    sel.slice(0, MAX).forEach(function(x, i){ q.push('ASIN.' + (i + 1) + '=' + x.a, 'Quantity.' + (i + 1) + '=1'); });
+    return CART + '?' + q.join('&');
+  }
+  function lista(){ var L = window.sxLista; return PAGE === 'lista' && L ? L : null; }
+  /* la lista consente le caselle? solo per chi regala e con il servizio che risponde */
+  function listaOk(){ var L = lista(); return !!(L && L.api() && !L.own()); }
+
+  /* ---- le caselle «Scegli» ---- */
+  function box(info){
+    var lb = el('label', 'sx-ck'), cb = el('input'), tx = el('span', null, 'Scegli');
+    cb.type = 'checkbox'; cb.setAttribute('data-sx-a', info.a);
+    var vh = el('span', 'sx-vh', ' ' + (info.n || 'questo prodotto') + ' per il carrello Amazon');
+    lb.appendChild(cb); lb.appendChild(tx); lb.appendChild(vh);
+    cb.addEventListener('change', function(){
+      var i = idx(info.a);
+      if (cb.checked && i < 0) { if (sel.length >= MAX) { cb.checked = false; sync(); return; } sel.push(info); }
+      if (!cb.checked && i >= 0) sel.splice(i, 1);
+      sync();
+    });
+    return lb;
+  }
+  function done(){ var d = el('span', 'sx-ck sx-ck--done', 'Già regalato ✓'); d.setAttribute('data-sx-done', ''); return d; }
+  function items(){
+    var out = [];
+    if (PAGE === 'lista') {
+      if (!listaOk()) return out;
+      [].forEach.call(document.querySelectorAll('.card'), function(c){
+        var it = c.sxIt; if (!it) return;
+        var p = parse(it.l || ''); var ph = c.querySelector('.ph');
+        out.push({ host: ph || c, it: it, info: p ? { a: p.a, t: p.t, n: it.n, it: it } : null });
+      });
+    } else if (PAGE === 'babbonatale') {
+      [].forEach.call(document.querySelectorAll('#sx-their li'), function(li){
+        var a = li.querySelector('a[href]'), p = a && parse(a.getAttribute('href')), nm = li.querySelector('.nm');
+        if (p) out.push({ host: li, first: true, info: { a: p.a, t: p.t, n: nm ? nm.textContent : '' } });
+      });
+    } else {
+      [].forEach.call(document.querySelectorAll('.card'), function(c){
+        var a = c.querySelector('a.btn[href]'), p = a && parse(a.getAttribute('href')), nm = c.querySelector('.nm'), ph = c.querySelector('.ph');
+        if (p) out.push({ host: ph || c, info: { a: p.a, t: p.t, n: nm ? nm.textContent : '' } });
+      });
+    }
+    return out;
+  }
+  var busy = false;
+  function decorate(){
+    if (busy) return; busy = true;
+    try {
+      if (PAGE === 'lista' && !listaOk()) {
+        /* chi gestisce la lista, o servizio che non risponde: niente caselle né barra */
+        [].forEach.call(document.querySelectorAll('.sx-ck'), function(x){ x.remove(); });
+        if (sel.length) { sel = []; }
+        render(); return;
+      }
+      items().forEach(function(x){
+        var host = x.host, cur = host.querySelector(':scope > .sx-ck');
+        var want = x.it && x.it.g ? 'done' : (x.it && x.it.gg) || !x.info ? 'none' : 'box';
+        var has = !cur ? 'none' : cur.hasAttribute('data-sx-done') ? 'done' : 'box';
+        if (has === 'box' && want === 'box' && cur.querySelector('input').getAttribute('data-sx-a') !== x.info.a) { cur.remove(); has = 'none'; }
+        if (want === has) return;
+        if (cur) cur.remove();
+        var n = want === 'box' ? box(x.info) : want === 'done' ? done() : null;
+        if (n) { if (x.first) host.insertBefore(n, host.firstChild); else host.appendChild(n); }
+      });
+      if (PAGE === 'lista') {
+        /* regali diventati «già regalati» o collette: fuori dalla scelta */
+        var ok = {}; items().forEach(function(x){ if (x.info && !(x.it && (x.it.g || x.it.gg))) ok[x.info.a] = x.it; });
+        sel = sel.filter(function(s){ if (!ok[s.a]) return false; s.it = ok[s.a]; return true; });
+      }
+      sync();
+    } finally { busy = false; }
+  }
+  function sync(){
+    var full = sel.length >= MAX;
+    [].forEach.call(document.querySelectorAll('.sx-ck input[data-sx-a]'), function(cb){
+      var on = idx(cb.getAttribute('data-sx-a')) >= 0;
+      cb.checked = on; cb.disabled = full && !on;
+      var lb = cb.parentNode; lb.classList.toggle('is-on', on); lb.classList.toggle('is-off', full && !on);
+      var w = on ? 'Scelto' : 'Scegli'; if (lb.children[1].textContent !== w) lb.children[1].textContent = w;
+    });
+    render();
+  }
+
+  /* ---- la barra in basso ---- */
+  function render(){
+    if (!sel.length && !panel) { if (bar) { bar.remove(); bar = null; key = ''; } pad(); return; }
+    if (panel) return;
+    var k = sel.map(function(x){ return x.a; }).join(',') + '|' + (listaOk() ? 1 : 0);
+    if (bar && k === key) return;
+    key = k;
+    if (!bar) { bar = el('div', 'sx-cart'); bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Carrello Amazon'); document.body.appendChild(bar); }
+    bar.innerHTML = '';
+    var inn = el('div', 'sx-cart__in'), row = el('div', 'sx-cart__row');
+    var go = el('a', 'sx-cart__go', '🛒 Metti nel carrello Amazon (' + sel.length + ')');
+    go.href = cartUrl(); go.target = '_blank'; go.rel = 'nofollow sponsored noopener';
+    go.appendChild(el('span', 'sx-vh', ' (si apre in una nuova scheda)'));
+    go.addEventListener('click', function(){ if (listaOk()) setTimeout(ask, 300); });
+    var x = el('button', 'sx-cart__x', '✕'); x.type = 'button'; x.setAttribute('aria-label', 'Togli tutti i prodotti scelti');
+    x.onclick = function(){ sel = []; sync(); };
+    row.appendChild(go); row.appendChild(x); inn.appendChild(row);
+    if (sel.length >= MAX) inn.appendChild(el('p', 'sx-cart__max', 'Al massimo ' + MAX + ' prodotti per volta.'));
+    inn.appendChild(el('p', 'sx-cart__ad', '#ad · Link affiliato Amazon'));
+    if (PAGE === 'lista') inn.appendChild(el('p', 'sx-cart__note', 'Il carrello spedisce al tuo indirizzo: se vuoi mandarli a chi ha fatto la lista, scegli il suo indirizzo quando paghi.'));
+    var st = el('p', 'sx-vh'); st.setAttribute('aria-live', 'polite'); st.textContent = sel.length + (sel.length === 1 ? ' prodotto scelto' : ' prodotti scelti');
+    inn.appendChild(st); bar.appendChild(inn); pad();
+  }
+  /* spazio in fondo alla pagina, così la barra non copre nessun pulsante */
+  function pad(){ document.body.style.paddingBottom = bar ? (bar.offsetHeight + 24) + 'px' : ''; }
+  window.addEventListener('resize', pad);
+
+  /* ---- solo lista: «Li hai comprati?» ---- */
+  function ask(){
+    if (!bar || !sel.length) return;
+    panel = true; key = ''; bar.innerHTML = '';
+    var p = el('div', 'sx-cart__in sx-cart__p'), h = el('h2', null, 'Li hai comprati?'); h.tabIndex = -1;
+    p.appendChild(h); p.appendChild(el('p', null, 'Segnali come regalati, così nessuno li prende due volte.'));
+    var ul = el('ul'), rows = {};
+    sel.forEach(function(s){ var li = el('li'); li.appendChild(el('span', null, s.n || s.a)); var b = el('b'); li.appendChild(b); rows[s.a] = b; ul.appendChild(li); });
+    p.appendChild(ul);
+    var bt = el('div', 'sx-cart__btns'), yes = el('button', 'yes', 'Sì, segna come regalati'), no = el('button', null, 'Non ancora');
+    yes.type = no.type = 'button'; bt.appendChild(yes); bt.appendChild(no); p.appendChild(bt);
+    var st = el('p', 'sx-vh'); st.setAttribute('aria-live', 'polite'); p.appendChild(st);
+    bar.appendChild(p); pad(); h.focus();
+    no.onclick = function(){ panel = false; render(); };
+    yes.onclick = function(){
+      var L = lista(); if (!L) return;
+      yes.disabled = no.disabled = true; yes.textContent = 'Un attimo…';
+      var todo = sel.slice(), okN = 0, i = 0;
+      function next(){
+        if (i >= todo.length) return end();
+        var s = todo[i++], b = rows[s.a];
+        b.textContent = '…';
+        L.post('/dono', { l: L.id, a: s.it.a, msg: '', nome: '' }).then(function(r){
+          if (r && r.ok) { L.tok(s.it.a, r.t); okN++; b.className = 'ok'; b.textContent = 'Già regalato ✓'; }
+          else if (r && r.preso) { b.className = 'ko'; b.textContent = 'Qualcuno l\'ha già preso'; }
+          else { b.className = 'ko'; b.textContent = 'Non è andata'; }
+        }).catch(function(){ b.className = 'ko'; b.textContent = 'Non è andata'; }).then(next);
+      }
+      function end(){
+        st.textContent = okN === todo.length ? 'Fatto: tutti segnati come regalati.' : okN + ' su ' + todo.length + ' segnati come regalati.';
+        sel = sel.filter(function(s){ return rows[s.a].className === 'ko' && rows[s.a].textContent === 'Non è andata'; });
+        yes.remove(); no.disabled = false; no.textContent = 'Chiudi';
+        no.onclick = function(){ panel = false; render(); };
+        no.focus();
+        L.live();
+      }
+      next();
+    };
+  }
+
+  /* le pagine disegnano i prodotti dopo il caricamento: si guarda quando cambiano */
+  var t = 0;
+  function ours(n){ return n && n.nodeType === 1 && (n.classList.contains('sx-ck') || n.classList.contains('sx-cart') || !!n.closest('.sx-cart')); }
+  new MutationObserver(function(recs){
+    if (busy) return;
+    var real = recs.some(function(r){
+      if (r.target.nodeType === 1 && r.target.closest && r.target.closest('.sx-cart, .sx-ck')) return false;
+      return [].some.call(r.addedNodes, function(n){ return !ours(n); }) || [].some.call(r.removedNodes, function(n){ return !ours(n); });
+    });
+    if (!real) return;
+    cancelAnimationFrame(t); t = requestAnimationFrame(decorate); })
+    .observe(document.body, { childList: true, subtree: true });
+  decorate();
 })();
 </script>
 </body></html>
