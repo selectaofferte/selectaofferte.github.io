@@ -221,6 +221,31 @@ font-weight:600;font-size:15.5px;text-decoration:none;text-align:center}
 @media(min-width:720px){.sx-cart{left:50%;right:auto;bottom:16px;width:min(620px,calc(100% - 32px));transform:translateX(-50%);border-radius:22px;padding:12px 14px}}
 @media(prefers-reduced-motion:no-preference){.sx-cart{animation:sxCartIn .22s ease-out}@keyframes sxCartIn{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}}
 </style>
+<style id="sx-dev-css">
+.sx-dev{background:rgba(212,175,106,.16);border:1.5px solid rgba(184,146,74,.65);border-radius:16px;padding:16px;margin:18px 0 0;font:400 14.5px/1.5 Outfit,system-ui,sans-serif;color:#14233B;text-align:left}
+.sx-dev__t{display:block;margin:0 0 4px;font-weight:600;font-size:15.5px}
+.sx-dev p{margin:0}
+.sx-dev .lost{margin-top:12px;text-align:left}
+.sx-dev .lost .fld{margin-top:6px}
+.sx-dev__bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.sx-dev__btn,.mine .sx-dev__btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:9px 16px;border-radius:999px;border:1px solid rgba(20,35,59,.22);
+background:#FBF8F2;color:#14233B;font:500 14px Outfit,system-ui,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap}
+.sx-dev__btn:hover{border-color:#B8924A}
+.sx-dev__btn:focus-visible{outline:2px solid #B8924A;outline-offset:2px}
+.sx-dev__btn--main,.mine .sx-dev__btn--main{background:#14233B;color:#F4EEE2;border-color:#14233B}
+.sx-dev__note{margin-top:8px!important;font-size:12.5px;color:#4A5468}
+.sx-dev__msg{margin-top:8px!important;font-size:13.5px}
+.sx-dev__msg.ok{color:#256B43}.sx-dev__msg.ko{color:#A3361F}
+.sx-dev--imp{margin:0 0 18px;background:#14233B;color:#F4EEE2;border-color:#D4AF6A}
+.sx-dev--imp .sx-dev__t{font:400 24px/1.15 "Instrument Serif",Georgia,serif;margin-bottom:6px}
+.sx-dev--imp .sx-dev__t:focus{outline:none}
+.sx-dev--imp .sx-dev__btn{background:transparent;color:#F4EEE2;border-color:rgba(244,238,226,.45)}
+.sx-dev--imp .sx-dev__btn--main{background:#D4AF6A;color:#14233B;border-color:#D4AF6A}
+.sx-dev--imp .sx-dev__note{color:rgba(244,238,226,.8)}
+.sx-dev-hint{display:block;margin:0 0 6px;font-weight:600;font-size:14px}
+.sx-dev-after{margin:10px 0 0;font-size:14px}
+.sx-dev-move{margin-top:12px}
+</style>
 </head><body>
 <div class="sx-bar" role="navigation" aria-label="Menu di Selecta"><div class="sx-bar__in"><a class="sx-logo" href="/" aria-label="Selecta, vai alla pagina principale"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2667 1420" aria-hidden="true" focusable="false"><g transform="translate(60,60)"><path d="M184.0 999Q164.0 999 139.5 995.0Q115.0 991 93.5 985.0Q72.0 979 60.0 972Q53.0 968 49.5 963.5Q46.0 959 46.0 948L41.0 791Q41.0 771 54.0 771Q65.0 771 69.0 789L78.0 827Q112.0 970 205.0 970Q255.0 970 284.5 936.5Q314.0 903 314.0 842Q314.0 783 283.5 732.0Q253.0 681 186.0 631Q112.0 578 78.0 528.5Q44.0 479 44.0 423Q44.0 349 95.5 304.5Q147.0 260 227.0 260Q257.0 260 285.0 267.0Q313.0 274 331.0 287Q337.0 291 340.5 296.0Q344.0 301 344.0 309L347.0 460Q347.0 477 334.0 477Q325.0 477 321.0 463L314.0 438Q292.0 361 268.5 325.5Q245.0 290 201.0 290Q158.0 290 132.5 318.0Q107.0 346 107.0 397Q107.0 440 135.0 479.0Q163.0 518 233.0 574Q308.0 635 342.5 691.5Q377.0 748 377.0 812Q377.0 868 352.0 910.0Q327.0 952 283.5 975.5Q240.0 999 184.0 999Z" fill="#F4EEE2"/><path d="M599.0 999Q551.0 999 513.0 967.0Q475.0 935 452.5 876.5Q430.0 818 430.0 741Q430.0 662 453.0 602.0Q476.0 542 516.0 508.0Q556.0 474 605.0 474Q664.0 474 700.5 522.5Q737.0 571 737.0 680Q737.0 713 712.0 713H522.0Q502.0 713 502.0 736Q502.0 842 533.0 895.0Q564.0 948 612.0 948Q650.0 948 674.0 921.0Q698.0 894 713.0 830Q716.0 819 726.0 819Q738.0 819 735.0 839Q719.0 928 684.0 963.5Q649.0 999 599.0 999ZM519.0 688H620.0Q668.0 688 668.0 638Q668.0 573 652.0 536.0Q636.0 499 604.0 499Q565.0 499 538.5 544.0Q512.0 589 504.0 672Q502.0 688 519.0 688Z" fill="#F4EEE2"/><path d="M782.0 990Q770.0 990 770.0 979Q770.0 969 781.0 967L795.0 965Q816.0 962 826.0 953.0Q836.0 944 836.0 923V350Q836.0 332 830.5 325.0Q825.0 318 811.0 317L788.0 314Q777.0 312 777.0 302Q777.0 292 788.0 290Q816.0 284 836.0 276.0Q856.0 268 869.0 260Q885.0 250 893.0 250Q904.0 250 904.0 266V923Q904.0 944 910.5 952.5Q917.0 961 938.0 964L961.0 967Q972.0 969 972.0 979Q972.0 990 960.0 990Z" fill="#F4EEE2"/><path d="M1174.0 999Q1126.0 999 1088.0 967.0Q1050.0 935 1027.5 876.5Q1005.0 818 1005.0 741Q1005.0 662 1028.0 602.0Q1051.0 542 1091.0 508.0Q1131.0 474 1180.0 474Q1239.0 474 1275.5 522.5Q1312.0 571 1312.0 680Q1312.0 713 1287.0 713H1097.0Q1077.0 713 1077.0 736Q1077.0 842 1108.0 895.0Q1139.0 948 1187.0 948Q1225.0 948 1249.0 921.0Q1273.0 894 1288.0 830Q1291.0 819 1301.0 819Q1313.0 819 1310.0 839Q1294.0 928 1259.0 963.5Q1224.0 999 1174.0 999ZM1094.0 688H1195.0Q1243.0 688 1243.0 638Q1243.0 573 1227.0 536.0Q1211.0 499 1179.0 499Q1140.0 499 1113.5 544.0Q1087.0 589 1079.0 672Q1077.0 688 1094.0 688Z" fill="#F4EEE2"/><path d="M1517.0 999Q1473.0 999 1437.5 969.5Q1402.0 940 1381.0 885.0Q1360.0 830 1360.0 754Q1360.0 669 1385.5 606.0Q1411.0 543 1455.0 508.5Q1499.0 474 1553.0 474Q1599.0 474 1625.0 492Q1635.0 499 1635.0 514L1637.0 636Q1637.0 651 1625.0 651Q1614.0 651 1611.0 638Q1597.0 583 1584.0 553.0Q1571.0 523 1557.0 511.5Q1543.0 500 1526.0 500Q1506.0 500 1484.5 523.0Q1463.0 546 1448.5 597.5Q1434.0 649 1434.0 733Q1434.0 840 1461.5 894.0Q1489.0 948 1533.0 948Q1568.0 948 1591.5 919.0Q1615.0 890 1632.0 814Q1635.0 803 1644.0 803Q1656.0 803 1653.0 823Q1642.0 893 1622.5 931.5Q1603.0 970 1576.5 984.5Q1550.0 999 1517.0 999Z" fill="#F4EEE2"/><path d="M1823.0 999Q1788.0 999 1765.5 974.5Q1743.0 950 1743.0 894V520Q1743.0 508 1731.0 508H1702.0Q1686.0 508 1686.0 496Q1686.0 488 1695.0 482Q1728.0 459 1748.0 432.5Q1768.0 406 1783.0 360Q1790.0 339 1800.0 339Q1811.0 339 1811.0 355V466Q1811.0 480 1825.0 480H1890.0Q1906.0 480 1906.0 494Q1906.0 508 1890.0 508H1825.0Q1811.0 508 1811.0 522V895Q1811.0 917 1818.0 929.5Q1825.0 942 1844.0 942Q1865.0 942 1878.5 921.0Q1892.0 900 1896.0 853Q1898.0 839 1909.0 839Q1921.0 839 1921.0 854Q1918.0 931 1889.5 965.0Q1861.0 999 1823.0 999Z" fill="#F4EEE2"/><path d="M2055.0 999Q2013.0 999 1986.0 972.5Q1959.0 946 1959.0 902Q1959.0 859 1986.0 820.5Q2013.0 782 2060.0 751.0Q2107.0 720 2167.0 701Q2180.0 697 2180.0 684V593Q2180.0 545 2165.0 524.5Q2150.0 504 2124.0 504Q2099.0 504 2078.5 526.5Q2058.0 549 2049.0 602Q2044.0 634 2027.5 648.5Q2011.0 663 1994.0 663Q1966.0 663 1966.0 635Q1966.0 606 1982.5 577.5Q1999.0 549 2026.0 525.5Q2053.0 502 2085.0 488.0Q2117.0 474 2149.0 474Q2248.0 474 2248.0 589V895Q2248.0 937 2269.0 937Q2282.0 937 2293.0 919.5Q2304.0 902 2304.0 860Q2304.0 844 2317.0 844Q2329.0 844 2329.0 861Q2329.0 934 2303.5 966.5Q2278.0 999 2246.0 999Q2222.0 999 2208.0 979.5Q2194.0 960 2189.0 933Q2188.0 923 2180.5 922.5Q2173.0 922 2166.0 932Q2142.0 965 2117.0 982.0Q2092.0 999 2055.0 999ZM2082.0 953Q2108.0 953 2130.0 934.5Q2152.0 916 2166.0 885.0Q2180.0 854 2180.0 815V742Q2180.0 723 2159.0 731Q2098.0 753 2064.5 791.5Q2031.0 830 2031.0 884Q2031.0 953 2082.0 953Z" fill="#F4EEE2"/><path d="M2441.0 999Q2419.0 999 2403.5 984.5Q2388.0 970 2388.0 946Q2388.0 923 2403.5 908.5Q2419.0 894 2441.0 894Q2461.0 894 2477.0 908.5Q2493.0 923 2493.0 946Q2493.0 970 2477.0 984.5Q2461.0 999 2441.0 999Z" fill="#D4AF6A"/></g></svg></a><a class="sx-bloglink" href="/blog/">Blog</a><nav aria-label="Selecta"><ul class="sx-nav"><li><a href="/tech/">Tech</a></li><li><a href="/casa/">Casa</a></li><li><a href="/bimbi/">Bimbi</a></li><li><a href="/#regali" aria-current="page">Regali</a></li><li><a href="/#seguici">Seguici</a></li><li class="sx-page"><a href="/blog/">Blog<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></nav><a class="sx-home" href="/" data-sx-home><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M9.5 3.5L5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Home</a></div></div>
 
@@ -238,7 +263,7 @@ font-weight:600;font-size:15.5px;text-decoration:none;text-align:center}
 <div class="em1" hidden><label for="ce">La tua email (facoltativa): ti mandiamo il tuo link</label><input type="email" id="ce" autocomplete="email" placeholder="nome@esempio.it"><p class="sx-info">Facoltativa: la usiamo solo per mandarti il link. Chi tratta i dati, per quanto tempo e i tuoi diritti: <a href="/privacy/" target="_blank" rel="noopener">Privacy<span class="sx-vh"> (si apre in una nuova scheda)</span></a>.</p>
 <p class="hint">Non salviamo l'indirizzo: solo un'impronta cifrata per farti ritrovare il link.</p></div>
 <button class="go" id="cgo">Crea il gruppo</button><p class="hint" id="ch"></p>
-<div class="mine" id="mine" hidden><label>I tuoi gruppi su questo telefono</label></div>
+<div class="mine" id="mine" hidden><label>I tuoi gruppi su questo dispositivo</label></div>
 <p class="hint" style="text-align:center;margin-top:16px">Preferisci Telegram? <a id="tgc" href="#">Crealo con il bot</a></p></section>
 <!-- entra -->
 <section class="box" id="sEntra" hidden><h2>Partecipa al <i>gruppo</i></h2><p>Scrivi il nome con cui ti conoscono: lo vedrà chi ti pesca.</p>
@@ -249,7 +274,7 @@ font-weight:600;font-size:15.5px;text-decoration:none;text-align:center}
 <section class="box" id="sChiuso" hidden><h2>Estrazione <i>già fatta</i></h2><p>Chiedi a chi organizza di rifarla: così entri anche tu.</p></section>
 <!-- il mio -->
 <section id="sMe" hidden>
-<div class="keep" id="keep" hidden><b>🔑 Questo è il tuo link personale</b><br>Dopo l'estrazione, aprendolo scopri a chi fai il regalo. Lo ricorda anche questo telefono: salvalo, non mandarlo agli altri.
+<div class="keep" id="keep" hidden><b>🔑 Questo è il tuo link personale</b><br>Dopo l'estrazione, aprendolo scopri a chi fai il regalo. Lo ricorda anche questo dispositivo: salvalo, non mandarlo agli altri.
 <div class="bar"><button type="button" id="kcp">📋 Copia il mio link</button><a id="kwa" target="_blank" rel="noopener">📲 Mandalo a me su WhatsApp</a></div>
 <div id="kem" hidden style="margin-top:10px"><input type="email" id="kee" aria-label="La tua email" placeholder="Oppure mandamelo per email" autocomplete="email"><button class="go" id="keb" style="margin-top:8px">Invia per email</button></div><p class="hint" id="keh"></p></div>
 <div class="tgt" id="tgt" hidden><div class="k">Fai il regalo a</div><div class="n" id="tn"></div><div id="tb"></div><div class="w" id="tw" hidden></div>
@@ -602,6 +627,89 @@ function me(r){remember(r.n);$('sMe').hidden=false;['tgt','wait','memb','adm'].f
     cancelAnimationFrame(t); t = requestAnimationFrame(decorate); })
     .observe(document.body, { childList: true, subtree: true });
   decorate();
+})();
+</script>
+<script id="sx-dev">
+/* Aprire lista o gruppo da un altro dispositivo: spiegazione, link personale, email di recupero. */
+(function(){
+  var PAGE = 'babbonatale';
+  var $ = function(i){ return document.getElementById(i); };
+  function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  var Q = new URLSearchParams(location.search);
+  function saved(){ try { return JSON.parse(localStorage.getItem(PAGE === 'lista' ? 'sel_mie' : 'sel_bn') || '[]').length; } catch (e) { return 0; } }
+  function myLink(){
+    var u = location.origin + location.pathname, q = new URLSearchParams(location.search);
+    if (PAGE === 'lista') return u + '?l=' + encodeURIComponent(q.get('l') || '') + '&m=' + encodeURIComponent(q.get('m') || '');
+    return u + '?g=' + encodeURIComponent(q.get('g') || '') + '&c=' + encodeURIComponent(q.get('c') || '') + '&t=' + encodeURIComponent(q.get('t') || '');
+  }
+  function copyBtn(){
+    var b = el('button', 'sx-dev__btn', '📋 Copia il mio link'); b.type = 'button';
+    b.onclick = function(){
+      var v = myLink();
+      (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(function(){ b.textContent = 'Copiato ✓'; }, function(){ prompt('Il tuo link:', v); });
+    };
+    return b;
+  }
+  /* 1. schermata iniziale, nessuna lista o gruppo salvato qui: come aprirli da un altro dispositivo */
+  function start(){
+    var box = el('div', 'sx-dev'); box.id = 'sx-dev-open';
+    var em = el('span', null, PAGE === 'lista' ? ' Se hai lasciato l\'email, recuperalo qui.' : ' Se avevi lasciato l\'email, il link è anche nella mail che ti abbiamo mandato.');
+    em.hidden = true;
+    if (PAGE === 'lista') {
+      box.appendChild(el('b', 'sx-dev__t', 'Hai già creato una lista dal telefono o da un altro computer?'));
+      var p = el('p', null, 'Aprila con il tuo link personale: sul dispositivo dove l\'hai creata tocca la lista in «Le tue liste» e poi «Mandalo a me».');
+      p.appendChild(em); box.appendChild(p);
+      var after = $('mkh'); after.parentNode.insertBefore(box, after.nextSibling);
+      /* il modulo email esistente (/recupera), aperto: c'è solo se l'email è attiva */
+      var lost = $('lost'); box.appendChild(lost);
+      var sync = function(){ em.hidden = lost.hidden; if (!lost.hidden) { $('lsf').hidden = false; $('lsa').hidden = true; } };
+      new MutationObserver(sync).observe(lost, { attributes: true, attributeFilter: ['hidden'] }); sync();
+    } else {
+      box.appendChild(el('b', 'sx-dev__t', 'Sei già in un gruppo dal telefono o da un altro computer?'));
+      var p2 = el('p', null, 'Aprilo con il tuo link personale: sul dispositivo dove l\'hai usato tocca il gruppo in «I tuoi gruppi» e poi «Mandalo a me».');
+      p2.appendChild(em); box.appendChild(p2);
+      var h = $('ch'); h.parentNode.insertBefore(box, h.nextSibling);
+      var m1 = $('sCrea').querySelector('.em1');
+      var sync2 = function(){ em.hidden = !m1 || m1.hidden; };
+      if (m1) new MutationObserver(sync2).observe(m1, { attributes: true, attributeFilter: ['hidden'] }); sync2();
+    }
+  }
+  /* 2. dopo la creazione: la frase; riaprendo la propria lista o il gruppo: il link personale */
+  function own(keep, area){
+    if (!keep.hidden) {
+      if (!keep.querySelector('.sx-dev-after')) {
+        var bar = keep.querySelector('.bar');
+        bar.parentNode.insertBefore(el('p', 'sx-dev-after', PAGE === 'lista' ? 'Aprilo anche dal computer o da un altro telefono: la gestisci uguale.' : 'Aprilo anche dal computer o da un altro telefono: è lo stesso gruppo.'), bar.nextSibling);
+        var f = PAGE === 'lista' ? $('kef') : $('kem');
+        if (f && !f.querySelector('.sx-dev-hint')) f.insertBefore(el('span', 'sx-dev-hint', '📧 Ricevilo anche per email (facoltativo)'), f.firstChild);
+      }
+      return;
+    }
+    if ($('sx-dev-link')) return;
+    var box = el('div', 'sx-dev'); box.id = 'sx-dev-link';
+    box.appendChild(el('b', 'sx-dev__t', '🔑 Il tuo link personale'));
+    box.appendChild(el('p', null, PAGE === 'lista'
+      ? 'Aprilo anche dal computer o da un altro telefono: la gestisci uguale. Tienilo per te: serve a modificare la lista.'
+      : 'Aprilo anche dal computer o da un altro telefono: è lo stesso gruppo. Tienilo per te, non mandarlo agli altri.'));
+    var bar = el('div', 'sx-dev__bar'), wa = el('a', 'sx-dev__btn', '📲 Mandalo a me su WhatsApp');
+    wa.target = '_blank'; wa.rel = 'noopener';
+    var setWa = function(){ var k = $('kwa'); wa.href = k && k.href ? k.href : 'https://wa.me/?text=' + encodeURIComponent('Il mio link personale (non condividerlo): ' + myLink()); };
+    setWa(); wa.addEventListener('pointerdown', setWa); wa.addEventListener('focus', setWa);
+    bar.appendChild(copyBtn()); bar.appendChild(wa); box.appendChild(bar);
+    box.style.margin = '0 0 16px';
+    area.insertBefore(box, keep.nextSibling);
+  }
+  function check(){
+    if (PAGE === 'lista') {
+      if (!Q.get('l')) { var n = $('new'); if (n && !n.hidden && !$('sx-dev-open') && !saved()) start(); return; }
+      var o = $('own'); if (o && !o.hidden && Q.get('m')) own($('keep'), o);
+    } else {
+      if (!Q.get('g')) { var c = $('sCrea'); if (c && !c.hidden && !$('sx-dev-open') && !saved()) start(); return; }
+      var me = $('sMe'); if (me && !me.hidden && Q.get('t')) own($('keep'), me);
+    }
+  }
+  new MutationObserver(check).observe(document.body, { attributes: true, attributeFilter: ['hidden'], subtree: true });
+  check();
 })();
 </script>
 </body></html>
