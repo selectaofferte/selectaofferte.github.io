@@ -153,6 +153,31 @@ form[hidden] + .sx-info,[hidden] > .sx-info{display:none}
   .sx-bloglink:focus-visible{outline:2px solid #D4AF6A;outline-offset:2px}
 }
 </style>
+<style id="sx-dev-css">
+.sx-dev{background:rgba(212,175,106,.16);border:1.5px solid rgba(184,146,74,.65);border-radius:16px;padding:16px;margin:18px 0 0;font:400 14.5px/1.5 Outfit,system-ui,sans-serif;color:#14233B;text-align:left}
+.sx-dev__t{display:block;margin:0 0 4px;font-weight:600;font-size:15.5px}
+.sx-dev p{margin:0}
+.sx-dev .lost{margin-top:12px;text-align:left}
+.sx-dev .lost .fld{margin-top:6px}
+.sx-dev__bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.sx-dev__btn,.mine .sx-dev__btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:9px 16px;border-radius:999px;border:1px solid rgba(20,35,59,.22);
+background:#FBF8F2;color:#14233B;font:500 14px Outfit,system-ui,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap}
+.sx-dev__btn:hover{border-color:#B8924A}
+.sx-dev__btn:focus-visible{outline:2px solid #B8924A;outline-offset:2px}
+.sx-dev__btn--main,.mine .sx-dev__btn--main{background:#14233B;color:#F4EEE2;border-color:#14233B}
+.sx-dev__note{margin-top:8px!important;font-size:12.5px;color:#4A5468}
+.sx-dev__msg{margin-top:8px!important;font-size:13.5px}
+.sx-dev__msg.ok{color:#256B43}.sx-dev__msg.ko{color:#A3361F}
+.sx-dev--imp{margin:0 0 18px;background:#14233B;color:#F4EEE2;border-color:#D4AF6A}
+.sx-dev--imp .sx-dev__t{font:400 24px/1.15 "Instrument Serif",Georgia,serif;margin-bottom:6px}
+.sx-dev--imp .sx-dev__t:focus{outline:none}
+.sx-dev--imp .sx-dev__btn{background:transparent;color:#F4EEE2;border-color:rgba(244,238,226,.45)}
+.sx-dev--imp .sx-dev__btn--main{background:#D4AF6A;color:#14233B;border-color:#D4AF6A}
+.sx-dev--imp .sx-dev__note{color:rgba(244,238,226,.8)}
+.sx-dev-hint{display:block;margin:0 0 6px;font-weight:600;font-size:14px}
+.sx-dev-after{margin:10px 0 0;font-size:14px}
+.sx-dev-move{margin-top:12px}
+</style>
 </head><body>
 <div class="sx-bar" role="navigation" aria-label="Menu di Selecta"><div class="sx-bar__in"><a class="sx-logo" href="/" aria-label="Selecta, vai alla pagina principale"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2667 1420" aria-hidden="true" focusable="false"><g transform="translate(60,60)"><path d="M184.0 999Q164.0 999 139.5 995.0Q115.0 991 93.5 985.0Q72.0 979 60.0 972Q53.0 968 49.5 963.5Q46.0 959 46.0 948L41.0 791Q41.0 771 54.0 771Q65.0 771 69.0 789L78.0 827Q112.0 970 205.0 970Q255.0 970 284.5 936.5Q314.0 903 314.0 842Q314.0 783 283.5 732.0Q253.0 681 186.0 631Q112.0 578 78.0 528.5Q44.0 479 44.0 423Q44.0 349 95.5 304.5Q147.0 260 227.0 260Q257.0 260 285.0 267.0Q313.0 274 331.0 287Q337.0 291 340.5 296.0Q344.0 301 344.0 309L347.0 460Q347.0 477 334.0 477Q325.0 477 321.0 463L314.0 438Q292.0 361 268.5 325.5Q245.0 290 201.0 290Q158.0 290 132.5 318.0Q107.0 346 107.0 397Q107.0 440 135.0 479.0Q163.0 518 233.0 574Q308.0 635 342.5 691.5Q377.0 748 377.0 812Q377.0 868 352.0 910.0Q327.0 952 283.5 975.5Q240.0 999 184.0 999Z" fill="#F4EEE2"/><path d="M599.0 999Q551.0 999 513.0 967.0Q475.0 935 452.5 876.5Q430.0 818 430.0 741Q430.0 662 453.0 602.0Q476.0 542 516.0 508.0Q556.0 474 605.0 474Q664.0 474 700.5 522.5Q737.0 571 737.0 680Q737.0 713 712.0 713H522.0Q502.0 713 502.0 736Q502.0 842 533.0 895.0Q564.0 948 612.0 948Q650.0 948 674.0 921.0Q698.0 894 713.0 830Q716.0 819 726.0 819Q738.0 819 735.0 839Q719.0 928 684.0 963.5Q649.0 999 599.0 999ZM519.0 688H620.0Q668.0 688 668.0 638Q668.0 573 652.0 536.0Q636.0 499 604.0 499Q565.0 499 538.5 544.0Q512.0 589 504.0 672Q502.0 688 519.0 688Z" fill="#F4EEE2"/><path d="M782.0 990Q770.0 990 770.0 979Q770.0 969 781.0 967L795.0 965Q816.0 962 826.0 953.0Q836.0 944 836.0 923V350Q836.0 332 830.5 325.0Q825.0 318 811.0 317L788.0 314Q777.0 312 777.0 302Q777.0 292 788.0 290Q816.0 284 836.0 276.0Q856.0 268 869.0 260Q885.0 250 893.0 250Q904.0 250 904.0 266V923Q904.0 944 910.5 952.5Q917.0 961 938.0 964L961.0 967Q972.0 969 972.0 979Q972.0 990 960.0 990Z" fill="#F4EEE2"/><path d="M1174.0 999Q1126.0 999 1088.0 967.0Q1050.0 935 1027.5 876.5Q1005.0 818 1005.0 741Q1005.0 662 1028.0 602.0Q1051.0 542 1091.0 508.0Q1131.0 474 1180.0 474Q1239.0 474 1275.5 522.5Q1312.0 571 1312.0 680Q1312.0 713 1287.0 713H1097.0Q1077.0 713 1077.0 736Q1077.0 842 1108.0 895.0Q1139.0 948 1187.0 948Q1225.0 948 1249.0 921.0Q1273.0 894 1288.0 830Q1291.0 819 1301.0 819Q1313.0 819 1310.0 839Q1294.0 928 1259.0 963.5Q1224.0 999 1174.0 999ZM1094.0 688H1195.0Q1243.0 688 1243.0 638Q1243.0 573 1227.0 536.0Q1211.0 499 1179.0 499Q1140.0 499 1113.5 544.0Q1087.0 589 1079.0 672Q1077.0 688 1094.0 688Z" fill="#F4EEE2"/><path d="M1517.0 999Q1473.0 999 1437.5 969.5Q1402.0 940 1381.0 885.0Q1360.0 830 1360.0 754Q1360.0 669 1385.5 606.0Q1411.0 543 1455.0 508.5Q1499.0 474 1553.0 474Q1599.0 474 1625.0 492Q1635.0 499 1635.0 514L1637.0 636Q1637.0 651 1625.0 651Q1614.0 651 1611.0 638Q1597.0 583 1584.0 553.0Q1571.0 523 1557.0 511.5Q1543.0 500 1526.0 500Q1506.0 500 1484.5 523.0Q1463.0 546 1448.5 597.5Q1434.0 649 1434.0 733Q1434.0 840 1461.5 894.0Q1489.0 948 1533.0 948Q1568.0 948 1591.5 919.0Q1615.0 890 1632.0 814Q1635.0 803 1644.0 803Q1656.0 803 1653.0 823Q1642.0 893 1622.5 931.5Q1603.0 970 1576.5 984.5Q1550.0 999 1517.0 999Z" fill="#F4EEE2"/><path d="M1823.0 999Q1788.0 999 1765.5 974.5Q1743.0 950 1743.0 894V520Q1743.0 508 1731.0 508H1702.0Q1686.0 508 1686.0 496Q1686.0 488 1695.0 482Q1728.0 459 1748.0 432.5Q1768.0 406 1783.0 360Q1790.0 339 1800.0 339Q1811.0 339 1811.0 355V466Q1811.0 480 1825.0 480H1890.0Q1906.0 480 1906.0 494Q1906.0 508 1890.0 508H1825.0Q1811.0 508 1811.0 522V895Q1811.0 917 1818.0 929.5Q1825.0 942 1844.0 942Q1865.0 942 1878.5 921.0Q1892.0 900 1896.0 853Q1898.0 839 1909.0 839Q1921.0 839 1921.0 854Q1918.0 931 1889.5 965.0Q1861.0 999 1823.0 999Z" fill="#F4EEE2"/><path d="M2055.0 999Q2013.0 999 1986.0 972.5Q1959.0 946 1959.0 902Q1959.0 859 1986.0 820.5Q2013.0 782 2060.0 751.0Q2107.0 720 2167.0 701Q2180.0 697 2180.0 684V593Q2180.0 545 2165.0 524.5Q2150.0 504 2124.0 504Q2099.0 504 2078.5 526.5Q2058.0 549 2049.0 602Q2044.0 634 2027.5 648.5Q2011.0 663 1994.0 663Q1966.0 663 1966.0 635Q1966.0 606 1982.5 577.5Q1999.0 549 2026.0 525.5Q2053.0 502 2085.0 488.0Q2117.0 474 2149.0 474Q2248.0 474 2248.0 589V895Q2248.0 937 2269.0 937Q2282.0 937 2293.0 919.5Q2304.0 902 2304.0 860Q2304.0 844 2317.0 844Q2329.0 844 2329.0 861Q2329.0 934 2303.5 966.5Q2278.0 999 2246.0 999Q2222.0 999 2208.0 979.5Q2194.0 960 2189.0 933Q2188.0 923 2180.5 922.5Q2173.0 922 2166.0 932Q2142.0 965 2117.0 982.0Q2092.0 999 2055.0 999ZM2082.0 953Q2108.0 953 2130.0 934.5Q2152.0 916 2166.0 885.0Q2180.0 854 2180.0 815V742Q2180.0 723 2159.0 731Q2098.0 753 2064.5 791.5Q2031.0 830 2031.0 884Q2031.0 953 2082.0 953Z" fill="#F4EEE2"/><path d="M2441.0 999Q2419.0 999 2403.5 984.5Q2388.0 970 2388.0 946Q2388.0 923 2403.5 908.5Q2419.0 894 2441.0 894Q2461.0 894 2477.0 908.5Q2493.0 923 2493.0 946Q2493.0 970 2477.0 984.5Q2461.0 999 2441.0 999Z" fill="#D4AF6A"/></g></svg></a><a class="sx-bloglink" href="/blog/">Blog</a><nav aria-label="Selecta"><ul class="sx-nav"><li><a href="/tech/">Tech</a></li><li><a href="/casa/">Casa</a></li><li><a href="/bimbi/">Bimbi</a></li><li><a href="/#regali" aria-current="page">Regali</a></li><li><a href="/#seguici">Seguici</a></li><li class="sx-page"><a href="/blog/">Blog<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></nav><a class="sx-home" href="/" data-sx-home><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M9.5 3.5L5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Home</a></div></div>
 
@@ -172,7 +197,7 @@ form[hidden] + .sx-info,[hidden] > .sx-info{display:none}
 <p class="hint">Non salviamo niente: il promemoria resta nel calendario del tuo telefono (7 giorni prima e il giorno prima, alle 10).</p>
 <div class="warn" id="iab" hidden>📱 Sei nel browser di un'app: per aggiungere al calendario tocca ··· in alto e apri la pagina nel browser.</div>
 </section>
-<section class="box mine" id="mine" hidden><h2>I tuoi <i>compleanni</i></h2><p class="hint">Salvati solo su questo telefono.</p><ul id="ml"></ul></section>
+<section class="box mine" id="mine" hidden><h2>I tuoi <i>compleanni</i></h2><p class="hint">Salvati solo su questo dispositivo.</p><ul id="ml"></ul></section>
 <p class="hint" style="text-align:center">Preferisci un messaggio con le idee già pronte? <a id="tg" href="#">Usa il bot Telegram</a></p>
 </main>
 <section class="sx-follow" aria-label="Segui Selecta"><p>Segui <i>Selecta</i><span>Le offerte nuove appena le scegliamo. Gratis.</span></p><div class="sx-follow__links"><a href="https://t.me/addlist/5ClN-dQAjYkyNzJk" target="_blank" rel="noopener"><svg class="sx-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Telegram</a><a href="https://whatsapp.com/channel/0029Vb9SVJEHwXbHm0XbMt0A" target="_blank" rel="noopener"><svg class="sx-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a><a href="https://www.instagram.com/selectaofferte/" target="_blank" rel="noopener"><svg class="sx-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</a></div></section>
@@ -225,6 +250,162 @@ list();upd();
     try { window.close(); } catch (_) {}
     setTimeout(function () { location.href = '/'; }, 300);
   });
+})();
+</script>
+<script id="sx-dev">
+/* «Portali su un altro dispositivo»: i dati viaggiano nel link, dopo il # (non arriva a nessun server). */
+(function(){
+  var PAGE = 'compleanni', AVV = PAGE === 'avvisi';
+  var KEY = AVV ? 'sel_avv' : 'sel_cp', MAX = AVV ? 10 : 30, LIM = 8000;
+  var $ = function(i){ return document.getElementById(i); };
+  function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function norm(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim(); }
+  function read(){ try { var v = JSON.parse(localStorage.getItem(KEY) || (AVV ? '{"q":[],"seen":0}' : '[]')); return v; } catch (e) { return AVV ? { q: [], seen: 0 } : []; } }
+  function items(v){ v = v || read(); return AVV ? (Array.isArray(v.q) ? v.q : []) : (Array.isArray(v) ? v : []); }
+  function many(n){ return AVV ? (n === 1 ? '1 ricerca' : n + ' ricerche') : (n === 1 ? '1 compleanno' : n + ' compleanni'); }
+  function same(a, b){ return AVV ? norm(a) === norm(b) : a.w == b.w && +a.d == +b.d && +a.m == +b.m && norm(a.n) === norm(b.n); }
+
+  /* --- codifica: JSON → (deflate) → base64url --- */
+  function b64u(bytes){ var s = ''; for (var i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+  function unb64u(s){ s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+  function pipe(bytes, stream){ return new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer().then(function(b){ return new Uint8Array(b); }); }
+  function encode(obj){
+    var raw = new TextEncoder().encode(JSON.stringify(obj));
+    if (typeof CompressionStream === 'undefined') return Promise.resolve('j.' + b64u(raw));
+    return pipe(raw, new CompressionStream('deflate-raw')).then(function(z){ return 'z.' + b64u(z); }, function(){ return 'j.' + b64u(raw); });
+  }
+  function decode(s){
+    return new Promise(function(ok){ ok(); }).then(function(){
+      if (!s || s.length > LIM) throw new Error('lungo');
+      var kind = s.slice(0, 2), bytes = unb64u(s.slice(2));
+      if (kind === 'j.') return bytes;
+      if (kind !== 'z.') throw new Error('rotto');
+      if (typeof DecompressionStream === 'undefined') throw new Error('vecchio');
+      return pipe(bytes, new DecompressionStream('deflate-raw'));
+    }).then(function(b){ return JSON.parse(new TextDecoder().decode(b)); });
+  }
+  /* --- i dati del link, controllati uno per uno --- */
+  function str(v, n){ return typeof v === 'string' && v.length <= n ? v : null; }
+  function clean(o){
+    if (!o || o.v !== 1 || o.t !== (AVV ? 'avv' : 'cp')) return null;
+    var out = [];
+    if (AVV) {
+      if (!Array.isArray(o.q)) return null;
+      o.q.slice(0, MAX).forEach(function(q){ q = str(q, 40); if (q) { q = q.trim().replace(/,/g, ' '); if (/[a-z0-9]/i.test(norm(q))) out.push(q); } });
+    } else {
+      if (!Array.isArray(o.a)) return null;
+      o.a.slice(0, MAX).forEach(function(x){
+        if (!x || typeof x !== 'object') return;
+        var w = str(x.w, 40), p = str(x.p, 60), n = str(x.n || '', 40), d = parseInt(x.d, 10), m = parseInt(x.m, 10), b = +x.b;
+        if (w == null || p == null || n == null || !(d >= 1 && d <= 31) || !(m >= 1 && m <= 12) || !(b >= 0 && b <= 100000)) return;
+        out.push({ w: w, p: p, b: b, n: n, d: String(d), m: String(m) });
+      });
+    }
+    return out.length ? out : null;
+  }
+
+  /* --- 1. «Portali su un altro dispositivo» --- */
+  function link(){
+    var a = items();
+    var obj = AVV ? { v: 1, t: 'avv', q: a.slice(0, MAX) } : { v: 1, t: 'cp', a: a.slice(0, MAX).map(function(x){ return { w: x.w, p: x.p, b: x.b, n: x.n || '', d: x.d, m: x.m }; }) };
+    return encode(obj).then(function(s){ return { url: location.origin + location.pathname + '#importa=' + s, n: obj[AVV ? 'q' : 'a'].length }; });
+  }
+  var wrap = el('div', 'sx-dev-move'); wrap.id = 'sx-dev-move';
+  var open = el('button', 'sx-dev__btn sx-dev__btn--main', '📲 Portali su un altro dispositivo'); open.type = 'button'; open.setAttribute('aria-expanded', 'false');
+  var pan = el('div', 'sx-dev'); pan.hidden = true; pan.id = 'sx-dev-pan'; open.setAttribute('aria-controls', 'sx-dev-pan');
+  pan.appendChild(el('p', null, AVV ? 'Apri questo link sul computer o sull\'altro telefono: le tue ricerche si aggiungono a quelle che ci sono già.' : 'Apri questo link sul computer o sull\'altro telefono: i tuoi compleanni si aggiungono a quelli che ci sono già.'));
+  var bar = el('div', 'sx-dev__bar');
+  var cp = el('button', 'sx-dev__btn', '📋 Copia il link'); cp.type = 'button';
+  var wa = el('a', 'sx-dev__btn', '📲 Mandalo a me su WhatsApp'); wa.target = '_blank'; wa.rel = 'noopener';
+  var ml = el('a', 'sx-dev__btn', '✉️ Mandamelo per email');
+  bar.appendChild(cp); bar.appendChild(wa); bar.appendChild(ml); pan.appendChild(bar);
+  var msg = el('p', 'sx-dev__msg'); msg.setAttribute('role', 'status'); pan.appendChild(msg);
+  wrap.appendChild(open);
+  if (!AVV) wrap.appendChild(el('p', 'sx-dev__note', 'Il link contiene nomi e date: mandalo solo a te.'));
+  wrap.appendChild(pan);
+  var cur = '';
+  function prep(){
+    return link().then(function(r){
+      cur = r.url;
+      if (cur.length > LIM) { msg.className = 'sx-dev__msg ko'; msg.textContent = 'Sono troppi dati per un link: togline qualcuno e riprova.'; bar.hidden = true; return; }
+      bar.hidden = false; msg.textContent = '';
+      var txt = (AVV ? 'Le mie ricerche degli Avvisi su misura di Selecta Offerte (' : 'I miei compleanni di Selecta Offerte, solo per me (') + many(r.n) + '). Apri il link per portarle su questo dispositivo: ';
+      if (!AVV) txt = txt.replace('portarle', 'portarli');
+      wa.href = 'https://wa.me/?text=' + encodeURIComponent(txt + cur);
+      ml.href = 'mailto:?subject=' + encodeURIComponent(AVV ? 'Le mie ricerche di Selecta Offerte' : 'I miei compleanni di Selecta Offerte') + '&body=' + encodeURIComponent(txt + '\n\n' + cur);
+    });
+  }
+  open.onclick = function(){ var on = pan.hidden; pan.hidden = !on; open.setAttribute('aria-expanded', String(on)); if (on) prep(); };
+  cp.onclick = function(){
+    (navigator.clipboard ? navigator.clipboard.writeText(cur) : Promise.reject()).then(function(){ msg.className = 'sx-dev__msg ok'; msg.textContent = 'Copiato ✓ Incollalo dove vuoi e aprilo sull\'altro dispositivo.'; }, function(){ prompt('Il link:', cur); });
+  };
+  function place(){
+    var n = items().length;
+    if (AVV) { var m = $('mine'); if (wrap.parentNode !== m.parentNode) m.parentNode.insertBefore(wrap, m.nextSibling); }
+    else { var s = $('mine'); if (wrap.parentNode !== s) s.appendChild(wrap); }
+    wrap.hidden = !n;
+    if (!n) { pan.hidden = true; open.setAttribute('aria-expanded', 'false'); }
+    else if (!pan.hidden) prep();
+  }
+  var mo = new MutationObserver(function(){ place(); });
+  mo.observe(AVV ? $('mine') : $('ml'), { childList: true });
+  place();
+
+  /* --- 2. aprendo il link: «Vuoi aggiungere…?» --- */
+  function main(){ return document.querySelector('main'); }
+  function clearHash(){ try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+  function box(title, text, btns){
+    var b = el('section', 'sx-dev sx-dev--imp'); b.setAttribute('aria-labelledby', 'sx-dev-imp-t');
+    var h = el('h2', 'sx-dev__t', title); h.id = 'sx-dev-imp-t'; h.tabIndex = -1; b.appendChild(h);
+    if (text) b.appendChild(el('p', null, text));
+    if (btns) { var bb = el('div', 'sx-dev__bar'); btns.forEach(function(x){ bb.appendChild(x); }); b.appendChild(bb); }
+    var old = $('sx-dev-imp'); if (old) old.remove(); b.id = 'sx-dev-imp';
+    main().insertBefore(b, main().firstChild); h.focus();
+    return b;
+  }
+  function closeBtn(t){ var c = el('button', 'sx-dev__btn', t || 'Chiudi'); c.type = 'button'; c.onclick = function(){ var b = $('sx-dev-imp'); if (b) b.remove(); }; return c; }
+  function fail(t){ clearHash(); box('Il link non funziona', t, [closeBtn()]); }
+  var done = null; try { done = sessionStorage.getItem('sx_dev_ok'); sessionStorage.removeItem('sx_dev_ok'); } catch (e) {}
+  if (done) box('Fatto ✓', done, [closeBtn()]);
+  /* anche se il link viene incollato in una pagina già aperta (cambia solo il #) */
+  window.addEventListener('hashchange', run);
+  run();
+  function run(){
+  var h = location.hash.match(/^#importa=([A-Za-z0-9._-]*)$/);
+  if (/^#importa=/.test(location.hash) && !h) return fail('Il link è rovinato. Chiedi di rimandarlo, oppure rifallo dall\'altro dispositivo.');
+  if (!h) return;
+  if (h[1].length > LIM) return fail('Il link è troppo lungo. Rifallo dall\'altro dispositivo con meno ' + (AVV ? 'ricerche.' : 'compleanni.'));
+  decode(h[1]).then(function(o){
+    var inc = clean(o);
+    if (!inc) return fail('Il link è rovinato o non è di questa pagina. Rifallo dall\'altro dispositivo.');
+    var have = items(), nuovi = [];
+    inc.forEach(function(x){ if (!have.some(function(y){ return same(x, y); }) && !nuovi.some(function(y){ return same(x, y); })) nuovi.push(x); });
+    var dup = inc.length - nuovi.length, room = Math.max(0, MAX - have.length), add = nuovi.slice(0, room);
+    if (!nuovi.length) { clearHash(); return box('Ci sono già', AVV
+      ? (inc.length === 1 ? 'Questa ricerca è già su questo dispositivo.' : 'Queste ' + inc.length + ' ricerche sono già su questo dispositivo.')
+      : (inc.length === 1 ? 'Questo compleanno è già su questo dispositivo.' : 'Questi ' + inc.length + ' compleanni sono già su questo dispositivo.'), [closeBtn()]); }
+    if (!add.length) { clearHash(); return box('Non c\'è più posto', 'Su questo dispositivo ci sono già ' + many(have.length) + ', il massimo. Togline qualcuno e riapri il link.', [closeBtn()]); }
+    var yes = el('button', 'sx-dev__btn sx-dev__btn--main', 'Sì, aggiungi'), no = el('button', 'sx-dev__btn', 'No, grazie');
+    yes.type = no.type = 'button';
+    var extra = [];
+    if (dup) extra.push(dup === 1 ? (AVV ? 'una c\'era già' : 'uno c\'era già') : dup + ' c\'erano già');
+    if (add.length < nuovi.length) extra.push('ne aggiungo ' + add.length + ': al massimo ' + MAX);
+    var q = 'Vuoi aggiungere ' + many(add.length) + ' su questo dispositivo?';
+    var b = box(q, (AVV ? add.join(' · ') : add.map(function(x){ return (x.n || x.w) + ' ' + x.d + '/' + x.m; }).join(' · ')) + (extra.length ? ' (' + extra.join('; ') + ')' : ''), [yes, no]);
+    no.onclick = function(){ clearHash(); b.remove(); };
+    yes.onclick = function(){
+      try {
+        var v = read();
+        if (AVV) { if (!Array.isArray(v.q)) v.q = []; v.q = v.q.concat(add).slice(0, MAX); localStorage.setItem(KEY, JSON.stringify(v)); }
+        else { var a = Array.isArray(v) ? v.concat(add) : add; a.sort(function(x, y){ return x.m - y.m || x.d - y.d; }); localStorage.setItem(KEY, JSON.stringify(a.slice(0, MAX))); }
+        try { sessionStorage.setItem('sx_dev_ok', 'Aggiunt' + (add.length === 1 ? (AVV ? 'a ' : 'o ') : (AVV ? 'e ' : 'i ')) + many(add.length) + ' su questo dispositivo.'); } catch (e) {}
+      } catch (e) { return fail('Questo browser non mi lascia salvare (forse è in navigazione privata). Prova da un altro browser.'); }
+      clearHash(); location.reload();
+    };
+  }).catch(function(e){
+    fail(e && e.message === 'vecchio' ? 'Questo browser è troppo vecchio per aprire il link: aggiornalo o usa un altro browser.' : 'Il link è rovinato o incompleto. Rifallo dall\'altro dispositivo.');
+  });
+  }
 })();
 </script>
 </body></html>
