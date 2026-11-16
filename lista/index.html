@@ -581,7 +581,7 @@ $('dy').onclick=function(){var it=CUR;$('dy').disabled=true;$('dy').textContent=
  post('/dono',{l:id,a:it.a,msg:$('dm').value.trim(),nome:$('df').value.trim()}).then(function(r){if(r.ok){tok(it.a,r.t);$('dlg').hidden=true;$('dm').value='';live()}
   else{$('dy').textContent=r.preso?'Qualcuno l\'ha appena preso: scegline un altro':'Non è andata: riprova o usa Telegram';live()}})
  .catch(function(){$('dy').textContent='Non è andata: usa il pulsante Telegram qui sotto'})};
-function render(L){
+function render(L){/*sx-cart*/if(window.sxLista)window.sxLista.k=L.k;/*/sx-cart*/
  API=L.api||'';OWN=!!(m&&API);$('g').innerHTML='';$('g2').innerHTML='';
  document.title=L.t+' · Selecta';$('em').textContent=L.e;
  var w=L.t.split(' '),last=w.pop();$('ti').textContent=w.join(' ')+' ';$('ti').appendChild(el('i',null,last));
@@ -940,7 +940,9 @@ var hasApi=APIB&&APIB.indexOf('__')!=0;
       if (i >= asins.length) return end();
       var a = asins[i++], r = rows[a]; r[1].textContent = 'Aggiungo…';
       post({ l: list.l, m: list.m, a: a }).then(function(x){
-        if (x && typeof x.nome === 'string' && x.nome) r[0].textContent = x.nome;
+        /* «titolo» è il nome del prodotto (bot 185); «nome» resta vero/falso come lo usa la pagina */
+        var tt = x && (typeof x.titolo === 'string' && x.titolo.trim() ? x.titolo : (typeof x.nome === 'string' ? x.nome : ''));
+        if (tt) r[0].textContent = tt.trim().slice(0, 80);
         if (x && x.ok) { ok++; r[1].className = 'ok'; r[1].textContent = 'Aggiunto'; }
         else { r[1].className = 'ko'; r[1].textContent = (x && x.errore) || 'Non aggiunto'; }
       }).catch(function(){ r[1].className = 'ko'; r[1].textContent = 'Non aggiunto'; }).then(next);
@@ -1003,15 +1005,19 @@ var hasApi=APIB&&APIB.indexOf('__')!=0;
   /* --- «Chiedi a Lecta un'idea» per chi visita la lista di un altro --- */
   function idea(){
     if (!(window.Lecta && window.Lecta.active) || !L || M || $('sx-lt-idea')) return;
-    var g = $('g'), ti = $('ti'); if (!g || !ti || !(g.children.length || $('g2').children.length)) return;
-    var name = ti.textContent.replace(/\s+/g, ' ').trim(); if (!name) return;
+    var g = $('g'), ti = $('ti'); if (!g || !ti || !(window.sxLista && window.sxLista.k)) return;   /* la lista è arrivata (anche vuota) */
+    /* il tipo di lista, non il nome: il nome può contenere nomi di persone (bot 185) */
+    var K = { nascita: 'una lista nascita', compleanno: 'una lista di compleanno', natale: 'una lista di Natale', blackfriday: 'una lista per il Black Friday',
+      casa: 'una lista per la casa nuova', nozze: 'una lista di nozze', desideri: 'una lista dei desideri' };
+    var k = window.sxLista && window.sxLista.k;
+    var q = k === 'letterina' ? 'Mi dai un\'idea regalo per la letterina a Babbo Natale di un bambino?' : 'Mi dai un\'idea regalo per ' + (K[k] || 'una lista regali') + '?';
     var p = el('p', 'sx-lt-idea'); p.id = 'sx-lt-idea';
     var b = el('button', 'lecta-ask', 'Chiedi a Lecta un\'idea'); b.type = 'button'; b.hidden = true;
-    b.setAttribute('data-lecta-q', ('Mi dai un\'idea regalo per la lista «' + name + '»?').slice(0, 300));
+    b.setAttribute('data-lecta-q', q);
     p.appendChild(b); g.parentNode.insertBefore(p, g);
     window.Lecta.wire(p);
   }
-  document.addEventListener('lecta:ready', function(){ idea(); new MutationObserver(idea).observe($('g'), { childList: true }); });
+  document.addEventListener('lecta:ready', function(){ idea(); var mo = new MutationObserver(idea); mo.observe($('g'), { childList: true }); mo.observe($('ti'), { childList: true, characterData: true, subtree: true }); });
 })();
 </script>
 <script src="/lecta/lecta.js" defer></script>
