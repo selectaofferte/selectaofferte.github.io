@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lecta, l'assistente agli acquisti · Selecta Offerte</title>
+<meta name="description" content="Lecta è l'assistente agli acquisti di Selecta Offerte: chiedi cosa comprare, per chi e con quale budget, e ti consiglia tra le offerte selezionate.">
+<link rel="canonical" href="https://selectaofferte.it/lecta/">
+<meta name="theme-color" content="#14233B">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Selecta Offerte">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Il consiglio di Lecta">
+<meta property="og:description" content="Lecta è l'assistente agli acquisti di Selecta Offerte: chiedi anche tu cosa comprare.">
+<meta property="og:url" content="https://selectaofferte.it/lecta/">
+<meta property="og:image" content="https://selectaofferte.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/iserif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Instrument Serif";src:url(/fonts/iserif.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Instrument Serif";src:url(/fonts/iserif-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Outfit";src:url(/fonts/outfit.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+:root{--blu:#14233B;--blu2:#101D31;--avorio:#F4EEE2;--carta:#FBF8F2;--oro:#D4AF6A;--oro-scuro:#B8924A;--oro-testo:#8A6A2E;--grigio:#5A6375;--testo:#3A4558;--line:rgba(20,35,59,.12)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carta);color:var(--blu);font:400 16px/1.55 Outfit,system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--oro-scuro);outline-offset:3px;border-radius:4px}
+.skip{position:fixed;left:1rem;top:-4rem;z-index:100;background:var(--oro);color:var(--blu);font-weight:600;padding:.7rem 1.1rem;border-radius:999px;text-decoration:none}
+.skip:focus{top:1rem}
+.top{position:sticky;top:0;z-index:20;background:var(--blu);color:var(--avorio);padding-top:env(safe-area-inset-top,0px)}
+.top__in{max-width:56rem;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 16px}
+.logo{font:400 1.9rem/1 "Instrument Serif",Georgia,serif;text-decoration:none;color:var(--avorio)}
+.logo span{color:var(--oro)}
+.home{display:inline-flex;align-items:center;gap:.4rem;height:2.6rem;padding:0 1.1rem;border-radius:999px;background:var(--oro);color:var(--blu);font-weight:600;text-decoration:none}
+.home svg{width:1rem;height:1rem}
+main{max-width:56rem;margin:0 auto;padding:2rem 16px 4rem}
+.eyebrow{display:flex;align-items:center;gap:.6rem;margin:0 0 .6rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--oro-testo)}
+.eyebrow svg{width:1.4rem;height:1.4rem;color:var(--oro-scuro)}
+h1{font:400 clamp(2.4rem,1.6rem + 3vw,3.6rem)/1 "Instrument Serif",Georgia,serif;margin:0 0 1rem}
+h1 i{color:#9A7536}
+.lead{color:var(--testo);margin:0 0 1.6rem;max-width:40rem}
+.ask{margin:0 0 1.2rem;padding:.9rem 1.1rem;border-radius:16px;background:var(--blu);color:var(--avorio)}
+.ask small{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);font-weight:600;margin-bottom:.2rem}
+.txt p{margin:0 0 .8rem}
+.cards{display:grid;gap:12px;margin:1.4rem 0}
+@media (min-width:720px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:.45rem}
+.card h2{margin:0;font:500 1.05rem/1.35 Outfit,system-ui,sans-serif}
+.tag{align-self:flex-start;font:600 .7rem/1 Outfit,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;background:var(--oro);color:var(--blu);border-radius:999px;padding:.35rem .6rem}
+.why{margin:0;color:var(--testo);font-size:.95rem}
+.price{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem .6rem;font-variant-numeric:tabular-nums}
+.price b{font-size:1.35rem;font-weight:600}
+.price span,.na{font-size:.85rem;color:var(--grigio)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:2.8rem;padding:0 1.1rem;border-radius:999px;background:var(--blu);color:var(--avorio);font-weight:500;text-decoration:none;align-self:flex-start;margin-top:auto}
+.btn svg{width:1rem;height:1rem}
+.big{display:flex;justify-content:center;margin:2rem 0 0}
+.big .lecta-ask{min-height:3.4rem;font-size:1.08rem;padding:0 1.6rem 0 1.3rem;background:var(--oro);border-color:var(--oro);color:var(--blu)}
+.big .lecta-ask .lecta-ico{color:var(--blu)}
+.note{font-size:.82rem;color:var(--grigio);margin:1.4rem 0 0}
+.box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.4rem}
+.box h2{font:400 2rem/1.1 "Instrument Serif",Georgia,serif;margin:0 0 .4rem}
+.box p{margin:0 0 1rem;color:var(--testo)}
+.wait{color:var(--grigio)}
+footer{border-top:1px solid var(--line);color:var(--grigio);font-size:.85rem}
+footer div{max-width:56rem;margin:0 auto;padding:1.4rem 16px 2rem}
+footer a{color:var(--oro-testo)}
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+[hidden]{display:none!important}
+</style>
+<script data-goatcounter="https://stats.selectaofferte.it/count" async src="https://stats.selectaofferte.it/count.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<header class="top"><div class="top__in">
+  <a class="logo" href="/" aria-label="Selecta Offerte, home">Selecta<span>.</span></a>
+  <a class="home" href="/"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Home</a>
+</div></header>
+<main id="main" tabindex="-1">
+
+  <!-- consiglio condiviso: /lecta/#c=j.<JSON in base64url> -->
+  <section id="shared" hidden aria-labelledby="shared-title">
+    <p class="eyebrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 3.5V17A2.5 2.5 0 0 1 4 14.5v-8A2.5 2.5 0 0 1 6.5 4Z"/><path fill="currentColor" d="M12 7c.2 1.85 1.65 3.3 3.5 3.5-1.85.2-3.3 1.65-3.5 3.5-.2-1.85-1.65-3.3-3.5-3.5 1.85-.2 3.3-1.65 3.5-3.5Z"/></svg>Consiglio condiviso</p>
+    <h1 id="shared-title">Il consiglio di <i>Lecta</i></h1>
+    <p class="ask" id="sh-q"></p>
+    <div class="txt" id="sh-t"></div>
+    <div class="cards" id="sh-p"></div>
+    <div class="big"><button type="button" class="lecta-ask" data-lecta-open hidden>Chiedi anche tu a Lecta</button></div>
+    <p class="note">I prezzi sono quelli visti da Selecta nel giorno indicato: su Amazon possono essere cambiati. In qualità di Affiliato Amazon, Selecta riceve un guadagno dagli acquisti idonei.</p>
+  </section>
+
+  <section id="bad" hidden class="box" aria-labelledby="bad-title">
+    <h2 id="bad-title">Il link non è completo</h2>
+    <p>Chiedi a chi te l'ha mandato di rimandarlo, oppure fai la tua domanda a Lecta.</p>
+    <button type="button" class="lecta-ask" data-lecta-open hidden>Chiedi a Lecta</button>
+  </section>
+
+  <!-- senza #c: Lecta direttamente nella pagina -->
+  <section id="chat" hidden aria-labelledby="chat-title">
+    <h1 id="chat-title">Chiedi a <i>Lecta</i></h1>
+    <p class="lead">L'assistente agli acquisti di Selecta: dimmi cosa cerchi, per chi è e quanto vuoi spendere.</p>
+    <div id="chat-box"><p class="wait" id="chat-wait">Un attimo…</p></div>
+  </section>
+
+  <section id="off" hidden class="box" aria-labelledby="off-title">
+    <h2 id="off-title">Lecta adesso non è disponibile</h2>
+    <p>Riprova più tardi. Intanto trovi le offerte selezionate nella home.</p>
+    <a class="btn" href="/">Vai alle offerte</a>
+  </section>
+</main>
+<footer><div>
+  <p>In qualità di Affiliato Amazon, Selecta riceve un guadagno dagli acquisti idonei. Lecta non salva le conversazioni né le foto.</p>
+  <p><a href="/privacy/">Privacy e cookie</a> · <a href="/chi-siamo/">Chi siamo</a> · <a href="/come-lavoriamo/">Come lavoriamo</a></p>
+</div></footer>
+<script id="lecta-page">
+(function(){
+  var $ = function(i){ return document.getElementById(i); };
+  function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function s(v){ return typeof v === 'string' ? v.trim() : (typeof v === 'number' ? String(v) : ''); }
+  /* solo link verso Selecta e Amazon: il resto si scarta */
+  function ok(u){ u = s(u); return /^https:\/\/(selectaofferte\.it|www\.amazon\.it)\//.test(u) && !/[\s<>"]/.test(u) ? u : ''; }
+  function seen(v){
+    if (v == null || v === '') return '';
+    var d = typeof v === 'number' ? new Date(v < 1e12 ? v * 1000 : v) : new Date(String(v));
+    if (isNaN(d)) return '';
+    try { var p = {}; new Intl.DateTimeFormat('it-IT', { timeZone: 'Europe/Rome', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(d).forEach(function(x){ p[x.type] = x.value; });
+      return 'visto il ' + p.day + '/' + p.month + ' alle ' + p.hour + ':' + p.minute; } catch (e) { return ''; }
+  }
+  function euro(v){ return typeof v === 'number' && isFinite(v) ? v.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' }) : s(v); }
+  function prose(box, t){
+    s(t).split(/\n{2,}/).forEach(function(par){
+      if (!par.trim()) return; var p = el('p');
+      par.split(/(\*\*[^*]+\*\*)/).forEach(function(bit){
+        if (/^\*\*[^*]+\*\*$/.test(bit)) p.appendChild(el('strong', null, bit.slice(2, -2)));
+        else bit.split('\n').forEach(function(line, j){ if (j) p.appendChild(el('br')); if (line) p.appendChild(document.createTextNode(line)); });
+      });
+      box.appendChild(p);
+    });
+  }
+  function decode(v){
+    if (!v || v.length > 6000 || v.slice(0, 2) !== 'j.') throw 0;
+    var b = v.slice(2).replace(/-/g, '+').replace(/_/g, '/'); while (b.length % 4) b += '=';
+    var bin = atob(b), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+    var o = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(u));
+    if (!o || o.v !== 1 || !s(o.t) && !(Array.isArray(o.p) && o.p.length)) throw 0;
+    return o;
+  }
+  var m = /^#c=(.*)$/.exec(location.hash);
+  if (m) {
+    var o = null; try { o = decode(m[1]); } catch (e) { o = null; }
+    if (!o) { $('bad').hidden = false; }
+    else {
+      document.title = 'Il consiglio di Lecta · Selecta Offerte';
+      var q = s(o.q).slice(0, 300);
+      if (q) { $('sh-q').appendChild(el('small', null, 'La domanda')); $('sh-q').appendChild(document.createTextNode(q)); } else $('sh-q').hidden = true;
+      prose($('sh-t'), String(o.t || '').slice(0, 4000));
+      (Array.isArray(o.p) ? o.p.slice(0, 8) : []).forEach(function(p){
+        if (!p || !s(p.n)) return;
+        var c = el('article', 'card'), off = p.o === 1 || p.o === true, l = ok(p.l);
+        if (off) c.appendChild(el('span', 'tag', 'In offerta su Selecta'));
+        c.appendChild(el('h2', null, s(p.n).slice(0, 200)));
+        if (s(p.w)) c.appendChild(el('p', 'why', s(p.w).slice(0, 600)));
+        if (off && euro(p.pr)) { var pr = el('p', 'price'); pr.appendChild(el('b', null, euro(p.pr))); var sv = seen(p.vi); if (sv) pr.appendChild(el('span', null, sv)); c.appendChild(pr); }
+        else c.appendChild(el('p', 'na', 'Prezzo aggiornato su Amazon'));
+        if (l) { var a = el('a', 'btn'); a.href = l; a.target = '_blank'; a.rel = 'sponsored nofollow noopener'; a.textContent = off ? 'Vedi l\'offerta' : 'Vedi su Amazon'; a.appendChild(el('span', 'vh', ' (si apre in una nuova scheda)')); c.appendChild(a); }
+        $('sh-p').appendChild(c);
+      });
+      $('shared').hidden = false;
+    }
+  } else {
+    $('chat').hidden = false;
+    document.body.setAttribute('data-lecta-nofab', '');   /* Lecta è già nella pagina: niente pulsante rotondo */
+  }
+  /* senza #c: Lecta dentro la pagina; se non è attiva, lo diciamo */
+  function ready(on){
+    if (m) return;
+    if (on && window.Lecta.mount($('chat-box'))) { $('chat-wait').remove(); return; }
+    $('chat').hidden = true; $('off').hidden = false;
+  }
+  function wait(){ if (window.Lecta) window.Lecta.onReady(ready); else setTimeout(wait, 50); }
+  wait();
+  setTimeout(function(){ if (!window.Lecta && !m) ready(false); }, 12000);
+})();
+</script>
+<script src="/lecta/lecta.js" defer></script>
+</body>
+</html>
