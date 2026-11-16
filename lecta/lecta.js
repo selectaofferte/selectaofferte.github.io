@@ -14,6 +14,7 @@
   var Q = new URLSearchParams(location.search);
   var DEMO = Q.get('demo_lecta') === '1' || window.LECTA_DEMO === true;
   var MAXQ = 300, WAIT = 60000, HIST = 6;
+  var PHOTO_Q = 'Cosa c\'è in questa foto? Aiutami a trovarlo su Amazon.';   /* la stessa frase che usa il bot con q vuoto */
   var WAITING = ['Leggo la domanda…', 'Cerco tra le offerte di Selecta…', 'Controllo le recensioni…', 'Preparo i consigli…'];
   var ICON = '<svg class="lecta-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 3.5V17A2.5 2.5 0 0 1 4 14.5v-8A2.5 2.5 0 0 1 6.5 4Z"/><path fill="currentColor" d="M12 7c.2 1.85 1.65 3.3 3.5 3.5-1.85.2-3.3 1.65-3.5 3.5-.2-1.85-1.65-3.3-3.5-3.5 1.85-.2 3.3-1.65 3.5-3.5Z"/></svg>';
   var I = {
@@ -26,6 +27,7 @@
     bell: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
     cart: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.5a1.5 1.5 0 0 0 1.5-1.1L20.5 8H6.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></svg>',
     share: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="17.5" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="6.5" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="18" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m8.7 10.8 6.6-3.6M8.7 13.2l6.6 3.6" stroke="currentColor" stroke-width="1.7"/></svg>',
+    gift: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-1.5-3-5-3.5-5-1.2C7 7 9 7 12 7Zm0 0c1.5-3 5-3.5 5-1.2C17 7 15 7 12 7Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
     copy: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="11" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M5 15V6a2 2 0 0 1 2-2h8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
   };
 
@@ -36,6 +38,8 @@
     '.lecta-ask .lecta-ico{color:#D4AF6A}',
     '.lecta-ask:hover{background:#1B2C47}',
     '.lecta-ask:focus-visible,.lecta-fab:focus-visible,.lecta button:focus-visible,.lecta a:focus-visible,.lecta textarea:focus-visible,.lecta summary:focus-visible,.lecta__tbl:focus-visible{outline:2px solid #B8924A;outline-offset:2px}',
+    '.lecta-ask--dark{background:transparent;border-color:rgba(212,175,106,.6);color:#F4EEE2}',
+    '.lecta-ask--dark:hover{background:rgba(212,175,106,.12)}',
     '.lecta-ask--q{background:#FBF8F2;color:#14233B;font-weight:500;white-space:normal;text-align:left;line-height:1.3;padding:.55rem 1.1rem .55rem .9rem}',
     '.lecta-ask--q .lecta-ico{color:#8A6A2E}',
     '.lecta-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:61;width:56px;height:56px;border-radius:50%;border:1px solid rgba(212,175,106,.55);background:#14233B;color:#D4AF6A;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px -10px rgba(10,18,30,.7);transition:bottom .2s ease,transform .2s ease}',
@@ -84,6 +88,9 @@
     '.lecta__can ul{margin:0;padding-left:18px}.lecta__can li{margin:2px 0}',
     '.lecta__p{background:#fff;border:1px solid rgba(20,35,59,.1);border-radius:16px;padding:12px;display:grid;grid-template-columns:84px minmax(0,1fr);gap:4px 12px}',
     '.lecta__p--no{grid-template-columns:minmax(0,1fr)}',
+    '.lecta__who2{grid-column:1/-1;margin:0 0 4px;font:600 13px/1.3 Outfit,system-ui,sans-serif;letter-spacing:.04em;color:#8A6A2E}',
+    '.lecta__plan{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:18px;background:#F4EEE2;border:1px solid rgba(184,146,74,.45)}',
+    '.lecta__plan-t{margin:0;font:400 22px/1.15 "Instrument Serif",Georgia,serif;color:#14233B}',
     '.lecta__ph{grid-row:span 3;width:84px;height:84px;border-radius:12px;background:#fff;box-shadow:0 0 0 1px rgba(20,35,59,.08);display:grid;place-items:center;overflow:hidden}',
     '.lecta__ph img{width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box}',
     '.lecta__tag{justify-self:start;font:600 11px/1 Outfit,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#14233B;background:#D4AF6A;border-radius:999px;padding:5px 9px}',
@@ -255,7 +262,7 @@
     function grow(){ ta.style.height = 'auto'; ta.style.height = Math.min(120, ta.scrollHeight + 2) + 'px'; cnt.textContent = ta.value.length + '/' + MAXQ; }
     ta.addEventListener('input', grow);
     ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit ? form.requestSubmit() : submit(e); } });
-    function submit(e){ if (e) e.preventDefault(); var q = ta.value.trim(); if (!q) { live.textContent = img ? 'Scrivi cosa vuoi sapere della foto.' : 'Scrivi una domanda.'; ta.focus(); return; } ask(q); }
+    function submit(e){ if (e) e.preventDefault(); var q = ta.value.trim(); if (!q && !img) { live.textContent = 'Scrivi una domanda o aggiungi una foto.'; ta.focus(); return; } ask(q); }
     form.addEventListener('submit', submit);
     cam.onclick = function(){ file.click(); };
     file.onchange = function(){
@@ -306,11 +313,11 @@
   }
   function ask(q){
     q = str(q).slice(0, MAXQ);
-    if (!q || busy || !ui) return;
+    if ((!q && !img) || busy || !ui) return;
     busy = true; ui.go.disabled = true;
     var u = el('div', 'lecta__u'), sentImg = img;
     if (sentImg) { var im = el('img'); im.src = sentImg; im.alt = 'La tua foto'; u.appendChild(im); }
-    u.appendChild(document.createTextNode(q));
+    u.appendChild(document.createTextNode(q || PHOTO_Q));
     ui.log.appendChild(u);
     ui.ta.value = ''; ui.grow(); img = ''; ui.pv.hidden = true; ui.pvImg.removeAttribute('src');
     var w = el('div', 'lecta__wait'); w.innerHTML = '<span class="lecta__dots" aria-hidden="true"><i></i><i></i><i></i></span><span></span>';
@@ -322,7 +329,7 @@
     post('/lecta', body).then(function(r){
       clearInterval(tick); w.remove();
       if (!r || r.ok === false) { var m = el('div', 'lecta__err', str(r && (r.errore || r.testo || r.messaggio)) || 'Lecta adesso non riesce a rispondere. Riprova tra poco.'); ui.log.appendChild(m); ui.live.textContent = m.textContent; scroll(m); return; }
-      hist.push({ r: 'u', t: q }); hist.push({ r: 'a', t: str(r.testo) });
+      hist.push({ r: 'u', t: q || PHOTO_Q }); hist.push({ r: 'a', t: str(r.testo) });
       hist = hist.slice(-HIST);
       var a = answer(r); ui.log.appendChild(a); ui.live.textContent = 'Lecta ha risposto.'; scroll(a);
     }, function(e){
@@ -344,8 +351,10 @@
       '<circle cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="3.5" fill="#14233B"/></svg>';
     return html('div', null, s).firstChild;
   }
-  function product(p){
+  function money(v){ return typeof v === 'number' && isFinite(v) ? (Math.round(v) === v ? v + ' €' : euro(v)) : str(v); }
+  function product(p, head){
     var off = p.in_offerta === true, name = str(p.nome || p.n), card = el('article', 'lecta__p' + (off ? '' : ' lecta__p--no'));
+    if (head) card.appendChild(el('p', 'lecta__who2', head));
     var href = safe(p.link || p.url, true), avv = safe(p.avviso, false);
     if (off) {
       var ph = el('div', 'lecta__ph'), src = safe(p.foto, false);
@@ -374,11 +383,13 @@
       if (b.firstChild) full.appendChild(b);
       card.appendChild(full);
     } else {
-      card.appendChild(el('h4', null, name));
+      var look = str(p.cerca);
+      if (name) card.appendChild(el('h4', null, name));
+      else if (look) card.appendChild(el('h4', null, 'Da cercare: ' + look));
       if (str(p.perche)) card.appendChild(el('p', 'lecta__why', str(p.perche)));
       card.appendChild(el('p', 'lecta__na', 'Prezzo aggiornato su Amazon'));
       var b2 = el('div', 'lecta__btns');
-      if (href) b2.appendChild(link(href, 'lecta__btn lecta__btn--main', 'Vedi su Amazon', I.ext, true));
+      if (href) b2.appendChild(link(href, 'lecta__btn lecta__btn--main', look && /\/s[?\/]/.test(href) ? 'Cerca su Amazon' : 'Vedi su Amazon', I.ext, true));
       if (avv) b2.appendChild(link(avv, 'lecta__btn', 'Avvisami quando scende', I.bell, false));
       if (b2.firstChild) card.appendChild(b2);
     }
@@ -410,11 +421,25 @@
       });
       a.appendChild(can);
     }
-    arr(r.prodotti).forEach(function(p){ if (p && typeof p === 'object' && str(p.nome || p.n)) a.appendChild(product(p)); });
+    var pl = r.piano && typeof r.piano === 'object' && arr(r.piano.persone).length ? r.piano : null;
+    if (pl) {
+      var box = el('section', 'lecta__plan'); box.setAttribute('aria-label', 'Il piano regali');
+      box.appendChild(el('h4', 'lecta__plan-t', 'Il piano regali' + (money(pl.budget) ? ' (' + money(pl.budget) + ' in tutto)' : '')));
+      arr(pl.persone).forEach(function(x){
+        if (!x || typeof x !== 'object') return;
+        var who = str(x.chi); who = who ? who.charAt(0).toUpperCase() + who.slice(1) : 'Regalo';
+        if (!str(x.nome || x.n) && !str(x.cerca) && !str(x.perche)) return;
+        box.appendChild(product(x, who + (money(x.budget) ? ' · ' + money(x.budget) : '')));
+      });
+      a.appendChild(box);
+    }
+    arr(r.prodotti).forEach(function(p){ if (p && typeof p === 'object' && str(p.nome || p.n) && !(pl && p.dal_piano)) a.appendChild(product(p)); });
     if (r.confronto && typeof r.confronto === 'object') { var t = table(r.confronto); if (t) a.appendChild(t); }
     var acts = el('div', 'lecta__btns');
     var cart = safe(typeof r.carrello === 'string' ? r.carrello : r.carrello && (r.carrello.url || r.carrello.link), true);
     if (cart) acts.appendChild(link(cart, 'lecta__btn lecta__btn--gold', 'Metti tutto nel carrello Amazon', I.cart, true));
+    var lst = str(r.lista); if (!/^https:\/\/selectaofferte\.it\/lista\/#aggiungi=[A-Za-z0-9,]+$/.test(lst)) lst = '';
+    if (lst) acts.appendChild(link(lst, 'lecta__btn', 'Aggiungi alla mia lista regali', I.gift, false));
     var sh = r.condividi && typeof r.condividi === 'object' ? r.condividi : null;
     if (sh) {
       var wa = safe(sh.whatsapp, false), su = safe(sh.url, false);
@@ -517,6 +542,13 @@
       });
     });
   }
+  function chiedi(){
+    var m = /^#chiedi=(.*)$/.exec(location.hash); if (!m) return;
+    var q = ''; try { q = decodeURIComponent(m[1].replace(/\+/g, ' ')); } catch (e) { q = ''; }
+    q = q.replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, MAXQ);
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (q) open({ q: q, send: true });
+  }
   function onReady(fn){ if (INFO) fn(active); else readyFns.push(fn); }
 
   window.Lecta = { get active(){ return active; }, open: open, close: close, mount: mount, onReady: onReady, wire: wire, icon: ICON };
@@ -526,9 +558,13 @@
       INFO = r && typeof r === 'object' ? r : {};
       active = INFO.attiva === true;
     }, function(){ INFO = {}; active = false; }).then(function(){
+      /* una pagina può tenere Lecta dentro di sé: <div data-lecta-inline> (la pagina /lecta/) */
+      var host = active && document.querySelector('[data-lecta-inline]');
+      if (host) mount(host);
       if (active) { addCss(); showFab(); wire(); }
       readyFns.splice(0).forEach(function(fn){ try { fn(active); } catch (e) {} });
       try { document.dispatchEvent(new CustomEvent('lecta:ready', { detail: { active: active } })); } catch (e) {}
+      if (active) { chiedi(); addEventListener('hashchange', chiedi); }
     });
   }
   /* ---------------------------------------------------------------- anteprima (?demo_lecta=1): dati d'esempio, mai sul sito vero */
@@ -536,7 +572,7 @@
     attiva: true, nome: 'Lecta', sottotitolo: 'L\'assistente agli acquisti di Selecta',
     avviso: 'Lecta è un\'intelligenza artificiale e può sbagliare: controlla sempre prezzo e dettagli su Amazon prima di comprare.',
     titolo: 'Ciao, sono Lecta', testo: 'Dimmi cosa cerchi, per chi è e quanto vuoi spendere: ti consiglio tra le offerte di Selecta e ti dico se è il momento giusto per comprare.',
-    suggerimenti: ['Cosa posso chiederti?', 'Cuffie per correre sotto i 60 euro', 'Un regalo per mia mamma che ama cucinare', 'Meglio friggitrice ad aria da 4 o 6 litri?']
+    suggerimenti: ['Cosa posso chiederti?', 'Cuffie per correre sotto i 60 euro', 'Ho 120 € per 3 persone: mamma, papà e nonna', 'Meglio friggitrice ad aria da 4 o 6 litri?']
   };
   function demoAnswer(b){
     var svg = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84"><rect width="84" height="84" fill="#F4EEE2"/><circle cx="42" cy="40" r="20" fill="none" stroke="#14233B" stroke-width="5"/><rect x="18" y="38" width="9" height="20" rx="4" fill="#14233B"/><rect x="57" y="38" width="9" height="20" rx="4" fill="#14233B"/></svg>');
@@ -547,6 +583,18 @@
       nota: 'Esempio per l\'anteprima.'
     };
     var now = Date.now();
+    if (/persone/i.test(b.q)) return {
+      ok: true, testo: 'Ecco un piano per stare nei 120 €: un regalo per ognuno, con un po\' di margine.',
+      piano: { budget: 120, persone: [
+        { chi: 'mamma', budget: 45, nome: 'Set di coltelli da cucina (esempio)', in_offerta: true, foto: svg, prezzo: 39.9, listino: 59.9, sconto: 33, visto_il: Math.round(now / 1000) - 7200,
+          storico: { frase: 'Sceso di 10 € in due settimane.', punti: [{ g: '02/11', p: 49.9 }, { g: '09/11', p: 44.9 }, { g: '16/11', p: 39.9 }], giorni: 14 },
+          link: 'https://selectaofferte.it/?a=B0ESEMPIO3&t=gt-casa-21', avviso: 'https://selectaofferte.it/avvisi/#importa=j.eyJ2IjoxLCJ0IjoiYXZ2IiwicSI6WyJjb2x0ZWxsaSJdfQ', perche: 'Ama cucinare.' },
+        { chi: 'papà', budget: 40, nome: 'Termos in acciaio (esempio)', in_offerta: false, perche: 'Per le passeggiate.', link: 'https://www.amazon.it/dp/B0ESEMPIO4?tag=gt-casa-21' },
+        { chi: 'nonna', budget: 35, in_offerta: false, cerca: 'coperta in pile morbida', perche: 'Non c\'è un\'offerta adatta: ecco cosa cercare.', link: 'https://www.amazon.it/s?k=coperta+in+pile&tag=gt-casa-21' } ] },
+      prodotti: [{ nome: 'Mamma: Set di coltelli da cucina (esempio)', in_offerta: true, dal_piano: true, prezzo: 39.9, link: 'https://selectaofferte.it/?a=B0ESEMPIO3&t=gt-casa-21' }],
+      lista: 'https://selectaofferte.it/lista/#aggiungi=B0ESEMPIO3',
+      nota: 'Esempio per l\'anteprima.'
+    };
     return {
       ok: true,
       testo: 'Per correre ti consiglio cuffie leggere, resistenti al sudore e che restano ferme. Qui sotto trovi **una in offerta su Selecta** e una alternativa da guardare su Amazon.\n\nSe vuoi spendere meno, la prima è la scelta più sicura.',
@@ -564,6 +612,7 @@
         { voce: 'Sudore', valori: ['IPX5', 'IP67'] },
         { voce: 'Orecchie libere', valori: ['no', 'sì'] } ] },
       carrello: 'https://www.amazon.it/gp/aws/cart/add.html?AssociateTag=gt-tech-21&ASIN.1=B0ESEMPIO1&Quantity.1=1',
+      lista: 'https://selectaofferte.it/lista/#aggiungi=B0ESEMPIO1',
       condividi: { whatsapp: 'https://wa.me/?text=' + encodeURIComponent('Il consiglio di Lecta: https://selectaofferte.it/lecta/#c=j.esempio'), url: 'https://selectaofferte.it/lecta/#c=j.esempio' },
       domanda: 'Quali tengono meglio con gli occhiali?',
       fonti: [{ titolo: 'Scheda del prodotto su Amazon', url: 'https://www.amazon.it/' }, { titolo: 'Storico prezzi di Selecta', url: 'https://selectaofferte.it/' }],

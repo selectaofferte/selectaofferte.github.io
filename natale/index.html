@@ -4354,7 +4354,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   function newTabs(){
     ntRaf = 0;
     [].forEach.call(document.querySelectorAll('a[href]'), function(a){
-      if (!PAGE_RE.test(a.getAttribute('href'))) return;
+      if (!PAGE_RE.test(a.getAttribute('href')) || (a.closest && a.closest('.lecta'))) return;   /* Lecta scrive già la sua scritta */
       if (a.target !== '_blank') a.target = '_blank';
       if (!/\bnoopener\b/.test(a.rel)) a.rel = (a.rel ? a.rel + ' ' : '') + 'noopener';
       if (!a.querySelector('.vh-nt')) { var t = document.createElement('span'); t.className = 'vh vh-nt'; t.textContent = ' (si apre in una nuova scheda)'; a.appendChild(t); }

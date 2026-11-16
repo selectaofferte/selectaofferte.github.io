@@ -175,12 +175,12 @@ footer a{color:var(--oro-testo)}
     }
   } else {
     $('chat').hidden = false;
-    document.body.setAttribute('data-lecta-nofab', '');   /* Lecta è già nella pagina: niente pulsante rotondo */
+    $('chat-box').setAttribute('data-lecta-inline', '');   /* lecta.js la mette qui dentro, senza pulsante rotondo */
   }
   /* senza #c: Lecta dentro la pagina; se non è attiva, lo diciamo */
   function ready(on){
     if (m) return;
-    if (on && window.Lecta.mount($('chat-box'))) { $('chat-wait').remove(); return; }
+    if (on && $('chat-box').querySelector('.lecta')) { var w = $('chat-wait'); if (w) w.remove(); return; }
     $('chat').hidden = true; $('off').hidden = false;
   }
   function wait(){ if (window.Lecta) window.Lecta.onReady(ready); else setTimeout(wait, 50); }
