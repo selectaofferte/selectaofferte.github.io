@@ -3394,9 +3394,18 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
             'https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=' + a + '&Format=_SL400_&ID=AsinImage&MarketPlace=IT&ServiceVersion=20070822&WS=1' + (o.tag ? '&tag=' + encodeURIComponent(o.tag) : '')]
       .filter(function(u){ return u !== o.foto; }).join(' ');
   }
+  /* v14: per le foto Amazon con questa forma esatta c'è anche la versione larga 300 px (SX300, prova del bot 205:
+     esiste per tutti i prodotti che hanno la foto, in media il 55% più leggera). Il browser sceglie la misura giusta
+     (sizes="auto": la larghezza vera della foto nella pagina). Se la versione piccola non arriva, photoFailed() torna
+     alla foto di sempre e poi agli indirizzi di riserva. Gli altri indirizzi restano come sono. */
+  var AMZ_P = /^https:\/\/m\.media-amazon\.com\/images\/P\/([A-Z0-9]{10})\.01\._SCLZZZZZZZ_\.jpg$/;
+  function srcsetAttr(u){
+    var m = AMZ_P.exec(String(u || '')); if (!m) return '';
+    return ' srcset="https://m.media-amazon.com/images/P/' + m[1] + '.01._SCLZZZZZZZ_SX300_.jpg 300w, ' + m[0] + ' 500w" sizes="auto, (max-width: 600px) 60vw, 340px" data-ss';
+  }
   function photoHTML(o){
     if (!o.foto) return '<div class="card__photo is-empty"></div>';
-    return '<div class="card__photo"><img src="' + esc(o.foto) + '" alt="" loading="lazy" decoding="async" data-asin="' + esc(o.asin) + '" data-alt="' + esc(photoAlts(o)) + '"></div>';
+    return '<div class="card__photo"><img src="' + esc(o.foto) + '"' + srcsetAttr(o.foto) + ' alt="" loading="lazy" decoding="async" data-asin="' + esc(o.asin) + '" data-alt="' + esc(photoAlts(o)) + '"></div>';
   }
   function shortName(n){ n = String(n || ''); var c = n.split(/[,|(]/)[0].trim(); if (c.length > 60) c = c.slice(0, 57).replace(/\s+\S*$/, '') + '…'; return c || n; }
   function shareURL(o){ return 'https://selectaofferte.it/?offerta=' + encodeURIComponent(o.asin); }
@@ -3879,6 +3888,12 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
     return true;
   }
   function photoFailed(img){
+    /* v14: prima si toglie la versione piccola; se era quella a mancare, il browser riprova con la foto di sempre */
+    if (img.hasAttribute('srcset')) {
+      var was = img.currentSrc;
+      img.removeAttribute('srcset'); img.removeAttribute('sizes');
+      if (was && was !== img.src) return;
+    }
     if (img.hasAttribute('data-blog')) { var li = img.closest('.blogcard'); if (li) li.classList.add('is-text'); img.parentNode.remove(); return; }
     if (nextAlt(img)) return;
     if (img.dataset.thumb != null) {
@@ -3897,7 +3912,11 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   document.addEventListener('load', function(e){
     var img = e.target;
     if (img.tagName !== 'IMG' || (!img.dataset.asin && img.dataset.thumb == null && !img.hasAttribute('data-blog'))) return;
-    if (img.naturalWidth && img.naturalWidth < 50) { photoFailed(img); return; }
+    /* con srcset (data-ss, anche dopo averlo tolto: Chrome tiene la scala) la larghezza è in scala, pixel veri × larghezza
+       mostrata ÷ 300 o 500: il pixel trasparente di Amazon dà 0 o 1, una foto vera almeno 45 anche nelle miniature.
+       Senza srcset resta la regola di sempre (sotto i 50 px). */
+    var nw = img.naturalWidth;
+    if (img.hasAttribute('data-ss') ? nw < 5 : (nw && nw < 50)) { photoFailed(img); return; }
     if (img.dataset.asin && !anyPhotoLoaded) { anyPhotoLoaded = true; for (var k in badPhotos) { schedule(); break; } }
   }, true);
   document.addEventListener('error', function(e){
@@ -4007,7 +4026,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
       var seen = seenInfo(o);
       fItems.push(o.url);
       html += '<li role="option" id="fi-' + (fItems.length - 1) + '"><a href="' + esc(o.url) + '" target="_blank" rel="sponsored noopener" tabindex="-1">' +
-        '<span class="finder__thumb">' + (o.foto ? '<img src="' + esc(o.foto) + '" alt="" loading="lazy" data-thumb data-hide-row data-alt="' + esc(photoAlts(o)) + '">' : 'S.') + '</span>' +
+        '<span class="finder__thumb">' + (o.foto ? '<img src="' + esc(o.foto) + '"' + srcsetAttr(o.foto) + ' alt="" loading="lazy" data-thumb data-hide-row data-alt="' + esc(photoAlts(o)) + '">' : 'S.') + '</span>' +
         '<span class="finder__t"><b>' + esc(shortName(o.nome)) + '</b><small>' + esc(CATS[o.cat].name + ' · ' + o.sub + ' · ' + seen.text) + '</small></span>' +
         '<span class="finder__p"><b>' + esc(o.prezzo || 'Su Amazon') + '</b>' + (o.sconto ? '<small>' + esc(o.sconto) + '</small>' : '') + '</span></a></li>';
     });
@@ -4205,7 +4224,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
       var t = o
         ? '<strong>' + esc(o.prezzo || 'Su Amazon') + '</strong><span>' + esc(seenInfo(o).text) + '</span><a href="' + esc(o.url) + '" target="_blank" rel="sponsored noopener">Vedi su Amazon →</a>'
         : '<span class="gone">Non è più in vetrina</span>' + (x.p ? '<span>Era ' + esc(x.p) + (x.g ? ' il ' + esc(x.g) : '') + '</span>' : '');
-      return '<li><span class="drawer__thumb">' + (foto ? '<img src="' + esc(foto) + '" alt="" loading="lazy" data-thumb>' : 'S.') + '</span><div class="drawer__t"><b>' + esc(name) + '</b>' + t + '</div>' +
+      return '<li><span class="drawer__thumb">' + (foto ? '<img src="' + esc(foto) + '"' + srcsetAttr(foto) + ' alt="" loading="lazy" data-thumb>' : 'S.') + '</span><div class="drawer__t"><b>' + esc(name) + '</b>' + t + '</div>' +
         (shared ? '' : '<button type="button" class="drawer__rm" data-rm="' + esc(x.a) + '" aria-label="Togli ' + esc(name) + '">×</button>') + '</li>';
     }).join('') : '<li class="drawer__empty">Ancora niente. Tocca il <b>cuore</b> su un\'offerta per ritrovarla qui.</li>';
     var foot = '';
@@ -4259,7 +4278,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   }
   function newest(a, b){ return ((b.seenOk ? b.seen : 0) - (a.seenOk ? a.seen : 0)) || (offerDay(b) - offerDay(a)) || (a.i - b.i); }
   function liveRow(o){
-    return '<li><a href="' + esc(o.url) + '" target="_blank" rel="sponsored noopener"><span class="live__thumb">' + (o.foto ? '<img src="' + esc(o.foto) + '" alt="" loading="lazy" data-thumb data-hide-row data-alt="' + esc(photoAlts(o)) + '">' : 'S.') + '</span>' +
+    return '<li><a href="' + esc(o.url) + '" target="_blank" rel="sponsored noopener"><span class="live__thumb">' + (o.foto ? '<img src="' + esc(o.foto) + '"' + srcsetAttr(o.foto) + ' alt="" loading="lazy" data-thumb data-hide-row data-alt="' + esc(photoAlts(o)) + '">' : 'S.') + '</span>' +
       '<span class="live__t"><b>' + esc(shortName(o.nome)) + '</b><small>' + esc(CATS[o.cat].name + ' · ' + seenInfo(o).text) + '</small></span>' +
       '<span class="live__p"><b>' + esc(o.prezzo || 'Su Amazon') + '</b>' + (o.sconto ? '<small>' + esc(o.sconto) + '</small>' : '') + '</span></a></li>';
   }
@@ -4424,7 +4443,7 @@ body.has-follow .toast{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}
   function renderBlog(list){
     var ul = $('blog-list');
     var html = list.filter(function(a){ return a && a.s && a.t && /^[a-z0-9-]+$/.test(a.s); }).slice(0, 3).map(function(a){
-      var img = /^https:\/\//.test(a.f || '') ? '<span class="blogcard__ph"><img src="' + esc(a.f) + '" alt="" loading="lazy" decoding="async" data-blog></span>' : '';
+      var img = /^https:\/\//.test(a.f || '') ? '<span class="blogcard__ph"><img src="' + esc(a.f) + '"' + srcsetAttr(a.f) + ' alt="" loading="lazy" decoding="async" data-blog></span>' : '';
       return '<li class="blogcard' + (img ? '' : ' is-text') + '"><a href="https://selectaofferte.it/blog/' + a.s + '/">' + img +
         '<span class="blogcard__b">' + (a.c ? '<span class="blogcard__c">' + esc(blogCat(a.c)) + '</span>' : '') +
         '<b class="blogcard__t">' + esc(a.t) + '</b>' + (a.d ? '<span class="blogcard__d">' + esc(a.d) + '</span>' : '') +
