@@ -269,6 +269,7 @@ font-weight:600;font-size:15.5px;text-decoration:none;text-align:center}
 .prod{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:16px;margin:0 0 22px}
 .prod .im,.wk .im,.list .im,.mini .im{background:#fff;border-radius:14px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .prod img,.wk img,.list img,.mini img{width:86%;height:86%;object-fit:contain}
+.im .ph{display:block;aspect-ratio:auto;width:auto;height:auto;background:none;line-height:1;font-size:22px;font-weight:600;letter-spacing:.5px;color:#c4b28a}.im .ph i{color:#b8913f;font-style:normal}.list .im .ph,.mini .im .ph{font-size:14px}
 .prod .nm{font-weight:600;font-size:16px;line-height:1.35;margin:0 0 6px}
 .prod .pr b{font:400 32px/1 "Instrument Serif",Georgia,serif;margin-right:8px}
 .prod .wh,.st{display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.45}
@@ -347,7 +348,7 @@ function e(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;',
 function run(){var w=norm(q.value).split(/\s+/).filter(function(x){return x.length>1});if(!IDX)return;
 var r=IDX.filter(function(a){var t=norm(a.t+' '+a.d+' '+a.c+' '+(a.k||''));return w.every(function(x){return t.indexOf(x)>=0})});
 if(!w.length)r=IDX.slice(0,10);
-out.innerHTML=r.slice(0,30).map(function(a){return '<a href="/blog/'+e(a.s)+'/"><div class="im">'+(a.f?'<img src="'+e(a.f)+'" alt="" width="500" height="500" loading="lazy" referrerpolicy="no-referrer">':'')+'</div><div><b>'+e(a.t)+'</b><span>'+e(a.x)+' · '+e(a.c)+'</span></div></a>'}).join('')||'<p>Nessun articolo trovato. Prova con il nome della marca o del prodotto.</p>'}
+out.innerHTML=r.slice(0,30).map(function(a){return '<a href="/blog/'+e(a.s)+'/"><div class="im">'+(a.f?'<img src="'+e(a.f)+'" alt="" width="500" height="500" loading="lazy" referrerpolicy="no-referrer">':'<span class="ph" aria-hidden="true">Selecta<i>.</i></span>')+'</div><div><b>'+e(a.t)+'</b><span>'+e(a.x)+' · '+e(a.c)+'</span></div></a>'}).join('')||'<p>Nessun articolo trovato. Prova con il nome della marca o del prodotto.</p>'}
 fetch('/blog/indice.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.json()}).then(function(j){IDX=j.articoli||[];
 var m=location.search.match(/[?&]q=([^&]+)/);if(m)q.value=decodeURIComponent(m[1].replace(/\+/g,' '));run()});
 q.addEventListener('input',run);})();
